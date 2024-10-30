@@ -136,6 +136,3 @@ SELECT COUNT(av.idAvaliacao) AS 'Quantidade de avaliações'
 SELECT av.nota AS 'Nota', COUNT(u.idUsuario) AS 'Quantidade de usuários'
     FROM usuario AS u JOIN avaliacao AS av ON u.idUsuario = av.fkUsuario
     GROUP BY av.nota;
-
-
--- INSERT, SELECT, UPDATE E DELETE

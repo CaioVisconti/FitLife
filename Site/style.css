@@ -116,7 +116,9 @@ height: 70vh;
 display: flex;
 justify-content: center;
 align-items: center;
-background-image: url();
+background-image: url(./img/banner.webp);
+background-color: rgb(0, 0, 0, 0.5);
+background-size: cover;
 }
 
 .home-container {
@@ -155,7 +157,7 @@ gap: 45px;
     width: 100%;
 }
 
-#section-preta {
+.section-preta {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -304,4 +306,138 @@ gap: 45px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+#section-branco {
+    height: 100vh;
+    background-color: var(--white-color);
+}
+
+.simulador {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.titulo-simulador {
+    color: var(--black-color);
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.texto-simulador {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.esquerda-simulador {
+    width: 45%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px
+}
+
+.frases-simulador {
+    color: var(--black-color);
+    font-size: 30px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.input-simulador {
+    width: 100px;
+    height: 40px;
+    border: 2px solid var(--black-color);
+    border-radius: 20px;
+}
+
+.direita-simulador {
+    width: 45%;
+    display: none;
+    border: 2px solid var(--black-color);
+    border-radius: 20px;
+    background-color: var(--grey-color);
+}
+
+.titulo-direita-simulador {
+    color: var(--black-color);
+    font-size: 30px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.texto-direita-simulador {
+    color: var(--black-color);
+    font-size: 20px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.area-desenvolvedor {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info-desenvolvedor {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.foto-desenvolvedor {
+    width: 45%;
+    background-image: url();
+    background-size: cover;
+}
+
+.area-texto {
+    width: 45%;
+    background-color: var(--white-color);
+}
+
+.titulo-desenvolvedor {
+    color: var(--black-color);
+    font-size: 40px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.texto-desenvolvedor {
+    color: var(--black-color);
+    font-size: 30px;
+    font-weight: 800;
+    text-align: left;
+}
+
+#rodape {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+}
+
+.conteudo-rodape {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.institucional {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between;
+}
+
+.logo-projeto-rodape {
+    background-image: url(./icon/logo_cinza.png);
+    background-color: rgb(0, 0, 0, 0.5)
 }
