@@ -10,6 +10,7 @@
 --subtitle-color:#717774;
 --label-color:#656363;
 --black-color: #000000;
+--grey-color: #545454;
       
 /* TAMANHO FONTES */
 --tamanho-font-input:1.2em;
@@ -52,7 +53,12 @@ position: fixed;
 top: 0;
 border: 2px solid black;
 }
-  
+
+.logo {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
 button {
 font-style: italic;
 font-size: var(--font-size-button) !important;
@@ -149,39 +155,122 @@ gap: 45px;
     width: 100%;
 }
 
-#button-container {
-align-items: flex-start;
+#section-preta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--black-color);
+    gap: 50px;
 }
 
-#section-info1 {
-width: 100%;
-height: 90vh;
-background-color: #003519;
+#quemsomos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.carrossel-info1 {
-    width: 90%;
+.titulo-cinza {
+    font-size: 70px;
+    font-weight: 800;
+    color: var(--grey-color);
+    text-align: center;
+    width: fit-content;
+}
+
+.texto-branco {
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+    width:60%
+}
+
+.titulo-cinza-carrossel {
+    font-size: 70px;
+    font-weight: 800;
+    color: var(--grey-color);
+    text-align: left;
+    width: fit-content;
+}
+
+.texto-branco-carrossel {
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: left;
+    width:60%
+}
+
+.button-carrossel {
+    align-items: flex-start;
+}
+
+#oqueoferecemos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-container {
+    align-items: flex-start;
+}
+
+.carrosselInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#carrossel-info {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    justify-content: center;
+    align-items: center;
+}
+
+#ladoEsquerdo {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    align-items: center;
+    gap: 50px;
+}
+
+.ladoDireito {
+    width: 45%;
+    height: 100%;
+}
+
+.info1 {
+    background-color: var(--white-color);
+    border: 5px solid black;
+}
+
+.carrosselInfo1 {
+    width: 80%;
     height: 100%;
 }
 
 .sep-nxtPrev-info1 .swiper-button-next{
-position: absolute;
-top:50%;
-margin-bottom: 44px;
-right: 20% !important;
-margin-left: 22.61px !important;
-color: var(--secondary-color) !important;
-z-index: 2 !important;
+    position: absolute;
+    top:50%;
+    margin-bottom: 44px;
+    right: 20% !important;
+    margin-left: 22.61px !important;
+    color: var(--secondary-color) !important;
+    z-index: 2 !important;
 }
 
 .sep-nxtPrev-info1 .swiper-button-prev{
-position: absolute;
-top:50%;
-margin-bottom: 44px;
-left: 20% !important;
-margin-right: 22.61px !important;
-color: var(--secondary-color) !important;
-z-index: 2 !important; 
+    position: absolute;
+    top:50%;
+    margin-bottom: 44px;
+    left: 20% !important;
+    margin-right: 22.61px !important;
+    color: var(--secondary-color) !important;
+    z-index: 2 !important; 
 }
 
 #info1_1 {
@@ -189,11 +278,6 @@ z-index: 2 !important;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-}
-
-.esquerda-card {
-    width: 45%;
-    margin-left: 150px;
 }
 
 .direita-card {
