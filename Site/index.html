@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./main.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -37,22 +39,21 @@
     </header>
 
         <main class="home" id="home">
+            <div class="banner"></div>
             <div class="home-container">
                 <div id="esquerda-home-container">
                     <h1 class="titulo-container">
                         FitLife
                     </h1>
                     <div class="texto-container">
-                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore deserunt eum <br>beatae rerum in quam ipsum dolor possimus excepturi saepe, ea aspernatur veritatis <br>magni. Soluta doloremque neque ipsum suscipit aut?</span>
+                        <span>Integrando o estilo de vida saudável ao seu cotidiano</span>
                         <div class="button-container">
-                            <button href="../App/html/login.html"></button>
+                            <button href="../App/html/login.html" class="button">Junte-se a nós!</button>
                         </div>
                     </div>
                 </div>
                 <div id="direita-home-container">
-                    <div class="teste">
-                        TESTE
-                    </div>
+                    <div class="teste"></div>
                 </div>
             </div>
         </main>
@@ -122,30 +123,33 @@
                     <div class="titulo-simulador">
                         Simulador Calórico
                     </div>
-                    <div class="texto-simulador">
-                        <div class="esquerda-simulador">
-                            <span class="frases-simulador">Insira uma altura:</span> <br>
-                            <input class="input-simulador" placeholder="Altura" type="number" id="ipt_altura"><br>
-                            <span class="frases-simulador">Insira um peso:</span> <br>
-                            <input class="input-simulador" placeholder="Peso" type="number" id="ipt_peso"><br>
-                            <span class="frases-simulador">Insira uma idade:</span> <br>
-                            <input class="input-simulador" placeholder="Idade" type="number" id="ipt_idade"><br>
-                            <span class="frases-simulador">Selecione um gênero biológico:</span> <br>
-                            <select id="slt_genero" class="input-simulador">
-                                <option value="#">Gênero</option>
-                                <option value="masc">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                            </select>
+                    <div class="inferior-simulador">
+                        <div class="texto-simulador">
+                            <div class="esquerda-simulador">
+                                <span class="frases-simulador">Insira uma altura:</span> <br>
+                                <input class="input-simulador" placeholder="Altura (em cm)" type="number" id="ipt_altura"><br>
+                                <span class="frases-simulador">Insira um peso:</span> <br>
+                                <input class="input-simulador" placeholder="Peso (em kg)" type="number" id="ipt_peso"><br>
+                                <span class="frases-simulador">Insira uma idade:</span> <br>
+                                <input class="input-simulador" placeholder="Idade" type="number" id="ipt_idade"><br>
+                                <span class="frases-simulador">Selecione um gênero biológico:</span> <br>
+                                <select id="slt_generoB" class="input-simulador">
+                                    <option value="#">Gênero</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                </select>
+
+                                <button onclick="calcular()">Calcular</button>
+                            </div>
                         </div>
-                        <div class="direita-simulador">
+                        <div style="display: none" class="direita-simulador" id="div_direita_simulador">
                             <span class="titulo-direita-simulador">Gasto basal de calorias total:</span> <br>
                             <span class="texto-direita-simulador">A taxa metabólica basal (TMB) é a quantidade de energia que o corpo gasta para manter as funções vitais, como respiração, batimentos do coração e temperatura corporal</span><br>
                             <span class="titulo-direita-simulador">Taxa metabólica basal:</span> <br>
                             <span class="texto-direita-simulador" id="spn_resultado"></span>
-
                         </div>
                     </div>
-                </div>
+                    </div>
             </section>
             <section class="section-preta">
                 <div class="area-desenvolvedor">
