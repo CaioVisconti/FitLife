@@ -2,5 +2,7 @@
 node_modules
 package-lock.json
 DOCUMENTOS_DE_APOIO
+.env
+.env.dev
 
 .github

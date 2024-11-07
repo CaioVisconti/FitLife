@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./css/style_cliente.css">
+    <link rel="stylesheet" href="../../../Site/style.css">
+    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <main class="screen-dash">
+        <nav class="side-bar">
+            <div class="nav-logo">
+                <a href="../../Site/index.html">
+                    <img src="../assets/icon/logo_azul.png" alt="">
+                </a>
+            </div>
+        </nav>
+        <main class="main-content">
+            <div class="dashboard-fundo">
+                <div class="esquerda-dashboard">
+                    <div id="refeicoes" class="refeicoes">
+                        <div class="botoes">
+                            <button onclick="adicionar()" class="botao-adicionar">+</button>
+                            <button onclick="retirar()" class="botao-retirar">-</button>
+                        </div>
+                        <span class="titulo-dashboard">Refeições</span>
+                    </div>
+                    <div id="exercicio" class="exercicio">
+                        <span class="titulo-dashboard">
+                            Exercício Físico:
+                        </span>
+                        <div class="caixa-texto-dashboard">
+                            <span class="texto-dashboard">Prática: Musculação</span>
+                            <span class="texto-dashboard">Gasto calórico: 350kcal</span>
+                            <span class="texto-dashboard">Dias de Execução: 3 dias</span>
+                            <span class="texto-dashboard">Dias de Descanso: 2 dias</span>
+                        </div>
+                        <button class="botao-edit-exercicio" onclick="editarExercicio()">Edit</button>
+                    </div>
+                </div>
+                <div class="direita-dashboard">
+                    <div class="info">
+                        <span class="titulo-dashboard">Dados Pessoais</span>
+                        <div class="info-texto">
+                            <span class="texto-dashboard">Nome: Caio Visconti</span>
+                            <span class="texto-dashboard">CPF: 12345678901</span>
+                            <span class="texto-dashboard">Data de Nascimento: 30/03/2005</span>
+                            <span class="texto-dashboard">Telefone: (11) 93300-0033</span>
+                            <span class="texto-dashboard">CEP: 04011-23</span>
+                            <span class="texto-dashboard">Email: caio@email.com</span>
+                            <span class="texto-dashboard">Peso: 99.1 kg</span>
+                            <span class="texto-dashboard">Altura: 1.85 m</span>
+                        </div>
+                        <button onclick="editarPessoal()" class="botao-edit-pessoal">Edit</button>
+                    </div>
+                    <div class="area-grafico">
+                        <div class="grafico">
+                            <canvas id="grafico"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+</body>
+</html>
+
+<script>
+    const graficoSetor = document.getElementById('grafico'); // const == variável constante
+
+    // se tiver [] é vetor, se tiver {} é json = juntar inúmeras propriedades dentro de um grupo
+
+    new Chart(graficoSetor, {
+        type: 'pie', // tipo do gráfico 
+        data: { // data = todos os valores que serão colocados
+            labels: [], // array = vetores que serão utilizados na label
+            datasets: [{ // métricas do gráfico = linha
+                label: 'Refeição 1', // nome da linha
+                backgroundColor: '#98AFC7',
+                borderColor: '#98AFC7',
+                data: [350], // valores do gráfico
+                borderWidth: 1 // largura da borda do gráfico
+            }, {
+                label: 'Refeição 2',
+                backgroundColor: '#1E90FF',
+                borderColor: '#1E90FF',
+                data: [1200],
+                borderWidth: 1
+            }, {
+                label: 'Refeição 3',
+                backgroundColor: '#4169E1',
+                borderColor: '#4169E1',
+                data: [600],
+                borderWidth: 1
+            }, {
+                label: 'Refeição 4',
+                backgroundColor: '#728FCE',
+                borderColor: '#728FCE',
+                data: [200],
+                borderWidth: 1
+            }, {
+                label: 'Gasto Prática',
+                backgroundColor: '#FF0000',
+                borderColor: '#FF0000',
+                data: [350],
+                borderWidth: 1
+            }, {
+                label: 'Gasto Basal',
+                backgroundColor: '#5E1914',
+                borderColor: '#5E1914',
+                data: [600],
+                borderWidth: 1
+            }]
+        },
+        options: { // opções do formato do gráfico
+            plugins:{
+                title:{
+                    text: 'Gasto e consumo de calorias diário',
+                    color: '#000000',
+                    display:true
+                },
+                legend:{
+                    position:'top',
+                    labels:{
+                        boxHeight:3
+                    }
+                }
+            }
+        }
+    });
+</script>

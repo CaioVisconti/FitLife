@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard-dev</title>
+    <link rel="stylesheet" href="./css/style_cliente.css">
+    <link rel="stylesheet" href="../../../Site/style.css">
+    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <main class="screen-dash">
+        <nav class="side-bar">
+            <div class="nav-logo">
+                <a href="../../Site/index.html">
+                    <img src="../assets/icon/logo_azul.png" alt="">
+                </a>
+            </div>
+        </nav>
+        <main class="main-content">
+            <div class="dashboard-fundo">
+                <div class="esquerda-dashboard-dev">
+                    <div class="quantidade">
+                        <span class="titulo-dashboard-dev">
+                            Quantidade total de usuários <br>cadastrados:
+                        </span>
+                        <span id="qtd_registrados">
+                            77
+                        </span>
+                    </div>
+                    <div class="praticas">
+                        <span class="titulo-dashboard-dev">
+                            Principais práticas e <br>quantidade de usuários:
+                        </span>
+                        <div id="texto-praticas">
+                            <span class="texto-dashboard-dev">Musculação: 24</span>
+                            <span class="texto-dashboard-dev">Futebol: 15</span>
+                            <span class="texto-dashboard-dev">Basquete: 7</span>
+                            <span class="texto-dashboard-dev">Vôlei: 3</span>
+                            <span class="texto-dashboard-dev">Handebol: 6</span>
+                            <span class="texto-dashboard-dev">Golfe: 1</span>
+                            <span class="texto-dashboard-dev">Tênis: 4</span>
+                            <span class="texto-dashboard-dev">Corrida: 3</span>
+                            <span class="texto-dashboard-dev">Calistenia: 5</span>
+                            <span class="texto-dashboard-dev">Crossfit: 9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="direita-dashboard-dev">
+                    <div class="grafico-dev">
+                        <canvas id="grafico-dev"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+</body>
+</html>
+
+<script>
+    const graficoSetor = document.getElementById('grafico-dev'); // const == variável constante
+
+    // se tiver [] é vetor, se tiver {} é json = juntar inúmeras propriedades dentro de um grupo
+
+    new Chart(graficoSetor, {
+        type: 'pie', // tipo do gráfico 
+        data: { // data = todos os valores que serão colocados
+            labels: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5'], // array = vetores que serão utilizados na label
+            datasets: [{ // métricas do gráfico = linha
+                label: 'Nota 1', // nome da linha
+                backgroundColor: '#98AFC7',
+                borderColor: '#98AFC7',
+                data: [4], // valores do gráfico
+                borderWidth: 1 // largura da borda do gráfico
+            }, {
+                label: 'Nota 2',
+                backgroundColor: '#1E90FF',
+                borderColor: '#1E90FF',
+                data: [6],
+                borderWidth: 1
+            }, {
+                label: 'Nota 3',
+                backgroundColor: '#4169E1',
+                borderColor: '#4169E1',
+                data: [20],
+                borderWidth: 1
+            }, {
+                label: 'Nota 4',
+                backgroundColor: '#728FCE',
+                borderColor: '#728FCE',
+                data: [25],
+                borderWidth: 1
+            }, {
+                label: 'Nota 5',
+                backgroundColor: '#FF0000',
+                borderColor: '#FF0000',
+                data: [22],
+                borderWidth: 1
+            }]
+        },
+        options: { // opções do formato do gráfico
+            plugins:{
+                title:{
+                    text: 'Avaliações do serviço',
+                    color: '#000000',
+                    display:true
+                }
+            }
+        }
+    });
+
+</script>

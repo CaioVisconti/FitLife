@@ -1,0 +1,307 @@
+.screen-dash{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.side-bar{
+    width: 20%;
+    height: 100VH;
+    position: fixed;
+    left: 0;
+    color: #fff;
+    background-color: #545454;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    border: 3px solid black;
+}
+
+.nav-logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    transform: rotate(90deg);
+}
+
+.nav-logo img{
+    width: 80%;
+}
+
+.main-content{
+    width: 100%;
+    height: 300px;
+    margin-left: 20%;
+    margin-top: 4%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    gap: 30px;
+}
+
+.dashboard-fundo {
+    width: 80%;
+    height: 80vh;
+    background-color: #545454;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 18px;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    justify-content: space-between;
+}
+
+.esquerda-dashboard {
+    width: 50%;
+    height: 100%;
+    gap: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.direita-dashboard {
+    width: 45%;
+    height: 100%;
+    gap: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.refeicoes {
+    width: 100%;
+    height: 55%;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.botoes {
+    height: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 29.5%;
+    margin-top: 0.5%;
+    gap: 5px;
+    position: absolute;
+}
+
+.botao-adicionar {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: red;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-adicionar:hover{
+    background-color: #545454;
+}
+
+.botao-retirar{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #545454;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-retirar:hover {
+    background-color: red;
+}
+
+.exercicio {
+    width: 100%;
+    height: 40%;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8%;
+}
+
+.titulo-dashboard {
+    text-align: center;
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.caixa-texto-dashboard {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20%;
+    margin-left: 5%;
+}
+
+.texto-dashboard {
+    text-align: left;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.botao-edit-exercicio {
+    width: 45px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #545454;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-left: 28.5%;
+    margin-top: 0.5%;
+}
+
+.botao-edit-exercicio:hover {
+    background-color: #06344A;
+}
+
+.info {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+    gap: 5%;
+}
+
+.info-texto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2%;
+    margin-left: 5%;
+}
+
+.botao-edit-pessoal {
+    width: 45px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #545454;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 0.5%;
+}
+
+.botao-edit-pessoal:hover{
+    background-color: #06344A;
+}
+
+.area-grafico {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+    gap: 5%;
+}
+
+.grafico {
+    width: 75%;
+    height: 100%;
+}
+
+.esquerda-dashboard-dev {
+    width: 42.5%;
+    height: 100%;
+    gap: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.direita-dashboard-dev {
+    width: 55%;
+    height: 100%;
+    gap: 5%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.quantidade {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+    gap: 10%;
+}
+
+.titulo-dashboard-dev {
+    text-align: center;
+    font-weight: 800;
+    font-size: 35px;
+}
+
+#qtd_registrados {
+    text-align: center;
+    font-weight: 800;
+    font-size: 50px;
+}
+
+.praticas {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+    border-radius: 10px;
+    gap: 10%;
+}
+
+#texto-praticas {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3%;
+    margin-left: 10%;
+}
+
+.texto-dashboard-dev {
+    text-align: left;
+    font-weight: 800;
+    font-size: 25px;
+}
