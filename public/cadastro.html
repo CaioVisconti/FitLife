@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./css/style_cadastro.css">
+    <link rel="stylesheet" href="../../../Site/style.css">
+    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="screen-dash">
+        <nav class="side-bar">
+            <div class="nav-logo">
+                <a href="../../../Site/index.html">
+                    <img src="./assets/icon/logo_azul.png" alt="">
+                </a>
+            </div>
+        </nav>
+        <main class="main-content">
+            <span class="titulo-cadastro">Cadastro</span>
+            <div class="formulario">
+                <div class="registro">
+                    <div class="esquerda-cadastro">
+                        <input class="input" type="text" id="ipt_nome" placeholder="Nome Completo">
+                        <input class="input" type="date" id="ipt_dtNasc" placeholder="__/__/____">
+                        <input class="input" type="email" id="ipt_email" placeholder="Email">
+                        <input class="input" type="password" id="ipt_senha" placeholder="Senha">
+                        <input class="input" type="password" id="ipt_confirmacao" placeholder="Confirmação de senha">
+                    </div>
+                    <div class="direita-cadastro">
+                        <input class="input" type="number" id="ipt_CPF" placeholder="CPF">
+                        <input class="input" type="number" id="ipt_telefone" placeholder="Telefone">
+                        <select class="input" id="slt_generoBiologico">
+                            <option value="#">Gênero Biológico</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                        </select>
+                        <div class="inputs-pequenos">
+                            <input class="input-pequeno" type="number" id="ipt_peso" placeholder="Peso (kg)">
+                            <input class="input-pequeno" type="number" id="ipt_altura" placeholder="Altura (cm)">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              <button onclick="cadastrar()" class="botao-cadastro">Cadastrar</button>
+              <div style="display: none" class="div_confirmacao" id="div_confirmacao"></div>
+              <div style="display: none" class="div_confirmacao_erro" id="div_confirmacao_erro"></div>
+        </main>
+    </main>
+</body>
+</html>
+
+
+<script>
+
+    function cadastrar() {
+      // aguardar();
+      console.log('Tá funcionando o botao')
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var nomeVar = ipt_nome.value;
+      var dtNascVar = ipt_dtNasc.value;
+      var telefoneVar = ipt_telefone.value;
+      var generoBiologicoVar = slt_generoBiologico.value;
+      var pesoVar = Number(ipt_peso.value);
+      var alturaVar = Number(ipt_altura.value);
+      var emailVar = (ipt_email.value).toLowerCase();
+      var cpfVar = Number(ipt_CPF.value);
+      var senhaVar = ipt_senha.value;
+      var confirmacaoSenhaVar = ipt_confirmacao.value;
+      console.log(nomeVar, '', dtNascVar, '', telefoneVar, '', generoBiologicoVar, '', pesoVar, '', alturaVar, '', emailVar, '', cpfVar, '', senhaVar, '', confirmacaoSenhaVar);
+      var lista_caracteres = ['@', '!', '#', '$', '&', '*', '-', '+', '/', '[', ']', '{', '}', '~']
+
+      // Validações
+      if (
+        nomeVar == "" ||
+        emailVar == "" ||
+        senhaVar == "" ||
+        confirmacaoSenhaVar == "" ||
+        cpfVar == "" ||
+        dtNascVar == "" ||
+        telefoneVar == "" ||
+        generoBiologicoVar == "" ||
+        pesoVar == "" ||
+        alturaVar == ""
+      ) {
+        div_confirmacao_erro.style.display = "block"
+        div_confirmacao_erro.innerHTML = "Preencha todos os campos";
+        return false;
+      } else if(!nomeVar.includes(' ')){
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira seu nome completo";
+
+      } else if(!emailVar.includes('@') || !emailVar.includes('.com') || emailVar.length < 6) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira um email válido";
+
+      } else if(!senhaVar.includes('@') || !senhaVar.includes('!') || !senhaVar.includes('#') || !senhaVar.includes('$') || !senhaVar.includes('&') || !senhaVar.includes('*') || !senhaVar.includes('-') || !senhaVar.includes('+') || !senhaVar.includes('/') || !senhaVar.includes('[') || !senhaVar.includes(']') || !senhaVar.includes('{') || !senhaVar.includes('}') || !senhaVar.includes('~') || senhaVar.length < 8 || senhaVar.toUpperCase() == senhaVar || senhaVar.toLowerCase() == senhaVar) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira uma senha válida";
+
+      } else if(confirmacaoSenhaVar != senha) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Confirmação de senha inválida";
+
+      } else if(cpfVar.length != 11){
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira um CPF válido";
+
+      } else if(dtNascVar.includes('2024') || dtNascVar.includes('2023') || dtNascVar.includes('2022') || dtNascVar.includes('2021') || dtNascVar.includes('2020') || dtNascVar.includes('2019')) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira uma idade válida";
+
+      } else if(telefoneVar.length != 11) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira um telefone válido";
+
+      } else if(generoBiologicoVar == '#') {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Selecione um genero biológico válido";
+
+      } else if(alturaVar < 5) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira uma altura válida";
+
+      } else {
+        setInterval(sumirMensagem, 5000);
+      }
+  
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          dtNascServer: dtNascVar,
+          telefoneServer: telefoneVar,
+          generoBiologicoServer: generoBiologicoVar,
+          pesoServer: pesoVar,
+          alturaServer: alturaVar,
+          cpfServer: cpfVar,
+          confirmacaoServer: confirmacaoSenhaVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+            div_confirmacao.style.display = "flex";
+  
+            div_confirmacao.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+  
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+          } else {
+            div_confirmacao.style.display = "none"
+            alert("Houve um erro ao tentar realizar o cadastro!");
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+  
+      return false;
+    }
+  
+    function sumirMensagem() {
+      div_confirmacao.style.display = "none";
+    }
+    // Listando empresas cadastradas 
+  </script>
+
+  <script src="./js/main.js"></script>
