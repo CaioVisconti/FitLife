@@ -9,7 +9,7 @@ comandos para mysql server
 
 CREATE DATABASE fitlife;
 USE fitlife;
-
+DROP TABLE esporte;
 CREATE TABLE usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
@@ -35,23 +35,24 @@ CREATE TABLE refeicao (
 
 CREATE TABLE esporte(
     idEsporte INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE gasto(
+    idGasto INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
-    gastoLeve INT NOT NULL,
-    gastoMedio INT NOT NULL,
-    gastoIntenso INT NOT NULL
+    gasto INT,
+    fkEsporte INT,
+    CONSTRAINT fkEsporteGasto FOREIGN KEY (fkEsporte) REFERENCES esporte(idEsporte)
 );
 
 CREATE TABLE pratica(
     idPratica INT AUTO_INCREMENT,
-    dtPratica DATETIME,
-    dtRegistro DATETIME,
-    minutos INT,
-    intensidade INT,
     fkUsuario INT NOT NULL,
-    fkEsporte INT NOT NULL,
+    fkGasto INT NOT NULL,
     CONSTRAINT pkComposta PRIMARY KEY (idPratica, fkEsporte, fkUsuario),
     CONSTRAINT fkUsuarioDados FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-    CONSTRAINT fkEsportePratica FOREIGN KEY (fkEsporte) REFERENCES esporte(idEsporte)
+    CONSTRAINT fkEsportePratica FOREIGN KEY (fkGasto) REFERENCES gasto(idGasto)
 );
 
 CREATE TABLE avaliacao (
@@ -93,23 +94,47 @@ INSERT INTO refeicao VALUES
 (DEFAULT, 'refeicao6', 1400, '2024-10-30 11:00:00', 7),
 (DEFAULT, 'refeicao7', 200, '2024-10-30 19:00:00', 7);
 
-INSERT INTO pratica (dtPratica, dtRegistro, minutos, intensidade, fkUsuario, fkEsporte) VALUES
-('2024-10-27 11:00:00', now(), 100, 2, 1, 1),
-('2024-10-27 14:00:00', now(), 35, 1, 2, 2),
-('2024-10-27 18:00:00', now(), 40, 3, 3, 3),
-('2024-10-26 06:00:00', now(), 55, 1, 4, 4),
-('2024-10-27 08:00:00', now(), 75, 3, 5, 5),
-('2024-10-25 16:30:00', now(), 93, 2, 6, 6),
-('2024-10-26 14:45:00', now(), 100, 3, 7, 7);
+INSERT INTO pratica (fkUsuario, fkEsporte) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7);
 
-INSERT INTO esporte VALUES
-(DEFAULT, 'Musculação', 5, 8, 13),
-(DEFAULT, 'Vôlei', 6, 9, 12),
-(DEFAULT, 'Basquete', 7, 10, 15),
-(DEFAULT, 'Futebol', 8, 12, 16),
-(DEFAULT, 'Crossfit', 12, 16, 24),
-(DEFAULT, 'Calistenia', 8, 12, 16),
-(DEFAULT, 'Corrida', 8, 12, 16);
+INSERT INTO esporte VALUES 
+(DEFAULT, 'Musculação'),
+(DEFAULT, 'Vôlei'),
+(DEFAULT, 'Basquete'),
+(DEFAULT, 'Futebol'),
+(DEFAULT, 'Crossfit'),
+(DEFAULT, 'Calistenia'),
+(DEFAULT, 'Corrida');
+
+
+INSERT INTO gasto VALUES
+(DEFAULT, 'Leve', 5, 1),
+(DEFAULT, 'Moderado', 8, 1),
+(DEFAULT, 'Intenso', 13, 1),
+(DEFAULT, 'Leve', 6, 2),
+(DEFAULT, 'Moderado', 9, 2),
+(DEFAULT, 'Intenso', 12, 2),
+(DEFAULT, 'Leve', 7, 3),
+(DEFAULT, 'Moderado', 10, 3),
+(DEFAULT, 'Intenso', 15, 3),
+(DEFAULT, 'Leve', 8, 4),
+(DEFAULT, 'Moderado', 12, 4),
+(DEFAULT, 'Intenso', 16, 4),
+(DEFAULT, 'Leve', 12, 5),
+(DEFAULT, 'Moderado', 16, 5),
+(DEFAULT, 'Intenso', 24, 5),
+(DEFAULT, 'Leve', 8, 6),
+(DEFAULT, 'Moderado', 12, 6),
+(DEFAULT, 'Intenso', 16, 6),
+(DEFAULT, 'Leve', 8, 7),
+(DEFAULT, 'Moderado', 12, 7),
+(DEFAULT, 'Intenso', 16, 7);
 
 INSERT INTO avaliacao VALUES
 (DEFAULT, 5, 1),

@@ -56,7 +56,7 @@ function enviar() {
       envio = 1;
       div_alerta.innerHTML = `<span class="confirmacao_envio">Mensagem enviada com sucesso!</span>`
   }
-    /*
+    
     if (envio == 1) {
       Email.send({
           Host : "smtp.elasticemail.com",
@@ -70,5 +70,5 @@ function enviar() {
       }).then(
         div_alerta.innerHTML = `<span class="confirmacao_envio">Mensagem enviada com sucesso!</span>`
       );
-    }*/
+    }
 }
