@@ -45,34 +45,44 @@
                     <h1 class="titulo-container">
                         FitLife
                     </h1>
-                    <div class="texto-container">
-                        <span>Integrando o estilo de vida saudável ao seu cotidiano</span>
-                        <div class="button-container">
-                            <button href="../App/html/login.html" class="button">Junte-se a nós!</button>
-                        </div>
-                    </div>
+                    <span class="texto-container">Importância da atividade física no cotidiano
+                        e seus benefícios!</span>
+                    <a href="../App/html/login.html" class="button-container">Junte-se a nós!</a>
                 </div>
                 <div id="direita-home-container">
                     <div class="teste"></div>
                 </div>
             </div>
         </main>
-            <section class="section-preta">
-                <div id="quemsomos">
-                    <div class="titulo-cinza">Quem somos</div>
-                    <div class="texto-branco">
+        <section style="padding-bottom: 10vh;" class="section-branco">
+            <div id="oqueoferecemos">
+                <div class="textosExp">
+                    <span class="titulo-cinza"><b>O que oferecemos</b></span>
+                    <span class="texto-branco">O FitLife se propõe a gerar uma interface que servirá de apoio para que os usuários logados consigam fazer uma gestão adequada de seus horários conciliando com a prática de atividades físicas, além de dados pessoais para conseguir fazer uma gestão adequada da quantidade de energia que irá gastar ao decorrer das semanas.</span>
+                </div>
+                <div class="circulo-imagem-dash">
+                    <div class="imagemDash"></div>
+                </div>
+            </div>
+            <div id="quemsomos">
+                <div class="circulo-imagem-user">
+                    <div class="imagemUser"></div>
+                </div>
+                <div class="textoExp-qs">
+                    <div class="titulo-cinza"><b>Quem somos</b></div>
+                    <div class="texto-branco-qs">
                         O FitLife é um site com intuito de gerar um ambiente propício para a propagação de informações e integração de profissionais da área de educação física para discorrer sobre a importância da atividade física no cotidiano. A falta de informação e exaltação de pontos fictícios acabam por gerar uma visão negativa sobre o ambiente físico e abstrato de academias ou ginásios, sendo assim o foco do site mostrar corretamente os benefícios principais da prática da atividade física como melhora da condição física, mental e social do praticante.
                     </div>
                 </div>
-                <div id="oqueoferecemos">
-                    <span class="titulo-cinza">O que oferecemos</span>
-                    <span class="texto-branco">O FitLife se propõe a gerar uma interface que servirá de apoio para que os usuários logados consigam fazer uma gestão adequada de seus horários conciliando com a prática de atividades físicas, além de dados pessoais para conseguir fazer uma gestão adequada da quantidade de energia que irá gastar ao decorrer das semanas.</span>
-                </div>
+            </div>
+        </section>
+        <section style="padding-top: 10vh; padding-bottom: 10vh;" class="section-preta">
                 <div id="carrosselInfo">
                     <div id="ladoEsquerdo">
-                        <div class="titulo-cinza-carrossel">Quais são <br>os benefícios?</div>
-                        <div class="texto-branco-carrossel">Com a prática de exercícios físicos é nítida a melhora de diversos campos da vida do indivíduo. Tanto na área de abrangendo a saúde do corpo e mental do praticante como em suas relações na sociedade!</div>
-                        <button class="button-carrossel">Simular</button>
+                        <div style="height: 100%; display: flex; flex-direction: column; gap:30px">
+                            <span class="titulo-cinza-carrossel"><b>Quais são <br>os benefícios?</b></span>
+                            <div class="texto-branco-carrossel">Com a prática de exercícios físicos é nítida a melhora de diversos campos da vida do indivíduo. Tanto na área de abrangendo a saúde do corpo e mental do praticante como em suas relações na sociedade!</div>
+                        </div>
                     </div>
                     <div class="swiper ladoDireito">
                         <div class="carrossel-info">
@@ -119,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="simulador">
+                <div style="padding-top: 10vh;" class="simulador">
                     <div class="titulo-simulador">
                         Simulador Calórico
                     </div>
@@ -174,31 +184,37 @@
                 <div id="rodape">
                     <div class="conteudo-rodape">
                         <div class="institucional">
+                            <span class="titulo-rodape">
+                                <u>Institucional</u>
+                            </span>
                             <ul class="rod-list">
                                 <li id="rod-home">
-                                    <a href="#">Home</a>
+                                    <div class="quadrado"></div>
+                                    <a href="#" class="option">Home</a>
                                 </li>
                                 <li id="rod-login">
-                                    <a href="../App/html/login.html">Login</a>
+                                    <div class="quadrado"></div>
+                                    <a href="../App/html/login.html" class="option">Login</a>
                                 </li>
                                 <li id="rod-cadastro">
-                                    <a href="../App/html/cadastro.html">Cadastro</a>
+                                    <div class="quadrado"></div>
+                                    <a href="../App/html/cadastro.html" class="option">Cadastro</a>
                                 </li>
                                 <li id="rod-contato">
-                                    <a href="../App/html/contato.html">Contato</a>
+                                    <div class="quadrado"></div>
+                                    <a href="../App/html/contato.html" class="option">Contato</a>
                                 </li>
                             </ul>
                         </div>
-                        <div id="logo-projeto-rodape"></div>
+                        <div class="logo-projeto-rodape"></div>
                         <div class="redes-sociais">
-                            <div class="instagram">
-                                <a href=""></a>
-                            </div>
-                            <div class="facebook">
-                                <a href=""></a>
-                            </div>
-                            <div class="x">
-                                <a href=""></a>
+                            <span class="titulo-rodape">
+                                <u>Redes Sociais</u>
+                            </span>
+                            <div style="display: flex; flex-direction: row; gap: 10%">
+                                <a href="https://www.instagram.com/fitlife.ofc/" class="instagram"></a>
+                                <a href="https://www.facebook.com/fitlife.ofc.2024" class="facebook"></a>
+                                <a href="">c</a>
                             </div>
                         </div>
                     </div>

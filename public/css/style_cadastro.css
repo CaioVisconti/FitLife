@@ -10,7 +10,7 @@
     position: fixed;
     left: 0;
     color: #fff;
-    background-color: #545454;
+    background-color: #C8C8C8;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,7 +91,7 @@
     border: 3px solid black;
     border-radius: 15px;
     background-color: #FFF;
-    color: #545454
+    color: #C8C8C8;
     /*box-shadow:*/
 }
 
@@ -117,7 +117,7 @@
 }
 
 .botao-cadastro:hover {
-    background-color: #545454;
+    background-color: #C8C8C8;
 }
 
 .div_confirmacao {

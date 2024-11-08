@@ -20,10 +20,10 @@ var alturaR = 0;
 
         if(generoB == 'masculino') {
             genero = 'Masculino'
-            gasto = (66 + (13.8 * peso) + (5 * altura) - (6.8 * idade));
+            gasto = Math.ceil(66 + (13.8 * peso) + (5 * altura) - (6.8 * idade));
         } else if (generoB == 'feminino') {
             genero = 'Feminino'
-            gasto = (655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade));
+            gasto = Math.ceil(655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade));
         }
         
         if(peso == 0 || altura == 0 || idade == 0 || generoB == '#') {

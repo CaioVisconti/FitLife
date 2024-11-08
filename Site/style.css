@@ -135,9 +135,8 @@ background-size: cover;
     width: 48%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 45px;
 }
 
 #direita-home-container {
@@ -148,16 +147,18 @@ background-size: cover;
 width: 100%;
 text-align: left;
 color: var(--white-color);
-font-size: 50px;
+font-size: 70px;
 font-weight: 800;
 }
 
 .texto-container {
-width: 100%;
+width: 80%;
+font-size: 30px;
+font-weight: 400;
 display: flex;
 flex-direction: column;
-gap: 45px;
 color: var(--white-color);
+text-align: left;
 }
 
 .teste {
@@ -171,28 +172,85 @@ color: var(--white-color);
     align-items: center;
     background-color: var(--black-color);
     gap: 50px;
+    background-size: cover;
 }
 
 #quemsomos{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.textosExp {
+    width: 45%;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.textoExp-qs {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
 }
 
 .titulo-cinza {
     font-size: 70px;
     font-weight: 800;
     color: var(--grey-color);
-    text-align: center;
-    width: fit-content;
+    text-align: left;
 }
 
 .texto-branco {
-    color: white;
+    color: black;
     font-size: 30px;
     font-weight: 800;
-    text-align: center;
-    width:60%
+    text-align: left;
+    width: 100%
+}
+
+.texto-branco-qs {
+    color: black;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: left;
+    width: 86%;
+}
+
+.circulo-imagem-dash {
+    width: 300px;
+    height: 300px;
+    border: 10px solid var(--black-color);
+    border-radius: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.circulo-imagem-user {
+    width: 300px;
+    height: 300px;
+    border: 10px solid var(--black-color);
+    border-radius: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagemDash {
+    width: 250px;
+    height: 240px;
+    background-image: url(file:///C:/Users/caiov/Downloads/bxs-dashboard.svg);
+    background-size: cover;
+}
+
+.imagemUser {
+    width: 250px;
+    height: 250px;
+    background-image: url(file:///C:/Users/caiov/Downloads/bxs-user-pin.svg);
+    background-size: cover;
 }
 
 .titulo-cinza-carrossel {
@@ -208,25 +266,40 @@ color: var(--white-color);
     font-size: 30px;
     font-weight: 800;
     text-align: left;
-    width:60%
+    width: 60%
 }
 
 .button-carrossel {
     align-items: flex-start;
+    border-radius: 10px;
+    font-size: 8px;
 }
 
 #oqueoferecemos {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-top: 5%;
 }
 
 .button-container {
+    width: 120px;
+    padding: 10px;
+    display: flex;
     align-items: flex-start;
-    font-size: 8px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #FFF;
+}
+
+.button-container:hover {
+    background-color: #04364A;
+    color: white;
 }
 
 .button {
+    width: 40px;
+    height: 50px;
     background-color: var(--white-color);
 }
 
@@ -247,9 +320,9 @@ color: var(--white-color);
 #ladoEsquerdo {
     display: flex;
     flex-direction: column;
-    width: 45%;
-    align-items: center;
+    width: 40%;
     gap: 50px;
+    margin-left: 10%;
 }
 
 .ladoDireito {
@@ -322,8 +395,9 @@ color: var(--white-color);
 
 #section-branco {
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     background-color: var(--white-color);
+    background-size: cover;
 }
 
 .simulador {
@@ -383,15 +457,14 @@ color: var(--white-color);
 
 .direita-simulador {
     width: 40%;
-    height: 80%;
+    height: 70%;
     flex-direction: column;
     border-radius: 20px;
     padding: 20px;
     background-color: var(--lightgrey-color);
     margin-left: 20%;
+    margin-top: 3%;
 }
-
-
 
 .titulo-direita-simulador {
     color: var(--black-color);
@@ -414,22 +487,28 @@ color: var(--white-color);
     align-items: center;
 }
 .info-desenvolvedor {
-    width: 90%;
+    width: 80%;
     display: flex;
-    flex-direction: column;
-    gap: 10%;
+    flex-direction: row;
+    gap: 8%;
+    margin-top: 20vh;
+    padding-bottom: 10vh;
 }
 
 .foto-desenvolvedor {
-    width: 45%;
-    height: 100%;
-    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fjohnnybravo.fandom.com%2Fwiki%2FJohnny_Bravo_%2528character%2529&psig=AOvVaw2xKl1uRKnPKsuFuQmLx1VL&ust=1730902646601000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNCEs4ixxYkDFQAAAAAdAAAAABAE);
+    width: 500px;
+    height: 480px;
+    border: 3px solid black;
+    border-radius: 300px;
+    background-image: url(https://media.licdn.com/dms/image/v2/C4D03AQH5kxJFypbMew/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1662993091556?e=1736380800&v=beta&t=dk0mwh4bhDs-P0Jz6hjMb67FrGZdJUU7FdmOKR7CnWc);
     background-size: cover;
 }
 
 .area-texto {
-    width: 45%;
+    width: 60%;
     background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
 }
 
 .titulo-desenvolvedor {
@@ -447,29 +526,137 @@ color: var(--white-color);
 }
 
 #rodape {
+    width: 100%;
+    height: 40vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5%;
+    margin-top: 20vh;
 }
 
 .conteudo-rodape {
-    width: 90%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 10%;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
 }
 
 .institucional {
     width: 25%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-align: left;
-    justify-content: space-between;
+    margin-left: 5%;
 }
 
 .logo-projeto-rodape {
+    width: 600px;
+    height: 250px;
     background-image: url(./icon/logo_cinza.png);
-    background-color: rgb(0, 0, 0, 0.5)
+    background-size: cover;
+    margin-left: 1%;
+}
+
+.direitos {
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-top: 4%;
+}
+
+.titulo-rodape {
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.titulo-rodape:hover {
+    color:#04364A;
+}
+
+.rod-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    padding-inline-start: 0px;
+}
+
+.option {
+    height: 20px;
+    color: white;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-self: center;
+}
+
+.option:hover {
+    color:#04364A;
+}
+
+.lista {
+    width: fit-content;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.quadrados {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.quadrado {
+    width: 10px;
+    height: 10px;
+    background-color: #04364A;
+    transform: rotate(45deg);
+}
+
+.redes-sociais{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    margin-left: 21%;
+}
+
+.instagram {
+    width: 50px;
+    height: 50px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png);
+    background-size: cover;
+}
+
+.facebook {
+    width: 50px;
+    height: 50px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/640px-Facebook_logo_%28square%29.png);
+    background-size: cover;
+}
+
+#rod-home {
+    display: flex;
+    flex-direction: row;
+}
+
+#rod-login {
+    display: flex;
+    flex-direction: row;
+}
+
+#rod-cadastro {
+    display: flex;
+    flex-direction: row;
+}
+
+#rod-contato {
+    display: flex;
+    flex-direction: row;
 }

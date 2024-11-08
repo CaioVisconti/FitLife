@@ -10,7 +10,7 @@
     position: fixed;
     left: 0;
     color: #fff;
-    background-color: #545454;
+    background-color: #C8C8C8;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +49,7 @@
 .dashboard-fundo {
     width: 80%;
     height: 80vh;
-    background-color: #545454;
+    background-color: #C8C8C8;
     border: 3px solid black;
     border-radius: 15px;
     padding: 18px;
@@ -109,14 +109,14 @@
 }
 
 .botao-adicionar:hover{
-    background-color: #545454;
+    background-color: #C8C8C8;
 }
 
 .botao-retirar{
     width: 30px;
     height: 30px;
     border-radius: 15px;
-    background-color: #545454;
+    background-color: #C8C8C8;
     border: 3px solid black;
     display: flex;
     justify-content: center;
@@ -164,7 +164,7 @@
     width: 45px;
     height: 25px;
     border-radius: 5px;
-    background-color: #545454;
+    background-color: #C8C8C8;
     border: 3px solid black;
     display: flex;
     justify-content: center;
@@ -204,7 +204,7 @@
     width: 45px;
     height: 25px;
     border-radius: 5px;
-    background-color: #545454;
+    background-color: #C8C8C8;
     border: 3px solid black;
     display: flex;
     justify-content: center;
