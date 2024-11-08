@@ -50,9 +50,12 @@ CREATE TABLE pratica(
     idPratica INT AUTO_INCREMENT,
     fkUsuario INT NOT NULL,
     fkGasto INT NOT NULL,
-    CONSTRAINT pkComposta PRIMARY KEY (idPratica, fkEsporte, fkUsuario),
+    diaExecucao INT,
+    diaDescanso INT,
+    minutos INT,
+    CONSTRAINT pkComposta PRIMARY KEY (idPratica, fkGasto, fkUsuario),
     CONSTRAINT fkUsuarioDados FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-    CONSTRAINT fkEsportePratica FOREIGN KEY (fkGasto) REFERENCES gasto(idGasto)
+    CONSTRAINT fkGastoPratica FOREIGN KEY (fkGasto) REFERENCES gasto(idGasto)
 );
 
 CREATE TABLE avaliacao (
@@ -94,14 +97,14 @@ INSERT INTO refeicao VALUES
 (DEFAULT, 'refeicao6', 1400, '2024-10-30 11:00:00', 7),
 (DEFAULT, 'refeicao7', 200, '2024-10-30 19:00:00', 7);
 
-INSERT INTO pratica (fkUsuario, fkEsporte) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7);
+INSERT INTO pratica (fkUsuario, fkGasto, diaExecucao, diaDescanso, minutos) VALUES
+(1, 1, 3, 4, 90),
+(2, 4, 6, 1, 70),
+(3, 7, 2, 5, 120),
+(4, 10, 5, 2, 50),
+(5, 13, 3, 4, 40),
+(6, 16, 4, 3, 180),
+(7, 19, 1, 6, 35);
 
 INSERT INTO esporte VALUES 
 (DEFAULT, 'Musculação'),
@@ -145,31 +148,81 @@ INSERT INTO avaliacao VALUES
 (DEFAULT, 3, 6),
 (DEFAULT, 4, 7);
 
--- Select mostrando nome do usuário e a prática física que faz
+
+-- Dashboard Root
+-- Select mostrando nome do usuário e a prática física que faz ##
 SELECT u.nome AS 'Nome usuário', e.nome AS 'Esporte'
     FROM usuario AS u 
     JOIN pratica AS p ON p.fkUsuario = u.idUsuario
-    JOIN esporte AS e ON e.idEsporte = p.fkEsporte;
+    JOIN gasto AS g ON g.idGasto = p.fkGasto
+    JOIN esporte AS e ON e.idEsporte = g.fkEsporte;
 
--- Select mostrando a quantidade de usuários cadastrados na plataforma
+-- Select mostrando a quantidade de usuários cadastrados na plataforma ##
 SELECT COUNT(u.idUsuario) AS 'Quantidade de Usuários'
     FROM usuario AS u;
 
--- Select mostrando a quantidade de praticantes de uma determinada prática
+-- Select mostrando a quantidade de praticantes de uma determinada prática ## 
 SELECT e.nome AS 'Prática', COUNT(u.idUsuario) AS 'Quantidade de praticantes'
     FROM usuario AS u 
     JOIN pratica AS p ON u.idUsuario = p.fkUsuario
-    JOIN esporte AS e ON e.idEsporte = p.fkEsporte
+    JOIN gasto AS g ON g.idGasto = p.fkGasto
+    JOIN esporte AS e ON e.idEsporte = g.fkEsporte
     GROUP BY e.idEsporte;
 
--- Select mostrando a quantidade de avaliações da plataforma
+-- Select mostrando a quantidade de avaliações da plataforma ##
 SELECT COUNT(av.idAvaliacao) AS 'Quantidade de avaliações'
     FROM avaliacao AS av;
 
--- Select mostrando a quantidade de usuários em cada avaliação do serviço
+-- Select mostrando a quantidade de usuários em cada avaliação do serviço ##
 SELECT av.nota AS 'Nota', COUNT(u.idUsuario) AS 'Quantidade de usuários'
     FROM usuario AS u JOIN avaliacao AS av ON u.idUsuario = av.fkUsuario
     GROUP BY av.nota;
+
+-- Dashboard Cliente
+-- Select a pratica, gasto calórico, dias de execução e dias de descansa ##
+SELECT e.nome AS Prática, g.gasto AS 'Gasto calórico', p.diaExecucao AS 'Dias de execucao',
+    p.diaDescanso FROM pratica AS p 
+    JOIN gasto AS g ON g.idGasto = p.fkGasto
+    JOIN esporte AS e ON g.fkEsporte = e.idEsporte;
+
+-- Select refeições, descrição, calorias e horario ##
+SELECT idRefeicao AS 'Refeição', descricao AS Descrição, qtdCal AS 'Quantidade de Calorias',
+    horario AS 'Horário' FROM refeicao;
+
+-- Select dados pessoais ##
+SELECT nome AS Nome, cpf AS CPF, dtNasc AS 'Data de Nascimento', telefone AS 'Telefone', email AS Email,
+    peso AS Peso, altura AS Altura FROM usuario;
+
+-- Select das calorias pro gráfico
+SELECT r.qtdCal AS 'Calorias por refeição', g.gasto AS 'Calorias atividade por minuto', p.minutos AS 'Tempo feito'
+    FROM refeicao AS r
+    JOIN usuario AS u ON r.fkUsuario = u.idUsuario
+    JOIN pratica AS p ON p.fkUsuario = u.idUsuario
+    JOIN gasto AS g ON p.fkGasto = g.idGasto;
+
+-- Adicionar refeicao: ##
+-- INSERT INTO refeicao (descricao, qtdCal, horario) VALUES ();
+
+-- Remover refeicao: ##
+-- DELETE FROM refeicao WHERE idRefeicao = id AND fkUsuario = idUsuario
+
+-- Editar exercício: ??
+-- UPDATE pratica AS p, gasto AS g SET p.fkGasto = numero AND g.fkEsporte = numero2 WHERE p.fkUsuario = id;
+
+-- Editar dia de execucao e descanso:
+-- UPDATE pratica SET diaExecucao = numero AND diaDescanso = numero WHERE fkUsuario = id;
+
+-- Editar dados pessoais:
+-- UPDATE usuario SET telefone = numero, email = emailNovo, peso = numero, altura = numero WHERE idUsuario = id;
+
+
+
+
+
+
+
+
+
 
 /*
 CREATE DATABASE aquatech;
