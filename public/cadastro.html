@@ -19,32 +19,38 @@
             </div>
         </nav>
         <main class="main-content">
+            <div class="etapas">
+              <div class="primeria-etapa" style="background-color: #04364A; color: white" id="etapa1">1</div>
+              <div class="segunda-etapa" style="background-color: #FFF; color: black;" id="etapa2">2</div>
+            </div>
             <span class="titulo-cadastro">Cadastro</span>
-            <div class="formulario">
-                <div class="registro">
-                    <div class="esquerda-cadastro">
-                        <input class="input" type="text" id="ipt_nome" placeholder="Nome Completo">
-                        <input class="input" type="date" id="ipt_dtNasc" placeholder="__/__/____">
-                        <input class="input" type="email" id="ipt_email" placeholder="Email">
-                        <input class="input" type="password" id="ipt_senha" placeholder="Senha">
-                        <input class="input" type="password" id="ipt_confirmacao" placeholder="Confirmação de senha">
-                    </div>
-                    <div class="direita-cadastro">
-                        <input class="input" type="number" id="ipt_CPF" placeholder="CPF">
-                        <input class="input" type="number" id="ipt_telefone" placeholder="Telefone">
-                        <select class="input" id="slt_generoBiologico">
-                            <option value="#">Gênero Biológico</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                        </select>
-                        <div class="inputs-pequenos">
-                            <input class="input-pequeno" type="number" id="ipt_peso" placeholder="Peso (kg)">
-                            <input class="input-pequeno" type="number" id="ipt_altura" placeholder="Altura (cm)">
-                        </div>
+            <div class="formulario" id="formulario">
+              <div class="registro">
+                  <div class="esquerda-cadastro">
+                    <input class="input" type="text" id="ipt_nome" placeholder="Nome Completo">
+                    <input class="input" type="date" id="ipt_dtNasc" placeholder="__/__/____">
+                    <input class="input" type="email" id="ipt_email" placeholder="Email">
+                    <input class="input" type="password" id="ipt_senha" placeholder="Senha">
+                    <input class="input" type="password" id="ipt_confirmacao" placeholder="Confirmação de senha">
+                  </div>
+                  <div class="direita-cadastro">
+                    <input class="input" type="number" id="ipt_CPF" placeholder="CPF">
+                    <input class="input" type="number" id="ipt_telefone" placeholder="Telefone">
+                    <select class="input" id="slt_generoBiologico">
+                      <option value="#">Gênero Biológico</option>
+                      <option value="masculino">Masculino</option>
+                      <option value="feminino">Feminino</option>
+                    </select>
+                    <div class="inputs-pequenos">
+                      <input class="input-pequeno" type="number" id="ipt_peso" placeholder="Peso (kg)">
+                      <input class="input-pequeno" type="number" id="ipt_altura" placeholder="Altura (cm)">
                     </div>
                   </div>
-                </div>
-              <button onclick="cadastrar()" class="botao-cadastro">Cadastrar</button>
+              </div>
+            </div>
+            <div id="botao_parte1">
+              <button onclick="cadastrarUm()" class="botao-cadastro">Próxima Etapa</button>
+            </div>
               <div style="display: none" class="div_confirmacao" id="div_confirmacao"></div>
               <div style="display: none" class="div_confirmacao_erro" id="div_confirmacao_erro"></div>
         </main>
