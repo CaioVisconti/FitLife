@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -19,20 +18,13 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
+                        console.log(resultadoAutenticar[0].idUsuario);
+                            res.json({
+                                id: resultadoAutenticar[0].id,
+                                nome: resultadoAutenticar[0].nome,
+                                email: resultadoAutenticar[0].email,
+                                senha: resultadoAutenticar[0].senha,
+                                });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -50,19 +42,17 @@ function autenticar(req, res) {
 
 }
 
-function cadastrar(req, res) {
+function cadastrarUm(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    console.log()
     var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var cpf = req.body.cpfServer;
     var dtNasc = req.body.dtNascServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var cpf = req.body.cpfServer;
     var telefone = req.body.telefoneServer;
-    var generoBiologico = req.body.generoBiologicoServer;
+    var genero = req.body.generoServer;
     var peso = req.body.pesoServer;
     var altura = req.body.alturaServer;
-    var senha = req.body.senhaServer;
-    var confirmacao = req.body.confirmacaoServer;
 
     // Faça as validações dos valores
     if (nome == undefined && nome.length <= 1) {
@@ -71,16 +61,18 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email não pode ser registrado!");
     } else if (senha == undefined && senha < 6) {
         res.status(400).send("Sua senha não pode ser registrada!");
-    } else if (confirmacao != senha){
-        res.status(400).send("Sua senha precisa ser igual à confirmação!");
     } else if (cpf.length != 11){
         res.status(400).send("Seu CPF não tem 11 números!");
     } else{
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, dtNasc, cpf, telefone, generoBiologico, email, senha, peso, altura)
+        usuarioModel.cadastrarUm(nome, dtNasc, email, senha, cpf, telefone, genero, peso, altura)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    console.log(resultado)
+                    usuarioModel.selecionarID(cpf)
+                    .then(function (id) {
+                        res.json(id[0].idUsuario)
+                    })
                 }
             ).catch(
                 function (erro) {
@@ -95,7 +87,36 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarDois(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var diaExe = req.body.diaExeServer;
+    var diaDes = req.body.diaDesServer;
+    var minutos = req.body.minutosServer;
+    var intensidade = req.body.intensidadeServer;
+    var id = req.body.IDServer;
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarDois(diaExe, diaDes, minutos, intensidade, id)
+            .then(
+                function (resultado) {
+                    console.log(resultado)
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+//}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrarUm,
+    cadastrarDois
 }

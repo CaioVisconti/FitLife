@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/style_cliente.css">
-    <link rel="stylesheet" href="../../../Site/style.css">
+    <link rel="stylesheet" href="./style_cliente.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,11 +15,15 @@
         <nav class="side-bar">
             <div class="nav-logo">
                 <a href="../../Site/index.html">
-                    <img src="../assets/icon/logo_azul.png" alt="">
+                    <img src="./logo_azul.png" alt="">
                 </a>
             </div>
         </nav>
         <main class="main-content">
+            <dialog id="modal" style="display: none;"></dialog>
+            <div class="div-avaliar">
+                <button class="botao-avaliar" onclick="avaliarModal()">Avaliar</button>
+            </div>
             <div class="dashboard-fundo">
                 <div class="esquerda-dashboard">
                     <div id="refeicoes" class="refeicoes">
@@ -34,10 +38,10 @@
                             Exercício Físico:
                         </span>
                         <div class="caixa-texto-dashboard">
-                            <span class="texto-dashboard">Prática: Musculação</span>
-                            <span class="texto-dashboard">Gasto calórico: 350kcal</span>
-                            <span class="texto-dashboard">Dias de Execução: 3 dias</span>
-                            <span class="texto-dashboard">Dias de Descanso: 2 dias</span>
+                            <span class="texto-dashboard">Prática: <span id="pratica">Musculação</span></span>
+                            <span class="texto-dashboard">Gasto calórico: <span id="qtdCal">350kcal</span></span>
+                            <span class="texto-dashboard">Dias de Execução: <span id="diaExe">3</span> dias</span>
+                            <span class="texto-dashboard">Dias de Descanso: <span id="diaDes">2</span> dias</span>
                         </div>
                         <button class="botao-edit-exercicio" onclick="editarExercicio()">Edit</button>
                     </div>
@@ -46,14 +50,13 @@
                     <div class="info">
                         <span class="titulo-dashboard">Dados Pessoais</span>
                         <div class="info-texto">
-                            <span class="texto-dashboard">Nome: Caio Visconti</span>
-                            <span class="texto-dashboard">CPF: 12345678901</span>
-                            <span class="texto-dashboard">Data de Nascimento: 30/03/2005</span>
-                            <span class="texto-dashboard">Telefone: (11) 93300-0033</span>
-                            <span class="texto-dashboard">CEP: 04011-23</span>
-                            <span class="texto-dashboard">Email: caio@email.com</span>
-                            <span class="texto-dashboard">Peso: 99.1 kg</span>
-                            <span class="texto-dashboard">Altura: 1.85 m</span>
+                            <span class="texto-dashboard">Nome: <span id="nome">Caio Visconti</span></span>
+                            <span class="texto-dashboard">CPF: <span id="cpf">12345678901</span></span>
+                            <span class="texto-dashboard">Data de Nascimento: <span id="data">30/03/2005</span></span>
+                            <span class="texto-dashboard">Telefone: <span id="telefone">(11) 93300-0033</span></span>
+                            <span class="texto-dashboard">Email: <span id="email">caio@email.com</span></span>
+                            <span class="texto-dashboard">Peso: <span id="peso">99.1 kg</span></span>
+                            <span class="texto-dashboard">Altura: <span id="altura">1.85 m</span></span>
                         </div>
                         <button onclick="editarPessoal()" class="botao-edit-pessoal">Edit</button>
                     </div>
@@ -70,6 +73,187 @@
 </html>
 
 <script>
+    
+    var id = sessionStorage.ID_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
+    var email = sessionStorage.EMAIL_USUARIO;
+
+function addRefeicao() {
+    modal.close();
+    modal.style.display = 'none'
+
+    var descricaoVar = ipt_descricao.value;
+    var qtdCalVar = ipt_qtdCal.value;
+    var horarioVar = ipt_horario.value;
+    var idVar = id;
+
+    if (descricaoVar == '' || qtdCalVar == '' || horarioVar == '') {
+        alert("Preencha todos os campos corretamente!")
+    } else if(qtdCalVar < 0){
+        alert("Insira uma quantidade de calorias válida!")
+    } else {
+
+        fetch("/cliente/addRef", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              // crie um atributo que recebe o valor recuperado aqui
+              // Agora vá para o arquivo routes/usuario.js
+              descricaoServer: descricaoVar,
+              qtdCalServer: qtdCalVar,
+              horarioServer: horarioVar,
+              idServer: idVar
+            }),
+          }).then(function (resposta) {
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+            })})
+    }
+}
+
+// function remRefeicao() {}
+
+function edtEsporte() {
+    modal.close();
+    modal.style.display = 'none'
+
+    var esporte = slt_esporte.value;
+    var intensidade = slt_intensidade.value;
+    var diaDescVar = ipt_diaDesc.value;
+    var diaExecVar = ipt_diaExec.value;
+    var minutosVar = ipt_min.value;
+    var idVar = id;
+
+    if(esporte == 'e1') {
+      esporteVar = 1
+      if(intensidade == 'i1') {
+        intensidadeVar = 1;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 2;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 3;
+      }
+    } else if(esporte == 'e2') {
+      esporteVar = 2
+      if(intensidade == 'i1') {
+        intensidadeVar = 4;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 5;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 6;
+      }
+    } else if(esporte == 'e3') {
+      esporteVar = 3;
+      if(intensidade == 'i1') {
+        intensidadeVar = 7;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 8;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 9;
+      }
+    } else if(esporte == 'e4') {
+      esporteVar = 4;
+      if(intensidade == 'i1') {
+        intensidadeVar = 10;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 11;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 12;
+      }
+    } else if(esporte == 'e5') {
+      esporteVar = 5;
+      if(intensidade == 'i1') {
+        intensidadeVar = 13;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 14;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 15;
+      }
+    } else if(esporte == 'e6') {
+      esporteVar = 6;
+      if(intensidade == 'i1') {
+        intensidadeVar = 16;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 17;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 18;
+      }
+    } else if(esporte == 'e7') {
+      esporteVar = 7;
+      if(intensidade == 'i1') {
+        intensidadeVar = 19;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 20;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 21;
+      }
+    }
+
+        fetch("/cliente/edtEsporte", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              // crie um atributo que recebe o valor recuperado aqui
+              // Agora vá para o arquivo routes/usuario.js
+              diaDescServer: diaDescVar,
+              diaExecServer: diaExecVar,
+              minutosServer: minutosVar,
+              intensidadeServer: intensidadeVar,
+              idServer: idVar
+            }),
+          }).then(function (resposta) {
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                pratica.innerHTML = json.nome;
+                qtdCal.innerHTML = json.gasto;
+                diaExe.innerHTML = json.execucao;
+                diaDes.innerHTML = json.descanso;
+            })})
+    }
+
+
+function edtPessoal() {
+    modal.close();
+    modal.style.display = 'none'
+
+    var telefone = ipt_telefone.value;
+    var email = ipt_email.value;
+    var peso = ipt_peso.value;
+    var altura = ipt_altura.value;
+    var idVar = id;
+
+        fetch("/cliente/edtPessoal", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              // crie um atributo que recebe o valor recuperado aqui
+              // Agora vá para o arquivo routes/usuario.js
+              telefoneServer: telefoneVar,
+              emailServer: emailVar,
+              pesoServer: pesoVar,
+              alturaServer: alturaVar,
+              idServer: idVar
+            }),
+          }).then(function (resposta) {
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                nome.innerHTML = json.nome;
+                cpf.innerHTML = json.cpf;
+                data.innerHTML = json.data;
+                email.innerHTML = json.email;
+                peso.innerHTML = json.peso;
+                altura.innerHTML = json.altura;
+            })})
+}
     const graficoSetor = document.getElementById('grafico'); // const == variável constante
 
     // se tiver [] é vetor, se tiver {} é json = juntar inúmeras propriedades dentro de um grupo
@@ -133,3 +317,5 @@
         }
     });
 </script>
+
+<script src="../js/cliente.js"></script>

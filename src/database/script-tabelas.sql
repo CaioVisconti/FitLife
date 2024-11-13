@@ -9,17 +9,17 @@ comandos para mysql server
 
 CREATE DATABASE fitlife;
 USE fitlife;
-DROP TABLE esporte;
+
 CREATE TABLE usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     dtNasc DATE NOT NULL,
-    cpf CHAR(11) NOT NULL,
+    cpf CHAR(11) NOT NULL UNIQUE,
     telefone CHAR(11) NOT NULL,
     generoBiologico VARCHAR(45),
     email VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
-    peso DECIMAL(4,1),
+    peso FLOAT,
     altura DECIMAL(3,2),
     CONSTRAINT chkGeneroBiologico CHECK (generoBiologico IN ('masculino', 'feminino'))
 );
@@ -115,7 +115,6 @@ INSERT INTO esporte VALUES
 (DEFAULT, 'Calistenia'),
 (DEFAULT, 'Corrida');
 
-
 INSERT INTO gasto VALUES
 (DEFAULT, 'Leve', 5, 1),
 (DEFAULT, 'Moderado', 8, 1),
@@ -147,7 +146,6 @@ INSERT INTO avaliacao VALUES
 (DEFAULT, 2, 5),
 (DEFAULT, 3, 6),
 (DEFAULT, 4, 7);
-
 
 -- Dashboard Root
 -- Select mostrando nome do usuário e a prática física que faz ##
@@ -201,13 +199,13 @@ SELECT r.qtdCal AS 'Calorias por refeição', g.gasto AS 'Calorias atividade por
     JOIN gasto AS g ON p.fkGasto = g.idGasto;
 
 -- Adicionar refeicao: ##
--- INSERT INTO refeicao (descricao, qtdCal, horario) VALUES ();
+-- INSERT INTO refeicao (descricao, qtdCal, horario, fkUsuario) VALUES ();
 
 -- Remover refeicao: ##
 -- DELETE FROM refeicao WHERE idRefeicao = id AND fkUsuario = idUsuario
 
 -- Editar exercício: ??
--- UPDATE pratica AS p, gasto AS g SET p.fkGasto = numero AND g.fkEsporte = numero2 WHERE p.fkUsuario = id;
+-- UPDATE pratica SET diaDesc = '${diaDesc}', diaExec = '${diaExec}', minutos = '${minutos}', fkGasto = '${intensidade}' WHERE fkUsuario = '${id}';
 
 -- Editar dia de execucao e descanso:
 -- UPDATE pratica SET diaExecucao = numero AND diaDescanso = numero WHERE fkUsuario = id;
