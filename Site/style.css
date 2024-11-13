@@ -57,7 +57,7 @@ top: 0;
     margin-top: 15px;
     margin-right: 15px;
 }
-
+/*
 button {
 font-style: italic;
 font-size: var(--font-size-button) !important;
@@ -66,7 +66,7 @@ cursor: pointer !important;
 height: var(--altura-button) !important;
 width: var(--width-button) !important;
 }
-
+*/
 .nav-div{
 height: 100%;
 display: flex;

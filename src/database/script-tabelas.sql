@@ -6,7 +6,6 @@
 comandos para mysql server
 */
 
-
 CREATE DATABASE fitlife;
 USE fitlife;
 
@@ -21,14 +20,16 @@ CREATE TABLE usuario (
     senha VARCHAR(45) NOT NULL,
     peso FLOAT,
     altura DECIMAL(3,2),
-    CONSTRAINT chkGeneroBiologico CHECK (generoBiologico IN ('masculino', 'feminino'))
+    nivel TINYINT,
+    CONSTRAINT chkGeneroBiologico CHECK (generoBiologico IN ('masculino', 'feminino')),
+    CONSTRAINT chkNivel CHECK (nivel IN (1, 0))
 );
 
 CREATE TABLE refeicao (
     idRefeicao INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(120) NOT NULL,
     qtdCal INT NOT NULL,
-    horario DATETIME NOT NULL,
+    horario TIME NOT NULL,
     fkUsuario INT NOT NULL,
     CONSTRAINT fkUsuarioRefeicao FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
@@ -66,36 +67,36 @@ CREATE TABLE avaliacao (
 );
 
 INSERT INTO usuario VALUES
-(DEFAULT, 'Caio Visconti', '2005-03-30', '46817034502', '11987654321', 'masculino', 'caio@gmail.com', 'Urubu#100', 99.1, 1.85),
-(DEFAULT, 'Julia Visconti', '2003-06-15', '53467823112', '11989345215', 'feminino', 'julia@outlook.com', 'Batatinha#123', 60, 1.65),
-(DEFAULT, 'Zaqueu Chavier Durães Filho', '2002-09-12', '35512367898', '11996603554', null, 'zaqueu@yahoo.com', 'Senha#123', 68, 1.68),
-(DEFAULT, 'Bruno Lima', '2005-08-22', '43275634519', '11900852425', 'masculino', 'bruno@uol.com', 'Lima#2005', 70, 1.86),
-(DEFAULT, 'Gabriel Feitosa', '2006-02-15', '53678943212', '11978773638', 'masculino', 'gabriel@gmail', 'Gabf#2006', 72, 1.83),
-(DEFAULT, 'Ranier Dalton', '2005-05-21', '55323478901', '11993015455', 'masculino', 'ranier@hotmail.com', 'Dalton2024#', 75, 1.70),
-(DEFAULT, 'Guilherme Figueiredo', '2005-10-30', '52712376534', '11978564329', 'masculino', 'guilherme@outlook.com', 'Guigas#1012', 86, 1.70);
+(DEFAULT, 'Caio Visconti', '2005-03-30', '46817034502', '11987654321', 'masculino', 'caio@gmail.com', 'Urubu#100', 99.1, 1.85, 1),
+(DEFAULT, 'Julia Visconti', '2003-06-15', '53467823112', '11989345215', 'feminino', 'julia@outlook.com', 'Batatinha#123', 60, 1.65, 0),
+(DEFAULT, 'Zaqueu Chavier Durães Filho', '2002-09-12', '35512367898', '11996603554', null, 'zaqueu@yahoo.com', 'Senha#123', 68, 1.68, 0),
+(DEFAULT, 'Bruno Lima', '2005-08-22', '43275634519', '11900852425', 'masculino', 'bruno@uol.com', 'Lima#2005', 70, 1.86, 0),
+(DEFAULT, 'Gabriel Feitosa', '2006-02-15', '53678943212', '11978773638', 'masculino', 'gabriel@gmail', 'Gabf#2006', 72, 1.83, 0),
+(DEFAULT, 'Ranier Dalton', '2005-05-21', '55323478901', '11993015455', 'masculino', 'ranier@hotmail.com', 'Dalton2024#', 75, 1.70, 0),
+(DEFAULT, 'Guilherme Figueiredo', '2005-10-30', '52712376534', '11978564329', 'masculino', 'guilherme@outlook.com', 'Guigas#1012', 86, 1.70, 0);
 
 INSERT INTO refeicao VALUES
-(DEFAULT, 'refeicao1', 350, '2024-10-30 08:00:00', 1),
-(DEFAULT, 'refeicao2', 200, '2024-10-30 12:00:00', 1),
-(DEFAULT, 'refeicao3', 650, '2024-10-30 16:00:00', 1),
-(DEFAULT, 'refeicao4', 1200, '2024-10-30 12:00:00', 2),
-(DEFAULT, 'refeicao5', 600, '2024-10-30 18:00:00', 2),
-(DEFAULT, 'refeicao6', 1400, '2024-10-30 11:00:00', 3),
-(DEFAULT, 'refeicao7', 200, '2024-10-30 07:00:00', 4),
-(DEFAULT, 'refeicao8', 350, '2024-10-30 10:00:00', 4),
-(DEFAULT, 'refeicao9', 200, '2024-10-30 13:00:00', 4),
-(DEFAULT, 'refeicao10', 650, '2024-10-30 16:00:00', 4),
-(DEFAULT, 'refeicao11', 450, '2024-10-30 20:00:00', 4),
-(DEFAULT, 'refeicao12', 600, '2024-10-30 22:00:00', 4),
-(DEFAULT, 'refeicao13', 2000, '2024-10-30 15:00:00', 5),
-(DEFAULT, 'refeicao14', 1100, '2024-10-30 07:00:00', 5),
-(DEFAULT, 'refeicao1', 700, '2024-10-30 16:00:00', 5),
-(DEFAULT, 'refeicao2', 600, '2024-10-30 12:00:00', 6),
-(DEFAULT, 'refeicao3', 650, '2024-10-30 16:00:00', 6),
-(DEFAULT, 'refeicao4', 600, '2024-10-30 20:00:00', 6),
-(DEFAULT, 'refeicao5', 640, '2024-10-30 00:00:00', 6),
-(DEFAULT, 'refeicao6', 1400, '2024-10-30 11:00:00', 7),
-(DEFAULT, 'refeicao7', 200, '2024-10-30 19:00:00', 7);
+(DEFAULT, 'refeicao1', 350, '08:00:00', 1),
+(DEFAULT, 'refeicao2', 200, '12:00:00', 1),
+(DEFAULT, 'refeicao3', 650, '16:00:00', 1),
+(DEFAULT, 'refeicao4', 1200, '12:00:00', 2),
+(DEFAULT, 'refeicao5', 600, '18:00:00', 2),
+(DEFAULT, 'refeicao6', 1400, '11:00:00', 3),
+(DEFAULT, 'refeicao7', 200, '07:00:00', 4),
+(DEFAULT, 'refeicao8', 350, '10:00:00', 4),
+(DEFAULT, 'refeicao9', 200, '13:00:00', 4),
+(DEFAULT, 'refeicao10', 650, '16:00:00', 4),
+(DEFAULT, 'refeicao11', 450, '20:00:00', 4),
+(DEFAULT, 'refeicao12', 600, '22:00:00', 4),
+(DEFAULT, 'refeicao13', 2000, '15:00:00', 5),
+(DEFAULT, 'refeicao14', 1100, '07:00:00', 5),
+(DEFAULT, 'refeicao1', 700, '16:00:00', 5),
+(DEFAULT, 'refeicao2', 600, '12:00:00', 6),
+(DEFAULT, 'refeicao3', 650, '16:00:00', 6),
+(DEFAULT, 'refeicao4', 600, '20:00:00', 6),
+(DEFAULT, 'refeicao5', 640, '00:00:00', 6),
+(DEFAULT, 'refeicao6', 1400, '11:00:00', 7),
+(DEFAULT, 'refeicao7', 200, '19:00:00', 7);
 
 INSERT INTO pratica (fkUsuario, fkGasto, diaExecucao, diaDescanso, minutos) VALUES
 (1, 1, 3, 4, 90),
@@ -181,7 +182,8 @@ SELECT av.nota AS 'Nota', COUNT(u.idUsuario) AS 'Quantidade de usuários'
 SELECT e.nome AS Prática, g.gasto AS 'Gasto calórico', p.diaExecucao AS 'Dias de execucao',
     p.diaDescanso FROM pratica AS p 
     JOIN gasto AS g ON g.idGasto = p.fkGasto
-    JOIN esporte AS e ON g.fkEsporte = e.idEsporte;
+    JOIN esporte AS e ON g.fkEsporte = e.idEsporte
+    WHERE p.fkUsuario = 1;
 
 -- Select refeições, descrição, calorias e horario ##
 SELECT idRefeicao AS 'Refeição', descricao AS Descrição, qtdCal AS 'Quantidade de Calorias',
@@ -189,7 +191,8 @@ SELECT idRefeicao AS 'Refeição', descricao AS Descrição, qtdCal AS 'Quantida
 
 -- Select dados pessoais ##
 SELECT nome AS Nome, cpf AS CPF, dtNasc AS 'Data de Nascimento', telefone AS 'Telefone', email AS Email,
-    peso AS Peso, altura AS Altura FROM usuario;
+    peso AS Peso, altura AS Altura FROM usuario
+    WHERE idUsuario = 1;
 
 -- Select das calorias pro gráfico
 SELECT r.qtdCal AS 'Calorias por refeição', g.gasto AS 'Calorias atividade por minuto', p.minutos AS 'Tempo feito'
@@ -214,10 +217,22 @@ SELECT r.qtdCal AS 'Calorias por refeição', g.gasto AS 'Calorias atividade por
 -- UPDATE usuario SET telefone = numero, email = emailNovo, peso = numero, altura = numero WHERE idUsuario = id;
 
 
+SELECT u.cpf AS CPF, u.dtNasc AS 'Data', u.telefone AS Telefone, u.generoBiologico AS Genero,
+    u.peso AS Peso, u.altura AS Altura, e.nome AS Esporte, g.gasto AS Gasto, p.diaExecucao AS DiaExe,
+    p.diaDescanso AS DiaDes, p.minutos AS Minutos, a.nota AS Nota
+    FROM usuario AS u
+    JOIN avaliacao AS a ON u.idUsuario = a.fkUsuario
+    JOIN pratica AS p ON p.fkUsuario = u.idUsuario
+    JOIN gasto AS g ON p.fkGasto = g.idGasto
+    JOIN esporte AS e ON g.fkEsporte = e.idEsporte
+    WHERE u.idUsuario = 1;
 
-
-
-
+SELECT e.nome AS 'Prática', COUNT(u.idUsuario) AS 'Quantidade de praticantes'
+    FROM usuario AS u 
+    JOIN pratica AS p ON u.idUsuario = p.fkUsuario
+    JOIN gasto AS g ON g.idGasto = p.fkGasto
+    JOIN esporte AS e ON e.idEsporte = g.fkEsporte
+    GROUP BY e.idEsporte;
 
 
 

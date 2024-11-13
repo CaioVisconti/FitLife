@@ -60,6 +60,39 @@
 </html>
 
 <script>
+
+    var IDVar = sessionStorage.ID_USUARIO;
+window.onload = function buscarDadosDev() {
+
+  fetch("/kpis/coleta-kpis-dev", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    }, body: JSON.stringify({
+        idServer: IDVar
+        })
+        }).then(function (resposta) {
+          console.log("ESTOU NO THEN DO plotDadosDev()!")
+            
+          if (resposta.ok) {
+            console.log(resposta);
+            
+            resposta.json().then(json => {
+              console.log(json);
+              console.log(JSON.stringify(json));
+
+              console.log(json.pratica + ' ' + json.qtdTotal)
+              });
+            }
+            
+                }).catch(function (erro) {
+                    console.log(erro);
+                })
+            
+                return false;
+
+        }
+/*
     const graficoSetor = document.getElementById('grafico-dev'); // const == variável constante
 
     // se tiver [] é vetor, se tiver {} é json = juntar inúmeras propriedades dentro de um grupo
@@ -110,5 +143,5 @@
             }
         }
     });
-
+*/
 </script>

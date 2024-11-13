@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/usuarioModel");
+var clienteModel = require("../models/usuarioModel");
 
 function cadastrarRef(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -28,11 +28,11 @@ function cadastrarRef(req, res) {
 
     function editarEsporte(req, res) {
         // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-        var diaDesc = diaDescServer;
-        var diaExec = diaExecServer;
-        var minutos = minutosServer;
-        var intensidade = intensidadeServer;
-        var id = idServer;
+        var diaDesc = req.body.diaDescServer;
+        var diaExec = req.body.diaExecServer;
+        var minutos = req.body.minutosServer;
+        var intensidade = req.body.intensidadeServer;
+        var id = req.body.idServer;
     
             // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         clienteModel.editarEsporte(diaDesc, diaExec, minutos, intensidade, id)
@@ -63,11 +63,11 @@ function cadastrarRef(req, res) {
 
     function editarPessoal(req, res) {
         // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-        var telefone = telefoneServer;
-        var email = emailServer;
-        var peso = pesoServer;
-        var altura = intensidadeServer;
-        var id = idServer;
+        var telefone = req.body.telefoneServer;
+        var email = req.body.emailServer;
+        var peso = req.body.pesoServer;
+        var altura = req.body.intensidadeServer;
+        var id = req.body.idServer;
     
             // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         clienteModel.editarPessoal(telefone, email, peso, altura, id)
