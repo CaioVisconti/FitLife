@@ -369,8 +369,6 @@
     text-align: right;
 }
 
-
-
 .titulo-modal-pessoal {
     width: 70%;
     color: black;
@@ -427,7 +425,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10%
+    gap: 5%
 }
 
 .botao-avaliacao {

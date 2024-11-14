@@ -71,10 +71,9 @@ function editarExercicio() {
                 <option value="i2">Moderada</option>
                 <option value="i3">Intensa</option>
             </select>
-            <input type="number" class="input-modal" placeholder="Dias de Execução" id="ipt_diaDesc">
-            <input type="number" class="input-modal" placeholder="Dias de Descanso" id="ipt_diaExec">
-            <input type="number" class="input-modal" placeholder="Tempo de execução (min)" id="ipt_min>
-            <button onclick="edtEsporte()" class="botao-modal">Editar</button>
+            <input type="number" class="input-modal" placeholder="Dias de Execução" id="ipt_diaExec">
+            <input type="number" class="input-modal" placeholder="Tempo de execução (min)" id="ipt_min"> <br>
+            <button class="botao-modal" onclick="edtEsporte()">Trocar</button>
         </div>
     </div>
     `;
@@ -94,7 +93,7 @@ function editarPessoal() {
         </div>
         <div class="formulario-modal">
             <input type="number" class="input-modal" placeholder="Telefone" id="ipt_telefone">
-            <input type="number" class="input-modal" placeholder="Email" id="ipt_email">
+            <input type="text" class="input-modal" placeholder="Email" id="ipt_email">
             <input type="number" class="input-modal" placeholder="Peso" id="ipt_peso">
             <input type="number" class="input-modal" placeholder="Altura (em centímetros)" id="ipt_altura">
             <button onclick="edtPessoal()" class="botao-modal">Editar</button>

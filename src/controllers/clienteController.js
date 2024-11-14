@@ -1,4 +1,4 @@
-var clienteModel = require("../models/usuarioModel");
+var clienteModel = require("../models/clienteModel");
 
 function cadastrarRef(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -44,6 +44,7 @@ function cadastrarRef(req, res) {
                         res.json({
                             nome: lista[0].pratica,
                             gasto: lista[0].gasto,
+                            minuto: lista[0].minutos,
                             execucao: lista[0].execucao,
                             descanso: lista[0].descanso,
                             });
@@ -66,7 +67,7 @@ function cadastrarRef(req, res) {
         var telefone = req.body.telefoneServer;
         var email = req.body.emailServer;
         var peso = req.body.pesoServer;
-        var altura = req.body.intensidadeServer;
+        var altura = req.body.alturaServer;
         var id = req.body.idServer;
     
             // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
@@ -77,9 +78,6 @@ function cadastrarRef(req, res) {
                     clienteModel.selecionarUsuario(id)
                     .then(function (lista) {
                         res.json({
-                            nome: lista[0].nome,
-                            cpf: lista[0].CPF,
-                            data: lista[0].Data,
                             telefone: lista[0].Telefone,
                             email: lista[0].Email,
                             peso: lista[0].Peso,

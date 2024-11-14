@@ -51,12 +51,12 @@
                       <span class="titulo-dashboard">Dados Pessoais</span>
                       <div class="info-texto">
                           <span class="texto-dashboard">Nome: <span id="nome"></span></span>
-                          <span class="texto-dashboard">CPF: <span id="cpf"></span></span>
+                          <span class="texto-dashboard">CPF: <span id="div_cpf"></span></span>
                           <span class="texto-dashboard">Data de Nascimento: <span id="dataNasc"></span></span>
                           <span class="texto-dashboard">Telefone: <span id="telefone"></span></span>
                           <span class="texto-dashboard">Email: <span id="email"></span></span>
-                          <span class="texto-dashboard">Peso: <span id="peso"></span></span>
-                          <span class="texto-dashboard">Altura: <span id="altura"></span></span>
+                          <span class="texto-dashboard">Peso: <span id="div_peso"></span></span>
+                          <span class="texto-dashboard">Altura: <span id="div_altura"></span></span>
                       </div>
                       <button onclick="editarPessoal()" class="botao-edit-pessoal">Edit</button>
                   </div>
@@ -91,7 +91,14 @@ function addRefeicao() {
       alert("Insira uma quantidade de calorias válida!")
   } else {
 
-      fetch("/cliente/client-addRef", {
+    console.log(`
+      descricaoServer: ${descricaoVar}
+      qtdCalServer: ${qtdCalVar}
+      horarioServer: ${horarioVar}
+      idServer: ${idVar}
+    `)
+
+      fetch("/cliente/addRef", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -120,8 +127,8 @@ function edtEsporte() {
 
   var esporte = slt_esporte.value;
   var intensidade = slt_intensidade.value;
-  var diaDescVar = ipt_diaDesc.value;
   var diaExecVar = ipt_diaExec.value;
+  var diaDescVar = (7 - diaExecVar);
   var minutosVar = ipt_min.value;
   var idVar = id;
 
@@ -190,7 +197,7 @@ function edtEsporte() {
     }
   }
 
-      fetch("/cliente/client-edtEsporte", {
+      fetch("/cliente/edtEsporte", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -209,7 +216,7 @@ function edtEsporte() {
               console.log(json);
               console.log(JSON.stringify(json));
               pratica.innerHTML = json.nome;
-              qtdCal.innerHTML = json.gasto;
+              qtdCalTotal.innerHTML = `${(json.gasto) * (json.minuto)} kcal`;
               diaExe.innerHTML = json.execucao;
               diaDes.innerHTML = json.descanso;
           })})
@@ -220,13 +227,14 @@ function edtPessoal() {
   modal.close();
   modal.style.display = 'none'
 
-  var telefone = ipt_telefone.value;
-  var email = ipt_email.value;
-  var peso = ipt_peso.value;
-  var altura = ipt_altura.value;
+  var telefoneVar = ipt_telefone.value;
+  var emailVar = ipt_email.value;
+  var pesoVar = ipt_peso.value;
+  var alturaVar = (ipt_altura.value / 100);
   var idVar = id;
+  console.log(telefoneVar + ' ' + emailVar + ' ' + pesoVar + ' ' + alturaVar + ' ' + idVar);
 
-      fetch("/cliente/client-edtPessoal", {
+      fetch("/cliente/edtPessoal", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -244,21 +252,23 @@ function edtPessoal() {
           resposta.json().then(json => {
               console.log(json);
               console.log(JSON.stringify(json));
-              nome.innerHTML = json.nome;
-              cpf.innerHTML = json.cpf;
-              data.innerHTML = json.data;
-              email.innerHTML = json.email;
-              peso.innerHTML = json.peso;
-              altura.innerHTML = json.altura;
+              telefone.innerHTML = `${json.telefone}`;
+              email.innerHTML = `${json.email}`;
+              peso.innerHTML = `${json.peso} kg`;
+              altura.innerHTML = `${json.altura} m`;
           })})
 }
-  const graficoSetor = document.getElementById('grafico'); // const == variável constante
 
-  // se tiver [] é vetor, se tiver {} é json = juntar inúmeras propriedades dentro de um grupo
+  var IDVar = id;
+  var peso = 0;
+  var altura = 0;
+  var calorias = 0;
+  var genero = '';
+  var minutos = 0;
+  var vetor = [];
 
-window.onload = function plotDados() {
-var IDVar = id;
-
+  function plotDados() {
+    var consumido = 0;
 fetch("/kpis/coleta-kpis", {
   method: "POST",
   headers: {
@@ -272,21 +282,25 @@ fetch("/kpis/coleta-kpis", {
           
         if (resposta.ok) {
           console.log(resposta);
-          
           resposta.json().then(json => {
             console.log(json);
             console.log(JSON.stringify(json));
             nome.innerHTML = `${json.nome}`;
             email.innerHTML = `${json.email}`;
-            cpf.innerHTML = `${json.cpf}`;
+            div_cpf.innerHTML = `${json.cpf}`;
             telefone.innerHTML = `${json.telefone}`;
-            peso.innerHTML = `${json.peso} kg`;
-            altura.innerHTML = `${json.altura} m`;
+            div_peso.innerHTML = `${Number(json.peso)} kg`;
+            div_altura.innerHTML = `${Number(json.altura)} m`;
             pratica.innerHTML = `${json.esporte}`;
-            var calorias = `${json.gasto}`;
             diaExe.innerHTML = `${json.diaExe}`;
             diaDes.innerHTML = `${json.diaDes}`;
-            var minutos = json.minutos;
+            altura = json.altura;
+            calorias = `${json.gasto}`;
+            minutos = json.minutos;
+            qtdCalTotal.innerHTML = `${minutos * calorias} kcal`;
+            console.log(peso + ' ' + altura + ' ' + calorias + ' ' + genero + ' dentro do plot');
+            peso = json.peso;
+            genero = `${json.genero}`;
 
             var data = json.data;
             var mensagem1 = '';
@@ -296,7 +310,6 @@ fetch("/kpis/coleta-kpis", {
             var caracterAtual = '';
             for(var cont = 0; cont <= 9; cont++) {
               caracterAtual += data[cont];
-              console.log(caracterAtual);
                 if(cont <= 3) {
                   mensagem1 += data[cont];
                 } else if(cont == 4) {
@@ -311,84 +324,96 @@ fetch("/kpis/coleta-kpis", {
                 }
               }
               mensagemFinal += `${mensagem3}${mensagemF2}${mensagemF1}`
-              console.log(mensagemFinal);
               dataNasc.innerHTML = mensagemFinal;
-
-              var qtdCal = minutos * calorias;
-
-              console.log(qtdCal);
-              qtdCalTotal.innerHTML = `${qtdCal} kcal`;
 
             });
           }
           
               }).catch(function (erro) {
                   console.log(erro);
-              })
-          
-              return false;
-      }
+              }).then(
+                function plotGrafico() {
+                  var IDVar = id;
 
-      /*
-  new Chart(graficoSetor, {
-      type: 'pie', // tipo do gráfico 
-      data: { // data = todos os valores que serão colocados
-          labels: [], // array = vetores que serão utilizados na label
-          datasets: [{ // métricas do gráfico = linha
-              label: 'Refeição 1', // nome da linha
-              backgroundColor: '#98AFC7',
-              borderColor: '#98AFC7',
-              data: [350], // valores do gráfico
-              borderWidth: 1 // largura da borda do gráfico
-          }, {
-              label: 'Refeição 2',
-              backgroundColor: '#1E90FF',
-              borderColor: '#1E90FF',
-              data: [1200],
-              borderWidth: 1
-          }, {
-              label: 'Refeição 3',
-              backgroundColor: '#4169E1',
-              borderColor: '#4169E1',
-              data: [600],
-              borderWidth: 1
-          }, {
-              label: 'Refeição 4',
-              backgroundColor: '#728FCE',
-              borderColor: '#728FCE',
-              data: [200],
-              borderWidth: 1
-          }, {
-              label: 'Gasto Prática',
-              backgroundColor: '#FF0000',
-              borderColor: '#FF0000',
-              data: [350],
-              borderWidth: 1
-          }, {
-              label: 'Gasto Basal',
-              backgroundColor: '#5E1914',
-              borderColor: '#5E1914',
-              data: [600],
-              borderWidth: 1
-          }]
-      },
-      options: { // opções do formato do gráfico
-          plugins:{
-              title:{
-                  text: 'Gasto e consumo de calorias diário',
-                  color: '#000000',
-                  display:true
-              },
-              legend:{
-                  position:'top',
-                  labels:{
-                      boxHeight:3
-                  }
-              }
-          }
-      }
-  });
-  */
+                  fetch("/grafico/coleta-grafico", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                      body: JSON.stringify({
+                        idServer: IDVar
+                        })
+                        }).then(function (resposta) {
+                          console.log("ESTOU NO THEN DO plotGraficos()!")
+                            
+                          if (resposta.ok) {
+                            console.log(resposta);
+                            
+                            resposta.json().then(json => {
+                              console.log(json);
+                              console.log(JSON.stringify(json));
+                              vetor.push(json.calConsumidas, json.gasto, json.idade);
+                              });
+
+                            }
+                                }).then(function() {
+                                  var basal = 0
+                                  var consumida = vetor[0];
+                                  var gasto = vetor[1];
+                                  var idade = vetor[2];
+                                  console.log(consumida + ' ' + gasto + ' ' + idade);
+                                  if(genero == 'masculino') {
+                                    basal = 88.362 + (13.397 * peso) + (4.799 * (altura * 100)) - (5.677 * idade);
+                                  } else {
+                                    console.log('passou de novo');
+                                  }
+                                const graficoSetor = document.getElementById('grafico')
+
+                              new Chart(graficoSetor, {
+                                  type: 'pie', // tipo do gráfico 
+                                  data: { // data = todos os valores que serão colocados
+                                      labels: ['Consumidas', 'Gastas'], // array = vetores que serão utilizados na label
+                                      datasets: [{ // métricas do gráfico = linha
+                                          label: 'Consumidas', // nome da linha
+                                          backgroundColor: '#98AFC7',
+                                          borderColor: '#98AFC7',
+                                          data: consumido, // valores do gráfico
+                                          borderWidth: 1 // largura da borda do gráfico
+                                      }, {
+                                          label: 'Gasto Basal',
+                                          backgroundColor: '#5E1914',
+                                          borderColor: '#5E1914',
+                                          data: [600],
+                                          borderWidth: 1
+                                      }]
+                                  },
+                                  options: { // opções do formato do gráfico
+                                      plugins:{
+                                          title:{
+                                              text: 'Gasto e consumo de calorias diário',
+                                              color: '#000000',
+                                              display:true
+                                          },
+                                          legend:{
+                                              position:'top',
+                                              labels:{
+                                                  boxHeight:3
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
+                                )}).catch(function (erro) {
+                                    console.log(erro);
+                                })
+                                
+                                return false;
+                            }
+                                )
+                                return false;
+
+                            }
+
 </script>
 
 <script src="./cliente.js"></script>

@@ -5,9 +5,7 @@ function cadastrarRef(descricao, qtdCal, horario, id) {
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO refeicao (descricao, qtdCal, horario, fkUsuario) VALUES (${descricao}, ${qtdCal}, ${horario}, ${id});
-    `;
+    var instrucaoSql = `INSERT INTO refeicao (descricao, qtdCal, horario, fkUsuario) VALUES ('${descricao}', ${qtdCal}, '${horario}', ${id});`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
@@ -19,7 +17,7 @@ function editarEsporte(diaDesc, diaExec, minutos, intensidade, id) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-         UPDATE pratica SET diaDesc = '${diaDesc}', diaExec = '${diaExec}', minutos = '${minutos}', fkGasto = '${intensidade}' WHERE fkUsuario = '${id}';
+         UPDATE pratica SET diaDescanso = '${diaDesc}', diaExecucao = '${diaExec}', minutos = '${minutos}', fkGasto = '${intensidade}' WHERE fkUsuario = '${id}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -29,7 +27,7 @@ function editarEsporte(diaDesc, diaExec, minutos, intensidade, id) {
 function selecionarEsporte(id) {
     
     var instrucaoSql = `
-        SELECT e.nome AS pratica, g.gasto AS gasto, p.diaExecucao AS execucao,
+        SELECT e.nome AS pratica, g.gasto AS gasto, p.diaExecucao AS execucao, p.minutos AS minutos,
             p.diaDescanso AS descanso FROM pratica AS p 
             JOIN gasto AS g ON g.idGasto = p.fkGasto
             JOIN esporte AS e ON g.fkEsporte = e.idEsporte
@@ -56,9 +54,8 @@ function editarPessoal(telefone, email, peso, altura, id) {
 function selecionarUsuario(id) {
     
     var instrucaoSql = `
-        SELECT nome AS Nome, cpf AS CPF, dtNasc AS Data, telefone AS Telefone, email AS Email,
-            peso AS Peso, altura AS Altura FROM usuario
-            WHERE idUsuario = '${id}';
+        SELECT telefone AS Telefone, email AS Email, peso AS Peso, altura AS Altura
+        FROM usuario WHERE idUsuario = '${id}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

@@ -29,7 +29,7 @@ CREATE TABLE refeicao (
     idRefeicao INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(120) NOT NULL,
     qtdCal INT NOT NULL,
-    horario TIME NOT NULL,
+    horario CHAR(5) NOT NULL,
     fkUsuario INT NOT NULL,
     CONSTRAINT fkUsuarioRefeicao FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
@@ -76,27 +76,27 @@ INSERT INTO usuario VALUES
 (DEFAULT, 'Guilherme Figueiredo', '2005-10-30', '52712376534', '11978564329', 'masculino', 'guilherme@outlook.com', 'Guigas#1012', 86, 1.70, 0);
 
 INSERT INTO refeicao VALUES
-(DEFAULT, 'refeicao1', 350, '08:00:00', 1),
-(DEFAULT, 'refeicao2', 200, '12:00:00', 1),
-(DEFAULT, 'refeicao3', 650, '16:00:00', 1),
-(DEFAULT, 'refeicao4', 1200, '12:00:00', 2),
-(DEFAULT, 'refeicao5', 600, '18:00:00', 2),
-(DEFAULT, 'refeicao6', 1400, '11:00:00', 3),
-(DEFAULT, 'refeicao7', 200, '07:00:00', 4),
-(DEFAULT, 'refeicao8', 350, '10:00:00', 4),
-(DEFAULT, 'refeicao9', 200, '13:00:00', 4),
-(DEFAULT, 'refeicao10', 650, '16:00:00', 4),
-(DEFAULT, 'refeicao11', 450, '20:00:00', 4),
-(DEFAULT, 'refeicao12', 600, '22:00:00', 4),
-(DEFAULT, 'refeicao13', 2000, '15:00:00', 5),
-(DEFAULT, 'refeicao14', 1100, '07:00:00', 5),
-(DEFAULT, 'refeicao1', 700, '16:00:00', 5),
-(DEFAULT, 'refeicao2', 600, '12:00:00', 6),
-(DEFAULT, 'refeicao3', 650, '16:00:00', 6),
-(DEFAULT, 'refeicao4', 600, '20:00:00', 6),
-(DEFAULT, 'refeicao5', 640, '00:00:00', 6),
-(DEFAULT, 'refeicao6', 1400, '11:00:00', 7),
-(DEFAULT, 'refeicao7', 200, '19:00:00', 7);
+(DEFAULT, 'refeicao1', 350, '08:00', 1),
+(DEFAULT, 'refeicao2', 200, '12:00', 1),
+(DEFAULT, 'refeicao3', 650, '16:00', 1),
+(DEFAULT, 'refeicao4', 1200, '12:00', 2),
+(DEFAULT, 'refeicao5', 600, '18:00', 2),
+(DEFAULT, 'refeicao6', 1400, '11:00', 3),
+(DEFAULT, 'refeicao7', 200, '07:00', 4),
+(DEFAULT, 'refeicao8', 350, '10:00', 4),
+(DEFAULT, 'refeicao9', 200, '13:00', 4),
+(DEFAULT, 'refeicao10', 650, '16:00', 4),
+(DEFAULT, 'refeicao11', 450, '20:00', 4),
+(DEFAULT, 'refeicao12', 600, '22:00', 4),
+(DEFAULT, 'refeicao13', 2000, '15:00', 5),
+(DEFAULT, 'refeicao14', 1100, '07:00', 5),
+(DEFAULT, 'refeicao1', 700, '16:00', 5),
+(DEFAULT, 'refeicao2', 600, '12:00', 6),
+(DEFAULT, 'refeicao3', 650, '16:00', 6),
+(DEFAULT, 'refeicao4', 600, '20:00', 6),
+(DEFAULT, 'refeicao5', 640, '00:00', 6),
+(DEFAULT, 'refeicao6', 1400, '11:00', 7),
+(DEFAULT, 'refeicao7', 200, '19:00', 7);
 
 INSERT INTO pratica (fkUsuario, fkGasto, diaExecucao, diaDescanso, minutos) VALUES
 (1, 1, 3, 4, 90),
@@ -195,11 +195,11 @@ SELECT nome AS Nome, cpf AS CPF, dtNasc AS 'Data de Nascimento', telefone AS 'Te
     WHERE idUsuario = 1;
 
 -- Select das calorias pro gráfico
-SELECT r.qtdCal AS 'Calorias por refeição', g.gasto AS 'Calorias atividade por minuto', p.minutos AS 'Tempo feito'
-    FROM refeicao AS r
-    JOIN usuario AS u ON r.fkUsuario = u.idUsuario
-    JOIN pratica AS p ON p.fkUsuario = u.idUsuario
-    JOIN gasto AS g ON p.fkGasto = g.idGasto;
+SELECT SUM(r.qtdCal) AS CalConsumidas, g.gasto AS gasto
+    FROM usuario AS u
+    JOIN refeicao AS r ON r.fkUsuario = u.idUsuario
+    JOIN 
+    WHERE fkUsuario = 1;
 
 -- Adicionar refeicao: ##
 -- INSERT INTO refeicao (descricao, qtdCal, horario, fkUsuario) VALUES ();
@@ -234,6 +234,18 @@ SELECT e.nome AS 'Prática', COUNT(u.idUsuario) AS 'Quantidade de praticantes'
     JOIN esporte AS e ON e.idEsporte = g.fkEsporte
     GROUP BY e.idEsporte;
 
+SELECT SUM(r.qtdCal) AS consumidas, g.gasto AS gasto, TIMESTAMPDIFF(YEAR, u.dtNasc, now()) AS idade
+    FROM usuario AS u
+    JOIN refeicao AS r ON r.fkUsuario = u.idUsuario
+    JOIN pratica AS p ON p.fkUsuario = u.idUsuario
+    JOIN gasto AS g ON p.fkGasto = g.idGasto
+    HAVING u.idUsuario = 1;
+
+SELECT g.gasto AS Gasto, TIMESTAMPDIFF(YEAR, u.dtNasc, now()) AS idade
+    FROM usuario AS u
+    JOIN pratica AS p ON p.fkUsuario = u.idUsuario
+    JOIN gasto AS g ON p.fkGasto = g.idGasto
+    WHERE u.idUsuario = 1;
 
 
 

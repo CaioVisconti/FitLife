@@ -158,7 +158,6 @@
       }).then(function (resposta) {
     resposta.json().then(json => {
         console.log(json);
-        sessionStorage.setItem("idUsuario", JSON.stringify(json));
         ID = JSON.stringify(json);
     })})
 
