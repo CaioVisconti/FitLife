@@ -58,8 +58,7 @@ function cadastrarRef(req, res) {
                 refeicao8: lista[7],
                 refeicao9: lista[8],
                 refeicao10: lista[9],
-                refeicao11: lista[10],
-                refeicao12: lista[11],
+                refeicao11: lista[10]
             })
         })
     }
@@ -173,10 +172,58 @@ function cadastrarRef(req, res) {
             );
     }
 
+    function cadastrarNota(req, res) {
+        var id = req.body.idServer;
+        var nota = req.body.notaServer;
+
+        clienteModel.cadastrarNota(id, nota)
+        .then(function (resultado) {
+            console.log(resultado);
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+
+    function atualizarNota(req, res) {
+        var id = req.body.idServer;
+        var nota = req.body.notaServer;
+
+        clienteModel.atualizarNota(id, nota)
+        .then(function (resultado) {
+            console.log(resultado);
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        })
+    }
+
+    function pesquisarNota(req, res) {
+        var id = req.body.idServer;
+
+        clienteModel.pesquisarNota(id)
+        .then(function (lista) {
+            res.json({
+                nota: lista[0].notaObtida,
+            })
+        })
+    }
 module.exports = {
     cadastrarRef,
     removerRef,
     buscarRef,
     editarEsporte,
-    editarPessoal
+    editarPessoal,
+    cadastrarNota,
+    atualizarNota,
+    pesquisarNota
 }

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="plotDados(), plotarRef()">
+<body onload="plotDados()">
     <main class="screen-dash">
         <nav class="side-bar">
             <div class="nav-logo">
@@ -87,37 +87,27 @@
     var refeicao9
     var refeicao10
     var refeicao11
+    var vetor = [];
+    var notaPesquisada;
 
 function addRefeicao() {
-    modal.close();
-    modal.style.display = 'none'
-
     var descricaoVar = ipt_descricao.value;
     var qtdCalVar = ipt_qtdCal.value;
     var horarioVar = ipt_horario.value;
     var idVar = id;
+    vetor = [];
 
     if (descricaoVar == '' || qtdCalVar == '' || horarioVar == '') {
         alert("Preencha todos os campos corretamente!")
     } else if(qtdCalVar < 0){
         alert("Insira uma quantidade de calorias válida!")
     } else {
-
-      console.log(`
-        descricaoServer: ${descricaoVar}
-        qtdCalServer: ${qtdCalVar}
-        horarioServer: ${horarioVar}
-        idServer: ${idVar}
-      `)
-
         fetch("/cliente/addRef", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
               descricaoServer: descricaoVar,
               qtdCalServer: qtdCalVar,
               horarioServer: horarioVar,
@@ -125,8 +115,6 @@ function addRefeicao() {
             }),
           }).then(function (resposta) {
             resposta.json().then(json => {
-                //console.log(json);
-                //console.log(JSON.stringify(json));
                 refeicao1 = json.refeicao1;
                 refeicao2 = json.refeicao2;
                 refeicao3 = json.refeicao3;
@@ -138,58 +126,67 @@ function addRefeicao() {
                 refeicao9 = json.refeicao9;
                 refeicao10 = json.refeicao10;
                 refeicao11 = json.refeicao11;
-                refeicao12 = json.refeicao12;
+                vetor = [];
                 mostrarRefeicao();
               })
             })
           }
         }
         
+        var idAtual;
+        var refeicaoAtual;
+        var horarioAtual;
+        var qtdAtual;
 function mostrarRefeicao() {
-  var vetor = [];
   var lista_refeicao = '';
+
+  if (vetor.length != 0) {
+    console.log('FAZ O L');
+    console.log(vetor.indexOf(undefined));
+  } else {
+    vetor.push(refeicao1, refeicao2, refeicao3, refeicao4, refeicao5, refeicao6, refeicao7, refeicao8, refeicao9, refeicao10, refeicao11);
+  }
   
-  vetor.push(refeicao1, refeicao2, refeicao3, refeicao4, refeicao5, refeicao6, refeicao7, refeicao8, refeicao9, refeicao10, refeicao11);
-
-  for(var contador = 0; contador < vetor.length; contador++) {
-    var idAtual = vetor[contador].Refeicao;
-    var refeicaoAtual = vetor[contador].Descricao;
-    var horarioAtual = vetor[contador].Horario;
-    var qtdAtual = vetor[contador].QtdCal;
-
+  for(var contador = 0; contador < vetor.indexOf(undefined); contador++) {
+    idAtual = vetor[contador].Refeicao
+    refeicaoAtual = vetor[contador].Descricao
+    horarioAtual = vetor[contador].Horario
+    qtdAtual = vetor[contador].QtdCal
+    
     if(contador != 10) {
       lista_refeicao += `
-        <b>Refeição ${contador + 1}: </b><br>
-        <b>Descrição:</b> ${refeicaoAtual}. <br>
-        <b>Horário:</b> ${horarioAtual} <br>
-        <b>Quantidade de Calorias:</b> ${qtdAtual}. <br><br>
-        `;
-        spn_refeicoes.innerHTML += lista_refeicao;
-        lista_refeicao = '';
-    } else {
-      alert('Só é possível a adição de 10 refeições!');
+      <b>Refeição ${contador + 1}: </b><br>
+      <b>Descrição:</b> ${refeicaoAtual}. <br>
+      <b>Horário:</b> ${horarioAtual} <br>
+      <b>Quantidade de Calorias:</b> ${qtdAtual} kcal. <br><br>
+      `;
+    }
+
+    if(contador == (vetor.indexOf(undefined) - 1)) {
+      spn_refeicoes.innerHTML = lista_refeicao;
     }
       }
-      plotDados('passou');
 }
 
 function remRefeicao() {
     modal.close();
     modal.style.display = 'none'
 
-    var numero = ipt_idrmv.value;
+    var numero = Number(ipt_idrmv.value - 1);
     var idVar = id;
+    var idRefVar
 
     if(numero >= 10) {
       alert('Insira um número válido')
     } else {
       for(var contador = 0; contador < vetor.length; contador++) {
         if(contador == numero) {
-          var idRefVar = vetor[contador].Refeicao;
+          idRefVar = vetor[contador].Refeicao;
         }
       }
+      vetor = [];
         fetch("/cliente/rmvRef", {
-            method: "PUT",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
@@ -199,8 +196,6 @@ function remRefeicao() {
             }),
           }).then(function (resposta) {
             resposta.json().then(json => {
-                //console.log(json);
-                //console.log(JSON.stringify(json));
                 refeicao1 = json.refeicao1;
                 refeicao2 = json.refeicao2;
                 refeicao3 = json.refeicao3;
@@ -212,7 +207,6 @@ function remRefeicao() {
                 refeicao9 = json.refeicao9;
                 refeicao10 = json.refeicao10;
                 refeicao11 = json.refeicao11;
-                refeicao12 = json.refeicao12;
                 mostrarRefeicao();
               })
             })
@@ -311,8 +305,6 @@ function edtEsporte() {
             }),
           }).then(function (resposta) {
             resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
                 pratica.innerHTML = json.nome;
                 qtdCalTotal.innerHTML = `${(json.gasto) * (json.minuto)} kcal`;
                 diaExe.innerHTML = json.execucao;
@@ -330,7 +322,6 @@ function edtPessoal() {
     var pesoVar = ipt_peso.value;
     var alturaVar = (ipt_altura.value / 100);
     var idVar = id;
-    console.log(telefoneVar + ' ' + emailVar + ' ' + pesoVar + ' ' + alturaVar + ' ' + idVar);
 
         fetch("/cliente/edtPessoal", {
             method: "PUT",
@@ -348,8 +339,6 @@ function edtPessoal() {
             }),
           }).then(function (resposta) {
             resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
                 telefone.innerHTML = `${json.telefone}`;
                 email.innerHTML = `${json.email}`;
                 peso.innerHTML = `${json.peso} kg`;
@@ -365,9 +354,10 @@ function edtPessoal() {
     var minutos = 0;
     var gastoCal
     var idadeUsu
+    var vetor = [];
+    var notaVar;
 
-    function plotDados(mensagem) {
-      console.log(mensagem);
+    function plotDados() {
       var consumido = 0;
       fetch("/kpis/coleta-kpis", {
         method: "POST",
@@ -381,10 +371,7 @@ function edtPessoal() {
             console.log("ESTOU NO THEN DO plotdados()!")
             
             if (resposta.ok) {
-              console.log(resposta);
               resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
                 nome.innerHTML = `${json.nome}`;
                 email.innerHTML = `${json.email}`;
                 div_cpf.innerHTML = `${json.cpf}`;
@@ -398,7 +385,6 @@ function edtPessoal() {
                 calorias = `${json.gasto}`;
                 minutos = json.minutos;
                 qtdCalTotal.innerHTML = `${minutos * calorias} kcal`;
-                console.log(peso + ' ' + altura + ' ' + calorias + ' ' + genero + ' dentro do plot');
                 peso = json.peso;
                 genero = `${json.genero}`;
 
@@ -430,7 +416,17 @@ function edtPessoal() {
                 }).catch(function (erro) {
                     console.log(erro);
                 }).then(
-                  function plotGrafico1() {
+                  plotarRef()
+                ).then(
+                  plotGrafico1()
+                ).then(
+                  pesquisarAva()
+                ).catch(function (erro) {
+                  console.log(erro);
+                })
+                  return false;
+                  }
+function plotGrafico1() {
                     var IDVar = id;
 
                     fetch("/grafico/coleta-grafico", {
@@ -445,14 +441,10 @@ function edtPessoal() {
                             console.log("ESTOU NO THEN DO plotGraficos()!")
                               
                             if (resposta.ok) {
-                              console.log(resposta);
-                              
                               resposta.json().then(json => {
-                                console.log(json);
-                                console.log(JSON.stringify(json));
                                 consumidasCal = json.consumidas;
                                 plotGrafico2(consumidasCal);
-                              });
+                              })}});
                   function plotGrafico2(a) {
                     var IDVar = id;
                     var consumidas = a;
@@ -469,11 +461,7 @@ function edtPessoal() {
                             console.log("ESTOU NO THEN DO plotGraficos()!")
                               
                             if (resposta.ok) {
-                              console.log(resposta);
-                              
                               resposta.json().then(json => {
-                                console.log(json);
-                                console.log(JSON.stringify(json));
                                 gastoCal = json.gastoA;
                                 idadeUsu = json.idadeA;
                                 calculoGrafico(gastoCal, idadeUsu, consumidas);
@@ -486,14 +474,12 @@ function edtPessoal() {
                             var gasto = a * minutos;
                             var idade = b;
                             var consumidas = c;
-                            console.log(a + ' ' + b + ' ' + c + 'VAMOLA')
                             if(genero == 'masculino') {
                               basal = Number(88.362 + (13.397 * peso) + (4.799 * (altura * 100)) - (5.677 * b));
                             } else {
                               basal = Number(447.593 + (9.247 * peso) + (3.098 * (altura * 100)) - (4.330 * b));
                             }
                             var gastoT = gasto + basal;
-                            console.log(gastoT + ' ' + gasto + ' ' + basal + ' ' + c)
                             const graficoSetor = document.getElementById('grafico')
 
                             new Chart(graficoSetor, {
@@ -523,25 +509,18 @@ function edtPessoal() {
                                         }
                                     }
                                 }
-                          })}}
-                              ).catch(function (erro) {
-                                  console.log(erro);
-                              })
-                                  
-                                  return false;
-                              }
-                                  )
-                                  return false;
-                              }
+                          })
+                          }
 
         function plotarRef() {
+          var idVar = id;
           fetch("/cliente/buscarRef", {
-            method: "PUT",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              idServer: id
+              idServer: idVar
             }),
           }).then(function (resposta) {
             resposta.json().then(json => {
@@ -557,10 +536,73 @@ function edtPessoal() {
                 refeicao10 = json.refeicao10;
                 refeicao11 = json.refeicao11;
                 refeicao12 = json.refeicao12;
+                var vetor = [];
                 mostrarRefeicao();
+                console.log('Ta entrando no plotaref')
               })
             })
         }
+
+function pesquisarAva() {
+  var idVar = id;
+
+  fetch("/cliente/pesquisarAva", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idServer: idVar
+      }),
+      }).then(function (resposta) {
+        resposta.json().then(json => {
+            console.log('pesquisou TRANQUILAMENTE');
+            notaPesquisada = json.nota;
+        })
+      })
+}
+
+function enviarAva() {
+  modal.style.display = `none`;
+  modal.close();
+
+  var idVar = id;
+  notaVar = nota;
+
+  if(nota == notaPesquisada) {
+    console.log('Mesma nota');
+  } else if(notaPesquisada != 0 && notaPesquisada != 1 && notaPesquisada != 2 && notaPesquisada != 3 && notaPesquisada != 4 && notaPesquisada != 5){
+    fetch("/cliente/inserirAva", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idServer: idVar
+      }),
+    }).then(function (resposta) {
+      resposta.json().then(json => {
+      console.log('INSERIU TRANQUILAMENTE');
+      pesquisarAva();
+      })
+    })
+  } else {
+    fetch("/cliente/atualizarAva", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+      body: JSON.stringify({
+        idServer: idVar,
+        notaServer: notaVar,
+      }),
+      }).then(function (resposta) {
+        resposta.json().then(json => {
+          console.log('ATUALIZOU AVA SUAVE');
+        })
+      })
+    }
+}
 </script>
 
 <script src="./cliente.js"></script>

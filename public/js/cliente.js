@@ -106,44 +106,140 @@ function avaliarModal() {
     modal.style.display = `flex`;
     modal.showModal();
 
-    modal.innerHTML = `
-    <div class="fundo-modal">
-        <div class="superior-modal">
-            <span class="titulo-modal">Avaliar</span>
-            <div onclick="fecharModal()">
-                <button class="close-modal"></button>
+    if(notaPesquisada == 5) {
+        modal.innerHTML = `
+            <div class="fundo-modal">
+                <div class="superior-modal">
+                    <span class="titulo-modal">Avaliar</span>
+                    <div onclick="fecharModal()">
+                        <button class="close-modal"></button>
+                    </div>
+                </div>
+                <div class="formulario-modal-avaliacao">
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
+                </div>
+                <button onclick="enviarAva()" class="botao-modal">Enviar</button>
             </div>
+        `;
+    } else if(notaPesquisada == 4) {
+        modal.innerHTML = `
+            <div class="fundo-modal">
+                <div class="superior-modal">
+                    <span class="titulo-modal">Avaliar</span>
+                    <div onclick="fecharModal()">
+                        <button class="close-modal"></button>
+                    </div>
+                </div>
+                <div class="formulario-modal-avaliacao">
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
+                </div>
+                <button onclick="enviarAva()" class="botao-modal">Enviar</button>
+            </div>
+        `;
+    } else if (notaPesquisada == 3) {
+        modal.innerHTML = `
+            <div class="fundo-modal">
+                <div class="superior-modal">
+                    <span class="titulo-modal">Avaliar</span>
+                    <div onclick="fecharModal()">
+                        <button class="close-modal"></button>
+                    </div>
+                </div>
+                <div class="formulario-modal-avaliacao">
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
+                </div>
+                <button onclick="enviarAva()" class="botao-modal">Enviar</button>
+            </div>
+        `;
+    } else if (notaPesquisada == 2) {
+        modal.innerHTML = `
+            <div class="fundo-modal">
+                <div class="superior-modal">
+                    <span class="titulo-modal">Avaliar</span>
+                    <div onclick="fecharModal()">
+                        <button class="close-modal"></button>
+                    </div>
+                </div>
+                <div class="formulario-modal-avaliacao">
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
+                </div>
+                <button onclick="enviarAva()" class="botao-modal">Enviar</button>
+            </div>
+        `;
+    } else if (notaPesquisada == 1) {
+        modal.innerHTML = `
+            <div class="fundo-modal">
+                <div class="superior-modal">
+                    <span class="titulo-modal">Avaliar</span>
+                    <div onclick="fecharModal()">
+                        <button class="close-modal"></button>
+                    </div>
+                </div>
+                <div class="formulario-modal-avaliacao">
+                    <div style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
+                    <div style="background-image: url(./assets/img/bxs-star.svg)" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
+                </div>
+                <button onclick="enviarAva()" class="botao-modal">Enviar</button>
+            </div>
+        `;
+    } else {
+        modal.innerHTML = `
+        <div class="fundo-modal">
+            <div class="superior-modal">
+                <span class="titulo-modal">Avaliar</span>
+                <div onclick="fecharModal()">
+                    <button class="close-modal"></button>
+                </div>
+            </div>
+            <div class="formulario-modal-avaliacao">
+                <div style="background-image: url(./assets/img/bxs-star.svg);" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
+                <div style="background-image: url(./assets/img/bxs-star.svg);" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
+                <div style="background-image: url(./assets/img/bxs-star.svg);" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
+                <div style="background-image: url(./assets/img/bxs-star.svg);" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
+                <div style="background-image: url(./assets/img/bxs-star.svg);" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
+            </div>
+            <button onclick="enviarAva()" class="botao-modal">Enviar</button>
         </div>
-        <div class="formulario-modal-avaliacao">
-            <div style="background-image: url(file:///C:/Users/caiov/Downloads/bxs-star.svg);" onclick="avaliacao1()" class="botao-avaliacao" id="avaUm"></div>
-            <div style="background-image: url(file:///C:/Users/caiov/Downloads/bxs-star.svg);" onclick="avaliacao2()" class="botao-avaliacao" id="avaDois"></div>
-            <div style="background-image: url(file:///C:/Users/caiov/Downloads/bxs-star.svg);" onclick="avaliacao3()" class="botao-avaliacao" id="avaTres"></div>
-            <div style="background-image: url(file:///C:/Users/caiov/Downloads/bxs-star.svg);" onclick="avaliacao4()" class="botao-avaliacao" id="avaQuatro"></div>
-            <div style="background-image: url(file:///C:/Users/caiov/Downloads/bxs-star.svg);" onclick="avaliacao5()" class="botao-avaliacao" id="avaCinco"></div>
-        </div>
-        <button onclick="enviar()" class="botao-modal">Enviar</button>
-    </div>
-    `;
-
+        `;
+    }
 }
 
 var nota = 0;
 
 function avaliacao1() {
     avaUm.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
-    avaDois.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
-    avaTres.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
-    avaQuatro.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
-    avaCinco.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
+    avaDois.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
+    avaTres.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
+    avaQuatro.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
+    avaCinco.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
     nota = 1;
 }
 
 function avaliacao2() {
     avaUm.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
     avaDois.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
-    avaTres.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
-    avaQuatro.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
-    avaCinco.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
+    avaTres.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
+    avaQuatro.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
+    avaCinco.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
     nota = 2;
 }
 
@@ -151,8 +247,8 @@ function avaliacao3() {
     avaUm.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
     avaDois.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
     avaTres.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
-    avaQuatro.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
-    avaCinco.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
+    avaQuatro.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
+    avaCinco.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
     nota = 3;
 }
 
@@ -161,7 +257,7 @@ function avaliacao4() {
     avaDois.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
     avaTres.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
     avaQuatro.style.backgroundImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAlZJREFUSEvFljtrFFEUgL+zBLRQCzMzWUy2jJjOyi6+UDAgiGCClZAFEex8NP4DwWcniG7QQvCBhfhoUoiPwk6wMWIjMYp3dkFZ8QG6R+a6G2Z3Z3Znris5zTD3nnO+c+7j3COskMgKcXEGq2EqCloCHrkE7wRWwyTCEwtUJiXgWV64GzjkIfzNGHggPnv/O1hDNgILMZACE+K3jfWNI3fGariGcKjNszAnHuW+tJhCLrCGbADeAUMdkF/8ZlSKmKzwvOCzwIlE58ppCTg1cLCGrAWWwH6TpM4PRqTE9yzwtozVsBlhEzAKdllb37Hm/6o+Tn8CH4BF4GMz0CXUBrwgAS9b9stgNcwg3MwSrbOOMi0Bd2zhaTlRwx7ErQplDERRtknA0zawLUIhB4Eb8YAyOu2nFm3BAfG537XUy5kPHl6nwZSM8DweXeJ1GljmSo0GO6TIq84lSb3HA4AvouyUgLdJ+9CzgPwDPIJtFd9eqUTpDVaGqFIHVvc7PR3zF8TneC+b3uAqW1Be5IRG6q/FZ8IdHNqozzmAoUBJhnnvttSGuwj7ncDCUfG45AYO+QQEKcZfm+NrUubvic++3GA1jCO8STF8TKHZDDS4DmxP0PvGZ9bLOFHV6pL0e2woI1ztsIhO+EnxuRwf15AjwJmuJ1PYLR7z+cBVKiizMaN5CpRl2D55XaI1SjSoALtik+fFT24c0jOucgtlGviCckwC5rIcMjXMIlwE1iHcFo+ZfBkbigiHESri2Yc8s2iNMRq2+bsivm0Msu9xZoqjYq5mz5GRaPYHv7uiH+aIK3QAAAAASUVORK5CYII=)`;
-    avaCinco.style.backgroundImage = `url('file:///C:/Users/caiov/Downloads/bxs-star.svg')`;
+    avaCinco.style.backgroundImage = `url(./assets/img/bxs-star.svg)`;
     nota = 4;
 }
 

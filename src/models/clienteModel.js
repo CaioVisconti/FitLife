@@ -16,7 +16,7 @@ function buscarRef(id) {
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucaoSql = `SELECT idRefeicao AS Refeicao, descricao AS Descricao, qtdCal AS QtdCal, horario AS Horario FROM refeicao WHERE fkUsuario = ${id};`;
+    var instrucaoSql = `SELECT idRefeicao AS Refeicao, descricao AS Descricao, qtdCal AS QtdCal, horario AS Horario FROM refeicao WHERE fkUsuario = ${id} ORDER BY horario;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
@@ -82,6 +82,42 @@ function selecionarUsuario(id) {
     return database.executar(instrucaoSql);
 }
 
+function cadastrarNota(id, nota) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarNota():", id, nota);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `INSERT INTO avaliacao (nota, fkUsuario) VALUES(${nota}, ${id});`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+}
+
+function atualizarNota(id, nota) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarNota()", id, nota);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `
+        UPDATE avaliacao SET nota = ${nota} WHERE fkUsuario = '${id}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+}
+
+function pesquisarNota(id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarNota():", id);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `SELECT nota AS notaObtida FROM avaliacao WHERE fkUsuario = ${id};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+}
+
+
 module.exports = {
     cadastrarRef,
     buscarRef,
@@ -89,5 +125,8 @@ module.exports = {
     editarEsporte,
     selecionarEsporte,
     editarPessoal,
-    selecionarUsuario
+    selecionarUsuario,
+    cadastrarNota,
+    atualizarNota,
+    pesquisarNota
 };
