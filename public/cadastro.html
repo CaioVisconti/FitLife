@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="./css/style_cadastro.css">
-    <link rel="stylesheet" href="../Site/style.css">
+    <link rel="stylesheet" href="./style_cadastro.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
@@ -19,295 +19,295 @@
             </div>
         </nav>
         <main class="main-content">
-          <div class="etapas">
-            <div class="primeria-etapa" style="background-color: #04364A; color: white" id="etapa1">1</div>
-            <div class="segunda-etapa" style="background-color: #FFF; color: black;" id="etapa2">2</div>
-          </div>
-          <span class="titulo-cadastro">Cadastro</span>
-          <div class="formulario" id="formulario">
-            <div class="registro">
-                <div class="esquerda-cadastro">
-                  <input class="input" type="text" id="ipt_nome" placeholder="Nome Completo">
-                  <input class="input" type="date" id="ipt_dtNasc" placeholder="__/__/____">
-                  <input class="input" type="email" id="ipt_email" placeholder="Email">
-                  <input class="input" type="password" id="ipt_senha" placeholder="Senha">
-                  <input class="input" type="password" id="ipt_confirmacao" placeholder="Confirmação de senha">
-                </div>
-                <div class="direita-cadastro">
-                  <input class="input" type="number" id="ipt_CPF" placeholder="CPF">
-                  <input class="input" type="number" id="ipt_telefone" placeholder="Telefone">
-                  <select class="input" id="slt_generoBiologico">
-                    <option value="#">Gênero Biológico</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                  </select>
-                  <div class="inputs-pequenos">
-                    <input class="input-pequeno" type="number" id="ipt_peso" placeholder="Peso (kg)">
-                    <input class="input-pequeno" type="number" id="ipt_altura" placeholder="Altura (cm)">
-                  </div>
-                </div>
+            <div class="etapas">
+              <div class="primeria-etapa" style="background-color: #04364A; color: white" id="etapa1">1</div>
+              <div class="segunda-etapa" style="background-color: #FFF; color: black;" id="etapa2">2</div>
             </div>
-          </div>
-          <div id="botao_parte1">
-            <button onclick="cadastrarUm()" class="botao-cadastro">Próxima Etapa</button>
-          </div>
-            <div style="display: none" class="div_confirmacao" id="div_confirmacao"></div>
-            <div style="display: none" class="div_confirmacao_erro" id="div_confirmacao_erro"></div>
-      </main>
-  </main>
+            <span class="titulo-cadastro">Cadastro</span>
+            <div class="formulario" id="formulario">
+              <div class="registro">
+                  <div class="esquerda-cadastro">
+                    <input class="input" type="text" id="ipt_nome" placeholder="Nome Completo">
+                    <input class="input" type="date" id="ipt_dtNasc" placeholder="__/__/____">
+                    <input class="input" type="email" id="ipt_email" placeholder="Email">
+                    <input class="input" type="password" id="ipt_senha" placeholder="Senha">
+                    <input class="input" type="password" id="ipt_confirmacao" placeholder="Confirmação de senha">
+                  </div>
+                  <div class="direita-cadastro">
+                    <input class="input" type="number" id="ipt_CPF" placeholder="CPF">
+                    <input class="input" type="number" id="ipt_telefone" placeholder="Telefone">
+                    <select class="input" id="slt_generoBiologico">
+                      <option value="#">Gênero Biológico</option>
+                      <option value="masculino">Masculino</option>
+                      <option value="feminino">Feminino</option>
+                    </select>
+                    <div class="inputs-pequenos">
+                      <input class="input-pequeno" type="number" id="ipt_peso" placeholder="Peso (kg)">
+                      <input class="input-pequeno" type="number" id="ipt_altura" placeholder="Altura (cm)">
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div id="botao_parte1">
+              <button onclick="cadastrarUm()" class="botao-cadastro">Próxima Etapa</button>
+            </div>
+              <div style="display: none" class="div_confirmacao" id="div_confirmacao"></div>
+              <div style="display: none" class="div_confirmacao_erro" id="div_confirmacao_erro"></div>
+        </main>
+    </main>
 </body>
 </html>
 
 
 <script>
-  var nomeVar = ''
-  var dtNascVar = ''
-  var emailVar = ''
-  var senhaVar = ''
-  var confirmacaoVar = ''
-  var generoVar = ''
-  var cpfVar = ''
-  var telefoneVar = ''
-  var pesoVar = ''
-  var alturaVar = ''
+    var nomeVar = ''
+    var dtNascVar = ''
+    var emailVar = ''
+    var senhaVar = ''
+    var confirmacaoVar = ''
+    var generoVar = ''
+    var cpfVar = ''
+    var telefoneVar = ''
+    var pesoVar = ''
+    var alturaVar = ''
 
-  var ID = 0;
+    var ID = 0;
 
-  function cadastrarUm() {
-      nomeVar = ipt_nome.value;
-      dtNascVar = ipt_dtNasc.value;
-      emailVar = ipt_email.value;
-      senhaVar = ipt_senha.value;
-      confirmacaoVar = ipt_confirmacao.value;
-      generoVar = slt_generoBiologico.value;
-      cpfVar = ipt_CPF.value;
-      telefoneVar = ipt_telefone.value;
-      pesoVar = ipt_peso.value;
-      alturaVar = ipt_altura.value;
+    function cadastrarUm() {
+        nomeVar = ipt_nome.value;
+        dtNascVar = ipt_dtNasc.value;
+        emailVar = ipt_email.value;
+        senhaVar = ipt_senha.value;
+        confirmacaoVar = ipt_confirmacao.value;
+        generoVar = slt_generoBiologico.value;
+        cpfVar = ipt_CPF.value;
+        telefoneVar = ipt_telefone.value;
+        pesoVar = ipt_peso.value;
+        alturaVar = ipt_altura.value;
 
-  console.log(`${nomeVar} ${dtNascVar} ${emailVar} ${senhaVar} ${confirmacaoVar} ${cpfVar} ${telefoneVar} ${pesoVar} ${alturaVar} ${generoVar}`)
+    console.log(`${nomeVar} ${dtNascVar} ${emailVar} ${senhaVar} ${confirmacaoVar} ${cpfVar} ${telefoneVar} ${pesoVar} ${alturaVar} ${generoVar}`)
 
-  if(nomeVar == "" ||
-    emailVar == "" ||
-    senhaVar == "" ||
-    confirmacaoVar == "" ||
-    nomeVar == "" ||
-    dtNascVar == "" ||
-    emailVar == "" ||
-    senhaVar == "" ||
-    confirmacaoVar == "" ||
-    cpfVar == "" ||
-    telefoneVar == "" ||
-    pesoVar == "" ||
-    alturaVar == "" ||
-    generoVar == "#") {
-      div_confirmacao_erro.style.display = "block"
-      div_confirmacao_erro.innerHTML = "Preencha todos os campos";
-    } else if(!nomeVar.includes(' ')){
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira seu nome completo";
-    } else if(!emailVar.includes('@') || !emailVar.includes('.com') || emailVar.length < 6) {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira um email válido";
-    } else /*if(!senhaVar.includes('@') || !senhaVar.includes('!') || !senhaVar.includes('#') || !senhaVar.includes('$') || !senhaVar.includes('&') || !senhaVar.includes('*') || !senhaVar.includes('-') || !senhaVar.includes('+') || !senhaVar.includes('/') || !senhaVar.includes('[') || !senhaVar.includes(']') || !senhaVar.includes('{') || !senhaVar.includes('}') || !senhaVar.includes('~') || senhaVar.length < 8 || senhaVar.toUpperCase() == senhaVar || senhaVar.toLowerCase() == senhaVar) {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira uma senha válida";
-    } else if(confirmacao != senhaVar) {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Confirmação de senha inválida";
-    } else */if(cpfVar.length != 11){
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira um CPF válido";
-    } else if(dtNascVar.includes('2024') || dtNascVar.includes('2023') || dtNascVar.includes('2022') || dtNascVar.includes('2021') || dtNascVar.includes('2020') || dtNascVar.includes('2019')) {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira uma idade válida";
-    } else if(telefoneVar.length != 11) {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira um telefone válido";
-    } else if(generoVar == '#') {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Selecione um genero biológico válido";
-    } else if(alturaVar < 5) {
-      div_confirmacao_erro.style.display = "block";
-      div_confirmacao_erro.innerHTML = "Insira uma altura válida";
-    } else {
-      etapa1.style.color = 'black';
-      etapa1.style.backgroundColor = 'white';
-      etapa2.style.color = 'white';
-      etapa2.style.backgroundColor = '#04364A';
-      div_confirmacao_erro.style.display = "none";
-      
-      fetch("/usuarios/cadastrar-etapa-um", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nomeVar,
-          dtNascServer: dtNascVar,
-          emailServer: emailVar,
-          senhaServer: senhaVar,
-          cpfServer: cpfVar,
-          telefoneServer: telefoneVar,
-          generoServer: generoVar,
-          pesoServer: pesoVar,
-          alturaServer: (alturaVar / 100)
-        }),
-      }).then(function (resposta) {
-    resposta.json().then(json => {
-        console.log(json);
-        ID = JSON.stringify(json);
-    })})
+    if(nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoVar == "" ||
+      nomeVar == "" ||
+      dtNascVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoVar == "" ||
+      cpfVar == "" ||
+      telefoneVar == "" ||
+      pesoVar == "" ||
+      alturaVar == "" ||
+      generoVar == "#") {
+        div_confirmacao_erro.style.display = "block"
+        div_confirmacao_erro.innerHTML = "Preencha todos os campos";
+      } else if(!nomeVar.includes(' ')){
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira seu nome completo";
+      } else if(!emailVar.includes('@') || !emailVar.includes('.com') || emailVar.length < 6) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira um email válido";
+      } else /*if(!senhaVar.includes('@') || !senhaVar.includes('!') || !senhaVar.includes('#') || !senhaVar.includes('$') || !senhaVar.includes('&') || !senhaVar.includes('*') || !senhaVar.includes('-') || !senhaVar.includes('+') || !senhaVar.includes('/') || !senhaVar.includes('[') || !senhaVar.includes(']') || !senhaVar.includes('{') || !senhaVar.includes('}') || !senhaVar.includes('~') || senhaVar.length < 8 || senhaVar.toUpperCase() == senhaVar || senhaVar.toLowerCase() == senhaVar) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira uma senha válida";
+      } else if(confirmacao != senhaVar) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Confirmação de senha inválida";
+      } else */if(cpfVar.length != 11){
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira um CPF válido";
+      } else if(dtNascVar.includes('2024') || dtNascVar.includes('2023') || dtNascVar.includes('2022') || dtNascVar.includes('2021') || dtNascVar.includes('2020') || dtNascVar.includes('2019')) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira uma idade válida";
+      } else if(telefoneVar.length != 11) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira um telefone válido";
+      } else if(generoVar == '#') {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Selecione um genero biológico válido";
+      } else if(alturaVar < 5) {
+        div_confirmacao_erro.style.display = "block";
+        div_confirmacao_erro.innerHTML = "Insira uma altura válida";
+      } else {
+        etapa1.style.color = 'black';
+        etapa1.style.backgroundColor = 'white';
+        etapa2.style.color = 'white';
+        etapa2.style.backgroundColor = '#04364A';
+        div_confirmacao_erro.style.display = "none";
+        
+        fetch("/usuarios/cadastrar-etapa-um", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            dtNascServer: dtNascVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+            cpfServer: cpfVar,
+            telefoneServer: telefoneVar,
+            generoServer: generoVar,
+            pesoServer: pesoVar,
+            alturaServer: (alturaVar / 100)
+          }),
+        }).then(function (resposta) {
+      resposta.json().then(json => {
+          console.log(json);
+          ID = JSON.stringify(json);
+      })})
 
-      formulario.innerHTML = `
-      <div style="height: 300px; display: flex; flex-direction: column; justify-content: space-between;">
-        <select class="input" id="slt_esporte">
-          <option value="#">Esporte</option>
-          <option value="e1">Musculação</option>
-          <option value="e2">Vôlei</option>
-          <option value="e3">Basquete</option>
-          <option value="e4">Futebol</option>
-          <option value="e5">Crossfit</option>
-          <option value="e6">Calistenia</option>
-          <option value="e7">Corrida</option>
-        </select>
-        <select class="input" id="slt_intensidade">
-          <option value="#">Intensidade</option>
-          <option value="i1">Leve</option>
-          <option value="i2">Moderada</option>
-          <option value="i3">Intensa</option>
-        </select>
-        <input class="input" type="text" id="ipt_diaExe" placeholder="Dias de Execução">
-        <input class="input" type="text" id="ipt_diaDes" placeholder="Dias de Descanso">
-        <input class="input" type="text" id="ipt_minutos" placeholder="Tempo de atividade (minutos)">
-      </div>
-      `;
-  
-      botao_parte1.innerHTML = `<button class="botao-cadastro" onclick="cadastrarDois()">Finalizar Cadastro</button>`;
-    }
-}
-
-function cadastrarDois() {
-  var esporte = slt_esporte.value;
-  var intensidade = slt_intensidade.value;
-  var diaExeVar = ipt_diaExe.value;
-  var diaDesVar = ipt_diaDes.value;
-  var minutosVar = ipt_minutos.value;
-  var esporteVar = '';
-  var intensidadeVar = '';
-  var IDVar = ID;
-  
-  if(esporte == 'e1') {
-    esporteVar = 1
-    if(intensidade == 'i1') {
-      intensidadeVar = 1;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 2;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 3;
-    }
-  } else if(esporte == 'e2') {
-    esporteVar = 2
-    if(intensidade == 'i1') {
-      intensidadeVar = 4;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 5;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 6;
-    }
-  } else if(esporte == 'e3') {
-    esporteVar = 3;
-    if(intensidade == 'i1') {
-      intensidadeVar = 7;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 8;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 9;
-    }
-  } else if(esporte == 'e4') {
-    esporteVar = 4;
-    if(intensidade == 'i1') {
-      intensidadeVar = 10;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 11;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 12;
-    }
-  } else if(esporte == 'e5') {
-    esporteVar = 5;
-    if(intensidade == 'i1') {
-      intensidadeVar = 13;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 14;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 15;
-    }
-  } else if(esporte == 'e6') {
-    esporteVar = 6;
-    if(intensidade == 'i1') {
-      intensidadeVar = 16;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 17;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 18;
-    }
-  } else if(esporte == 'e7') {
-    esporteVar = 7;
-    if(intensidade == 'i1') {
-      intensidadeVar = 19;
-    } else if(intensidade == 'i2') {
-      intensidadeVar = 20;
-    } else if(intensidade == 'i3') {
-      intensidadeVar = 21;
-    }
+        formulario.innerHTML = `
+        <div style="height: 300px; display: flex; flex-direction: column; justify-content: space-between;">
+          <select class="input" id="slt_esporte">
+            <option value="#">Esporte</option>
+            <option value="e1">Musculação</option>
+            <option value="e2">Vôlei</option>
+            <option value="e3">Basquete</option>
+            <option value="e4">Futebol</option>
+            <option value="e5">Crossfit</option>
+            <option value="e6">Calistenia</option>
+            <option value="e7">Corrida</option>
+          </select>
+          <select class="input" id="slt_intensidade">
+            <option value="#">Intensidade</option>
+            <option value="i1">Leve</option>
+            <option value="i2">Moderada</option>
+            <option value="i3">Intensa</option>
+          </select>
+          <input class="input" type="text" id="ipt_diaExe" placeholder="Dias de Execução">
+          <input class="input" type="text" id="ipt_diaDes" placeholder="Dias de Descanso">
+          <input class="input" type="text" id="ipt_minutos" placeholder="Tempo de atividade (minutos)">
+        </div>
+        `;
+    
+        botao_parte1.innerHTML = `<button class="botao-cadastro" onclick="cadastrarDois()">Finalizar Cadastro</button>`;
+      }
   }
-  console.log(`${nomeVar} ${dtNascVar} ${emailVar} ${senhaVar} ${cpfVar} ${telefoneVar} ${pesoVar} ${alturaVar} ${generoVar} ${esporteVar} ${intensidadeVar} ${diaExeVar} ${diaDesVar} ${minutosVar}`)
-  // Verificando se há algum campo em branco
-  if (
-    esporte == '#' ||
-    intensidade == '#' ||
-    diaExeVar <= 0 ||
-    diaExeVar > 7 ||
-    diaDesVar < 0 ||
-    diaDesVar > 7 ||
-    minutosVar <= 0
-  ) {
-    div_confirmacao_erro.style.display = 'flex'
-    div_confirmacao.style.display = 'none'
-    div_confirmacao_erro.innerHTML =
-      "Por favor preencha todos os campos corretamente";
-  } else {
-    div_confirmacao.style.display = 'flex'
-    div_confirmacao_erro.style.display = 'none'
-    div_confirmacao.innerHTML = "Cadastro realizado com sucesso!"
 
-    setTimeout(() => window.location="http://localhost:3333/login.html", 1000)
+  function cadastrarDois() {
+    var esporte = slt_esporte.value;
+    var intensidade = slt_intensidade.value;
+    var diaExeVar = ipt_diaExe.value;
+    var diaDesVar = ipt_diaDes.value;
+    var minutosVar = ipt_minutos.value;
+    var esporteVar = '';
+    var intensidadeVar = '';
+    var IDVar = ID;
+    
+    if(esporte == 'e1') {
+      esporteVar = 1
+      if(intensidade == 'i1') {
+        intensidadeVar = 1;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 2;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 3;
+      }
+    } else if(esporte == 'e2') {
+      esporteVar = 2
+      if(intensidade == 'i1') {
+        intensidadeVar = 4;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 5;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 6;
+      }
+    } else if(esporte == 'e3') {
+      esporteVar = 3;
+      if(intensidade == 'i1') {
+        intensidadeVar = 7;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 8;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 9;
+      }
+    } else if(esporte == 'e4') {
+      esporteVar = 4;
+      if(intensidade == 'i1') {
+        intensidadeVar = 10;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 11;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 12;
+      }
+    } else if(esporte == 'e5') {
+      esporteVar = 5;
+      if(intensidade == 'i1') {
+        intensidadeVar = 13;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 14;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 15;
+      }
+    } else if(esporte == 'e6') {
+      esporteVar = 6;
+      if(intensidade == 'i1') {
+        intensidadeVar = 16;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 17;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 18;
+      }
+    } else if(esporte == 'e7') {
+      esporteVar = 7;
+      if(intensidade == 'i1') {
+        intensidadeVar = 19;
+      } else if(intensidade == 'i2') {
+        intensidadeVar = 20;
+      } else if(intensidade == 'i3') {
+        intensidadeVar = 21;
+      }
+    }
+    console.log(`${nomeVar} ${dtNascVar} ${emailVar} ${senhaVar} ${cpfVar} ${telefoneVar} ${pesoVar} ${alturaVar} ${generoVar} ${esporteVar} ${intensidadeVar} ${diaExeVar} ${diaDesVar} ${minutosVar}`)
+    // Verificando se há algum campo em branco
+    if (
+      esporte == '#' ||
+      intensidade == '#' ||
+      diaExeVar <= 0 ||
+      diaExeVar > 7 ||
+      diaDesVar < 0 ||
+      diaDesVar > 7 ||
+      minutosVar <= 0
+    ) {
+      div_confirmacao_erro.style.display = 'flex'
+      div_confirmacao.style.display = 'none'
+      div_confirmacao_erro.innerHTML =
+        "Por favor preencha todos os campos corretamente";
+    } else {
+      div_confirmacao.style.display = 'flex'
+      div_confirmacao_erro.style.display = 'none'
+      div_confirmacao.innerHTML = "Cadastro realizado com sucesso!"
+
+      setTimeout(() => window.location="http://localhost:3333/login.html", 1000)
+    
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar-etapa-dois", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        diaExeServer: diaExeVar,
+        diaDesServer: diaDesVar,
+        minutosServer: minutosVar,
+        intensidadeServer: intensidadeVar,
+        IDServer: IDVar
+      }),
+    }).then(function (resposta) {
+      resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+      })})
   
 
-  // Enviando o valor da nova input
-  fetch("/usuarios/cadastrar-etapa-dois", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      // crie um atributo que recebe o valor recuperado aqui
-      // Agora vá para o arquivo routes/usuario.js
-      diaExeServer: diaExeVar,
-      diaDesServer: diaDesVar,
-      minutosServer: minutosVar,
-      intensidadeServer: intensidadeVar,
-      IDServer: IDVar
-    }),
-  }).then(function (resposta) {
-    resposta.json().then(json => {
-        console.log(json);
-        console.log(JSON.stringify(json));
-    })})
-
-
-}
-}
+  }
+  }
 </script>

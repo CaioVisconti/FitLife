@@ -9,13 +9,29 @@ function cadastrarRef(req, res) {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         clienteModel.cadastrarRef(descricao, qtdCal, horario, id)
-        .then(
-            function (resultado) {
-                console.log(resultado)
-                res.json(resultado);
+        .then(function (resultado) {
+                console.log(resultado);
+                clienteModel.buscarRef(id)
+                .then(function (lista) {
+                    res.json({
+                        refeicao1: lista[0],
+                        refeicao2: lista[1],
+                        refeicao3: lista[2],
+                        refeicao4: lista[3],
+                        refeicao5: lista[4],
+                        refeicao6: lista[5],
+                        refeicao7: lista[6],
+                        refeicao8: lista[7],
+                        refeicao9: lista[8],
+                        refeicao10: lista[9],
+                        refeicao11: lista[10],
+                        refeicao12: lista[11],
+                    })
+                }
+
+                )
             }
-        ).catch(
-            function (erro) {
+        ).catch(function (erro) {
                 console.log(erro);
                 console.log(
                     "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -24,6 +40,66 @@ function cadastrarRef(req, res) {
                 res.status(500).json(erro.sqlMessage);
             }
         );
+    }
+
+    function buscarRef(req, res) {
+        var id = req.body.idServer;
+
+        clienteModel.buscarRef(id)
+        .then(function (lista) {
+            res.json({
+                refeicao1: lista[0],
+                refeicao2: lista[1],
+                refeicao3: lista[2],
+                refeicao4: lista[3],
+                refeicao5: lista[4],
+                refeicao6: lista[5],
+                refeicao7: lista[6],
+                refeicao8: lista[7],
+                refeicao9: lista[8],
+                refeicao10: lista[9],
+                refeicao11: lista[10],
+                refeicao12: lista[11],
+            })
+        })
+    }
+
+    function removerRef(req, res) {
+        var idRef = req.body.idRefServer;
+        var id = req.body.idServer;
+
+        clienteModel.removerRefeicao(idRef)
+            .then(function (resultado) {
+                    console.log(resultado)
+                    clienteModel.buscarRef(id)
+                    .then({function (lista) {
+                        res.json({
+                            refeicao1: lista[0],
+                            refeicao2: lista[1],
+                            refeicao3: lista[2],
+                            refeicao4: lista[3],
+                            refeicao5: lista[4],
+                            refeicao6: lista[5],
+                            refeicao7: lista[6],
+                            refeicao8: lista[7],
+                            refeicao9: lista[8],
+                            refeicao10: lista[9],
+                            refeicao11: lista[10],
+                            refeicao12: lista[11],
+                        })
+                    }
+                    })
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 
     function editarEsporte(req, res) {
@@ -99,6 +175,8 @@ function cadastrarRef(req, res) {
 
 module.exports = {
     cadastrarRef,
+    removerRef,
+    buscarRef,
     editarEsporte,
     editarPessoal
 }

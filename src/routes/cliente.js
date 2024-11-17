@@ -8,6 +8,14 @@ router.post("/addRef", function (req, res) {
     clienteController.cadastrarRef(req, res);
 })
 
+router.post("/rmvRef", function (req, res) {
+    clienteController.removerRef(req,res);
+})
+
+router.put("buscarRef", function (req, res) {
+    clienteController.buscarRef(req,res);
+})
+
 router.put("/edtEsporte", function (req, res) {
     clienteController.editarEsporte(req, res);
 })

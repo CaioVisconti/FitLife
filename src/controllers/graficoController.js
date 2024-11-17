@@ -1,24 +1,14 @@
 var graficoModel = require("../models/graficoModel");
-var calorias = 0;
 
     function buscarDados(req, res) {
         var id = req.body.idServer;
-            graficoModel.buscarDados(id)
-                .then(
-                    function (resultado) {
-                        console.log(resultado);
-                        graficoModel.buscarIdade(id)
-                        .then(function (lista) {
-                            res.json({
-                                calorias: lista.CalConsumidas,
-                                gasto: lista.Gasto,
-                                idade: lista.Idade
-                                })
-                            
-                        }
-                        )
-                    }
-                ).catch(
+        graficoModel.buscarDados(id)
+            .then(function (lista2) {
+                res.json({
+                    consumidas: lista2[0].CalConsumidas
+                })
+            })
+                .catch(
                     function (erro) {
                         console.log(erro);
                         console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
@@ -27,6 +17,25 @@ var calorias = 0;
                 );
         }
 
+    function buscarIdade(req,res) {
+        var id = req.body.idServer;
+        graficoModel.buscarIdade(id)
+            .then(function (lista) {
+                res.json({
+                    gastoA: lista[0].Gasto,
+                    idadeA: lista[0].Idade
+                })
+            })
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+    }
+
 module.exports = {
-    buscarDados
+    buscarDados,
+    buscarIdade
 }
