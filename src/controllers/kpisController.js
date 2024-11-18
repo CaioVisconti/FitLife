@@ -9,8 +9,8 @@ function buscarDadosDev(req, res) {
                     console.log(res.json);
 
                     res.json({
-                        pratica: lista[0].Pratica,
-                        });
+                        praticas: lista
+                    });
                 }
             ).catch(
                 function (erro) {

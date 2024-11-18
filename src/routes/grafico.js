@@ -11,4 +11,8 @@ router.post("/coleta-grafico-gasto", function (req, res) {
     graficoController.buscarIdade(req, res);
 });
 
+router.post("/coleta-notas-dev", function (req, res) {
+    graficoController.coletarNotas(req, res);
+})
+
 module.exports = router;

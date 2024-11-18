@@ -26,26 +26,13 @@
                         <span class="titulo-dashboard-dev">
                             Quantidade total de usuários <br>cadastrados:
                         </span>
-                        <span id="qtd_registrados">
-                            77
-                        </span>
+                        <span id="qtd_registrados"></span>
                     </div>
                     <div class="praticas">
                         <span class="titulo-dashboard-dev">
-                            Principais práticas e <br>quantidade de usuários:
+                            Principais práticas e quantidade de usuários:
                         </span>
-                        <div id="texto-praticas">
-                            <span class="texto-dashboard-dev">Musculação: 24</span>
-                            <span class="texto-dashboard-dev">Futebol: 15</span>
-                            <span class="texto-dashboard-dev">Basquete: 7</span>
-                            <span class="texto-dashboard-dev">Vôlei: 3</span>
-                            <span class="texto-dashboard-dev">Handebol: 6</span>
-                            <span class="texto-dashboard-dev">Golfe: 1</span>
-                            <span class="texto-dashboard-dev">Tênis: 4</span>
-                            <span class="texto-dashboard-dev">Corrida: 3</span>
-                            <span class="texto-dashboard-dev">Calistenia: 5</span>
-                            <span class="texto-dashboard-dev">Crossfit: 9</span>
-                        </div>
+                        <div id="texto_praticas" class="texto-dashboard-dev"></div>
                     </div>
                 </div>
                 <div class="direita-dashboard-dev">
@@ -62,85 +49,191 @@
 <script>
 
     var IDVar = sessionStorage.ID_USUARIO;
-window.onload = function buscarDadosDev() {
+    var praticasTotal;
+    var total = 0;
+    var praticaAtual;
+    var qtdAtual;
+    var linhaAtual = '';
+    
+    window.onload = function buscarDadosDev() {
 
-  fetch("/kpis/coleta-kpis-dev", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    }, body: JSON.stringify({
-        idServer: IDVar
-        })
-        }).then(function (resposta) {
-          console.log("ESTOU NO THEN DO plotDadosDev()!")
-            
-          if (resposta.ok) {
-            console.log(resposta);
-            
-            resposta.json().then(json => {
-              console.log(json);
-              console.log(JSON.stringify(json));
-              console.log(json.pratica);
-              });
-            }
-            
-                }).catch(function (erro) {
-                    console.log(erro);
+        fetch("/kpis/coleta-kpis-dev", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            }, body: JSON.stringify({
+                idServer: IDVar
                 })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO plotDadosDev()!")
             
-                return false;
+                if (resposta.ok) {
+                    console.log(resposta);
+            
+                    resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json.praticas));
+                    mostrar(json.praticas);
+                    });
+                }
+                    }).then(
+                        coletaNotas()
+                    ).catch(function (erro) {
+                        console.log(erro);
+                    })
+}
 
-        }
-/*
+function mostrar(a) {
+    praticasTotal = a;
+
+    for(var cont = 0; cont < praticasTotal.length; cont++) {
+
+        praticaAtual = praticasTotal[cont].Pratica;
+        qtdAtual = praticasTotal[cont].QtdTotal;
+        total += parseInt(qtdAtual);
+        
+        linhaAtual += `${praticaAtual}: ${qtdAtual}<br><br>`
+    }
+    texto_praticas.innerHTML = linhaAtual;
+    qtd_registrados.innerHTML = total;
+}
+
     const graficoSetor = document.getElementById('grafico-dev'); // const == variável constante
 
     // se tiver [] é vetor, se tiver {} é json = juntar inúmeras propriedades dentro de um grupo
 
-    new Chart(graficoSetor, {
-        type: 'pie', // tipo do gráfico 
-        data: { // data = todos os valores que serão colocados
-            labels: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5'], // array = vetores que serão utilizados na label
-            datasets: [{ // métricas do gráfico = linha
-                label: 'Nota 1', // nome da linha
-                backgroundColor: '#98AFC7',
-                borderColor: '#98AFC7',
-                data: [4], // valores do gráfico
-                borderWidth: 1 // largura da borda do gráfico
-            }, {
-                label: 'Nota 2',
-                backgroundColor: '#1E90FF',
-                borderColor: '#1E90FF',
-                data: [6],
-                borderWidth: 1
-            }, {
-                label: 'Nota 3',
-                backgroundColor: '#4169E1',
-                borderColor: '#4169E1',
-                data: [20],
-                borderWidth: 1
-            }, {
-                label: 'Nota 4',
-                backgroundColor: '#728FCE',
-                borderColor: '#728FCE',
-                data: [25],
-                borderWidth: 1
-            }, {
-                label: 'Nota 5',
-                backgroundColor: '#FF0000',
-                borderColor: '#FF0000',
-                data: [22],
-                borderWidth: 1
-            }]
-        },
-        options: { // opções do formato do gráfico
-            plugins:{
-                title:{
-                    text: 'Avaliações do serviço',
-                    color: '#000000',
-                    display:true
+function coletaNotas() {
+    fetch("/grafico/coleta-notas-dev", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            }, body: JSON.stringify({
+                idServer: IDVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO coletaNotas()!")
+            
+                if (resposta.ok) {
+                    console.log(resposta);
+            
+                    resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json.notas));
+                    plotarGrafico(json.notas);
+                    });
                 }
-            }
-        }
+                    }).catch(function (erro) {
+                        console.log(erro);
+                    })
+}
+
+function plotarGrafico(a) {
+    var lista = a;
+
+    var lista_grafico = [];
+
+    var nota1 = lista[0].Notas;
+    var qtd1 = lista[0].QtdUsu;
+    var nota2 = lista[1].Notas;
+    var qtd2 = lista[1].QtdUsu;
+    var nota3 = lista[2].Notas;
+    var qtd3 = lista[2].QtdUsu;
+    var nota4 = lista[3].Notas;
+    var qtd4 = lista[3].QtdUsu;
+    var nota5 = lista[4].Notas;
+    var qtd5 = lista[4].QtdUsu;
+    
+    var valor1 = 0;
+    var valor2 = 0;
+    var valor3 = 0;
+    var valor4 = 0;
+    var valor5 = 0;
+
+    if(nota1 == 1) {
+        valor1 = qtd1;
+    } else if(nota2 == 1) {
+        valor1 = qtd2;
+    } else if(nota3 == 1) {
+        valor1 = qtd3;
+    } else if(nota4 == 1) {
+        valor1 = qtd4;
+    } else if(nota5 == 1) {
+        valor1 = qtd5;
+    }
+
+    if(nota1 == 2) {
+        valor2 = qtd1;
+    } else if(nota2 == 2) {
+        valor2 = qtd2;
+    } else if(nota3 == 2) {
+        valor2 = qtd3;
+    } else if(nota4 == 2) {
+        valor2 = qtd4;
+    } else if(nota5 == 2) {
+        valor2 = qtd5;
+    }
+
+    if(nota1 == 3) {
+        valor3 = qtd1;
+    } else if(nota2 == 3) {
+        valor3 = qtd2;
+    } else if(nota3 == 3) {
+        valor3 = qtd3;
+    } else if(nota4 == 3) {
+        valor3 = qtd4;
+    } else if(nota5 == 3) {
+        valor3 = qtd5;
+    }
+
+    if(nota1 == 4) {
+        valor4 = qtd1;
+    } else if(nota2 == 4) {
+        valor4 = qtd2;
+    } else if(nota3 == 4) {
+        valor4 = qtd3;
+    } else if(nota4 == 4) {
+        valor4 = qtd4;
+    } else if(nota5 == 4) {
+        valor4 = qtd5;
+    }
+    
+    if(nota1 == 5) {
+        valor5 = qtd1;
+    } else if(nota2 == 5) {
+        valor5 = qtd2;
+    } else if(nota3 == 5) {
+        valor5 = qtd3;
+    } else if(nota4 == 5) {
+        valor5 = qtd4;
+    } else if(nota5 == 5) {
+        valor5 = qtd5;
+    }
+
+    console.log(valor1, valor2, valor3, valor4, valor5);
+    
+    new Chart(graficoSetor, {
+        type: 'pie',
+        data: { 
+        labels: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5'],
+        backgroundColor: ['#CC7722', '#F9A603', '#FEBE00' ,'#FEE135', '#FFEF00'],
+        datasets: [{ 
+        label: ['Notas'], 
+        backgroundColor: ['#CC7722', '#F9A603', '#FEBE00' ,'#FEE135', '#FFEF00'],
+        borderColor: ['#CC7722', '#F9A603', '#FEBE00' ,'#FEE135', '#FFEF00'],
+        data: [valor1, valor2, valor3, valor4, valor5], 
+        borderWidth: 1 
+        }]
+            },
+                options: { // opções do formato do gráfico
+                    plugins:{
+                        title:{
+                            text: 'Avaliações do serviço',
+                            color: '#000000',
+                            display:true
+                        }
+                    }
+                }
     });
-*/
+                                
+}
 </script>

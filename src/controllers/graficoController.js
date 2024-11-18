@@ -17,7 +17,7 @@ var graficoModel = require("../models/graficoModel");
                 );
         }
 
-    function buscarIdade(req,res) {
+    function buscarIdade(req, res) {
         var id = req.body.idServer;
         graficoModel.buscarIdade(id)
             .then(function (lista) {
@@ -35,7 +35,26 @@ var graficoModel = require("../models/graficoModel");
                 );
     }
 
+    function coletarNotas(req, res) {
+        var id = req.body.idServer;
+        graficoModel.coletarNotas(id)
+        .then(
+            function (lista) {
+                console.log(res.json);
+                res.json({
+                    notas: lista
+                });
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
 module.exports = {
     buscarDados,
-    buscarIdade
+    buscarIdade,
+    coletarNotas
 }

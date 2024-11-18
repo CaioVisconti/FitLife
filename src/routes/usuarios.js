@@ -8,10 +8,6 @@ router.post("/cadastrar-etapa-um", function (req, res) {
     usuarioController.cadastrarUm(req, res);
 })
 
-router.post("/cadastrar-etapa-dois", function (req, res) {
-    usuarioController.cadastrarDois(req, res);
-})
-
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });

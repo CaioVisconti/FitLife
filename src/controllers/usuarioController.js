@@ -54,6 +54,11 @@ function cadastrarUm(req, res) {
     var genero = req.body.generoServer;
     var peso = req.body.pesoServer;
     var altura = req.body.alturaServer;
+    var diaExe = req.body.diaExeServer;
+    var diaDes = req.body.diaDesServer;
+    var minutos = req.body.minutosServer;
+    var intensidade = req.body.intensidadeServer;
+    var id = '';
 
     // Faça as validações dos valores
     if (nome == undefined && nome.length <= 1) {
@@ -71,8 +76,14 @@ function cadastrarUm(req, res) {
                 function (resultado) {
                     console.log(resultado)
                     usuarioModel.selecionarID(cpf)
-                    .then(function (id) {
-                        res.json(id[0].idUsuario)
+                    .then(function (lista) {
+                        res.json({id: lista[0].idUsuario});
+                        usuarioModel.cadastrarDois(diaExe, diaDes, minutos, intensidade, id)
+                        .then(function (resultado) {
+                            console.log(resultado)
+                            res.json(resultado);
+                        }
+                    )
                     })
                 }
             ).catch(
@@ -88,36 +99,7 @@ function cadastrarUm(req, res) {
     }
 }
 
-function cadastrarDois(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var diaExe = req.body.diaExeServer;
-    var diaDes = req.body.diaDesServer;
-    var minutos = req.body.minutosServer;
-    var intensidade = req.body.intensidadeServer;
-    var id = req.body.IDServer;
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarDois(diaExe, diaDes, minutos, intensidade, id)
-            .then(
-                function (resultado) {
-                    console.log(resultado)
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-//}
-
 module.exports = {
     autenticar,
-    cadastrarUm,
-    cadastrarDois
+    cadastrarUm
 }

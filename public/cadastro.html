@@ -85,8 +85,6 @@
         pesoVar = ipt_peso.value;
         alturaVar = ipt_altura.value;
 
-    console.log(`${nomeVar} ${dtNascVar} ${emailVar} ${senhaVar} ${confirmacaoVar} ${cpfVar} ${telefoneVar} ${pesoVar} ${alturaVar} ${generoVar}`)
-
     if(nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
@@ -136,30 +134,6 @@
         etapa2.style.color = 'white';
         etapa2.style.backgroundColor = '#04364A';
         div_confirmacao_erro.style.display = "none";
-        
-        fetch("/usuarios/cadastrar-etapa-um", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            nomeServer: nomeVar,
-            dtNascServer: dtNascVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar,
-            cpfServer: cpfVar,
-            telefoneServer: telefoneVar,
-            generoServer: generoVar,
-            pesoServer: pesoVar,
-            alturaServer: (alturaVar / 100)
-          }),
-        }).then(function (resposta) {
-      resposta.json().then(json => {
-          console.log(json);
-          ID = JSON.stringify(json);
-      })})
 
         formulario.innerHTML = `
         <div style="height: 300px; display: flex; flex-direction: column; justify-content: space-between;">
@@ -180,7 +154,6 @@
             <option value="i3">Intensa</option>
           </select>
           <input class="input" type="text" id="ipt_diaExe" placeholder="Dias de Execução">
-          <input class="input" type="text" id="ipt_diaDes" placeholder="Dias de Descanso">
           <input class="input" type="text" id="ipt_minutos" placeholder="Tempo de atividade (minutos)">
         </div>
         `;
@@ -193,7 +166,7 @@
     var esporte = slt_esporte.value;
     var intensidade = slt_intensidade.value;
     var diaExeVar = ipt_diaExe.value;
-    var diaDesVar = ipt_diaDes.value;
+    var diaDesVar = 7 - diaExeVar;
     var minutosVar = ipt_minutos.value;
     var esporteVar = '';
     var intensidadeVar = '';
@@ -287,27 +260,34 @@
     
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar-etapa-dois", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        diaExeServer: diaExeVar,
-        diaDesServer: diaDesVar,
-        minutosServer: minutosVar,
-        intensidadeServer: intensidadeVar,
-        IDServer: IDVar
-      }),
-    }).then(function (resposta) {
+    fetch("/usuarios/cadastrar-etapa-um", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            dtNascServer: dtNascVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+            cpfServer: cpfVar,
+            telefoneServer: telefoneVar,
+            generoServer: generoVar,
+            pesoServer: pesoVar,
+            alturaServer: (alturaVar / 100),
+            diaExeServer: diaExeVar,
+            diaDesServer: diaDesVar,
+            minutosServer: minutosVar,
+            intensidadeServer: intensidadeVar,
+          }),
+        }).then(function (resposta) {
       resposta.json().then(json => {
           console.log(json);
-          console.log(JSON.stringify(json));
+          ID = JSON.stringify(json.id);
+          
       })})
-  
-
-  }
+    }
   }
 </script>
