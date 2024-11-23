@@ -150,7 +150,7 @@ height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
-background-image: url(./img/banner.jpg);
+background-image: url(../assets/img/banner.jpg);
 background-size: cover;
 }
 
@@ -600,7 +600,7 @@ text-align: left;
 .logo-projeto-rodape {
     width: 600px;
     height: 250px;
-    background-image: url(./icon/logo_cinza.png);
+    background-image: url(../assets/icon/logo_cinza.png);
     background-size: cover;
     margin-left: 1%;
 }
