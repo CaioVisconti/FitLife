@@ -21,7 +21,7 @@
         </nav>
         <main class="main-content">
             <dialog id="modal" style="display: none;"></dialog>
-            <div class="div-avaliar">
+            <div class="div-avaliar" id="div_avaliar">
                 <button class="botao-avaliar" onclick="avaliarModal()">Avaliar</button>
             </div>
             <div class="dashboard-fundo">
@@ -51,13 +51,13 @@
                     <div class="info">
                         <span class="titulo-dashboard">Dados Pessoais</span>
                         <div class="info-texto">
-                            <span class="texto-dashboard" style="font-size: 18px;">Nome: <span id="nome"></span></span>
-                            <span class="texto-dashboard" style="font-size: 18px;">CPF: <span id="div_cpf"></span></span>
-                            <span class="texto-dashboard" style="font-size: 18px;">Data de Nascimento: <span id="dataNasc"></span></span>
-                            <span class="texto-dashboard" style="font-size: 18px;">Telefone: <span id="telefone"></span></span>
-                            <span class="texto-dashboard" style="font-size: 18px;">Email: <span id="email"></span></span>
-                            <span class="texto-dashboard" style="font-size: 18px;">Peso: <span id="div_peso"></span></span>
-                            <span class="texto-dashboard" style="font-size: 18px;">Altura: <span id="div_altura"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">Nome: <span id="nome"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">CPF: <span id="div_cpf"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">Data de Nascimento: <span id="dataNasc"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">Telefone: <span id="telefone"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">Email: <span id="email"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">Peso: <span id="div_peso"></span></span>
+                            <span class="texto-dashboard" style="font-size: 20px;">Altura: <span id="div_altura"></span></span>
                         </div>
                         <button onclick="editarPessoal()" class="botao-edit-pessoal">Edit</button>
                     </div>
@@ -74,86 +74,74 @@
 </html>
 
 <script>
-    
     var id = sessionStorage.ID_USUARIO;
-    var refeicao1
-    var refeicao2
-    var refeicao3
-    var refeicao4
-    var refeicao5
-    var refeicao6
-    var refeicao7
-    var refeicao8
-    var refeicao9
-    var refeicao10
-    var refeicao11
     var vetor = [];
     var notaPesquisada;
 
+    var idAtual = '';
+    var refeicaoAtual = '';
+    var horarioAtual = '';
+    var qtdAtual = '';
+    
+    var IDVar = id;
+    var peso = 0;
+    var altura = 0;
+    var calorias = 0;
+    var genero = '';
+    var minutos = 0;
+    var gastoCal = '';
+    var idadeUsu = '';
+    var notaVar = '';
+
+    var data = '';
+    var mensagem1 = '';
+    var mensagem2 = '';
+    var mensagem3 = '';
+    var mensagemFinal = '';
+    var caracterAtual = '';
+
 function addRefeicao() {
-    var descricaoVar = ipt_descricao.value;
-    var qtdCalVar = ipt_qtdCal.value;
-    var horarioVar = ipt_horario.value;
-    var idVar = id;
-    vetor = [];
+  var descricaoVar = ipt_descricao.value;
+  var qtdCalVar = ipt_qtdCal.value;
+  var horarioVar = ipt_horario.value;
+  var idVar = id;
 
-    if (descricaoVar == '' || qtdCalVar == '' || horarioVar == '') {
-        alert("Preencha todos os campos corretamente!")
-    } else if(qtdCalVar < 0){
-        alert("Insira uma quantidade de calorias válida!")
-    } else {
-        fetch("/cliente/addRef", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              descricaoServer: descricaoVar,
-              qtdCalServer: qtdCalVar,
-              horarioServer: horarioVar,
-              idServer: idVar
-            }),
-          }).then(function (resposta) {
-            resposta.json().then(json => {
-                refeicao1 = json.refeicao1;
-                refeicao2 = json.refeicao2;
-                refeicao3 = json.refeicao3;
-                refeicao4 = json.refeicao4;
-                refeicao5 = json.refeicao5;
-                refeicao6 = json.refeicao6;
-                refeicao7 = json.refeicao7;
-                refeicao8 = json.refeicao8;
-                refeicao9 = json.refeicao9;
-                refeicao10 = json.refeicao10;
-                refeicao11 = json.refeicao11;
-                vetor = [];
-                mostrarRefeicao();
-              })
-            })
-          }
-        }
-        
-        var idAtual;
-        var refeicaoAtual;
-        var horarioAtual;
-        var qtdAtual;
-function mostrarRefeicao() {
-  var lista_refeicao = '';
+  modal.close();
+  modal.style.display = 'none'
 
-  if (vetor.length != 0) {
-    console.log('FAZ O L');
-    console.log(vetor.indexOf(undefined));
+  if (descricaoVar == '' || qtdCalVar == '' || horarioVar == '') {
+      alert("Preencha todos os campos corretamente!")
+  } else if(qtdCalVar < 0){
+      alert("Insira uma quantidade de calorias válida!")
   } else {
-    vetor.push(refeicao1, refeicao2, refeicao3, refeicao4, refeicao5, refeicao6, refeicao7, refeicao8, refeicao9, refeicao10, refeicao11);
+      fetch("/cliente/addRef", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            descricaoServer: descricaoVar,
+            qtdCalServer: qtdCalVar,
+            horarioServer: horarioVar,
+            idServer: idVar
+          }),
+        }).then(function (resposta) {
+          console.log('Inseriu refeição');
+          atualizarPagina();
+        })
   }
-  
-  for(var contador = 0; contador < vetor.indexOf(undefined); contador++) {
+}
+
+function mostrarRefeicao(a) {
+  var lista_refeicao = '';
+  vetor = a;
+
+  for(var contador = 0; contador < vetor.length; contador++) {
     idAtual = vetor[contador].Refeicao
     refeicaoAtual = vetor[contador].Descricao
     horarioAtual = vetor[contador].Horario
     qtdAtual = vetor[contador].QtdCal
-    
-    if(contador != 10) {
+  
       lista_refeicao += `
       <b>Refeição ${contador + 1}: </b><br>
       <b>Descrição:</b> ${refeicaoAtual}. <br>
@@ -161,387 +149,354 @@ function mostrarRefeicao() {
       <b>Quantidade de Calorias:</b> ${qtdAtual} kcal. <br><br>
       `;
     }
-
-    if(contador == (vetor.indexOf(undefined) - 1)) {
-      spn_refeicoes.innerHTML = lista_refeicao;
-    }
-      }
+  spn_refeicoes.innerHTML = lista_refeicao;
 }
 
 function remRefeicao() {
-    modal.close();
-    modal.style.display = 'none'
+  modal.close();
+  modal.style.display = 'none'
 
-    var numero = Number(ipt_idrmv.value - 1);
-    var idVar = id;
-    var idRefVar
+  var numero = Number(ipt_idrmv.value - 1);
+  var idVar = id;
+  var idRefVar
 
-    if(numero >= 10) {
-      alert('Insira um número válido')
-    } else {
-      for(var contador = 0; contador < vetor.length; contador++) {
-        if(contador == numero) {
-          idRefVar = vetor[contador].Refeicao;
-        }
+  if(numero > (vetor.length - 1)) {
+    alert('Insira um número válido')
+  } else if(vetor[1] == undefined) {
+    alert('Deve ter pelo menos 1 refeição');
+  } else {
+    for(var contador = 0; contador < vetor.length; contador++) {
+      if(contador == numero) {
+        idRefVar = vetor[contador].Refeicao;
       }
-      vetor = [];
-        fetch("/cliente/rmvRef", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              idRefServer: idRefVar,
-              idServer: idVar,
-            }),
-          }).then(function (resposta) {
-            resposta.json().then(json => {
-                refeicao1 = json.refeicao1;
-                refeicao2 = json.refeicao2;
-                refeicao3 = json.refeicao3;
-                refeicao4 = json.refeicao4;
-                refeicao5 = json.refeicao5;
-                refeicao6 = json.refeicao6;
-                refeicao7 = json.refeicao7;
-                refeicao8 = json.refeicao8;
-                refeicao9 = json.refeicao9;
-                refeicao10 = json.refeicao10;
-                refeicao11 = json.refeicao11;
-                mostrarRefeicao();
-              })
-            })
-          }
+    }
+    fetch("/cliente/rmvRef", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idRefServer: idRefVar,
+          idServer: idVar,
+        }),
+      }).then(function (resposta) {
+        console.log('Removeu refeição')
+      })
+  }
+  atualizarPagina();
 }
 
 function edtEsporte() {
-    modal.close();
-    modal.style.display = 'none';
+modal.close();
+modal.style.display = 'none';
 
-    var esporte = slt_esporte.value;
-    var intensidade = slt_intensidade.value;
-    var diaExecVar = ipt_diaExec.value;
-    var diaDescVar = (7 - diaExecVar);
-    var minutosVar = ipt_min.value;
-    var idVar = id;
+var esporte = slt_esporte.value;
+var intensidade = slt_intensidade.value;
+var diaExecVar = ipt_diaExec.value;
+var diaDescVar = (7 - diaExecVar);
+var minutosVar = ipt_min.value;
+var idVar = id;
 
-    if(esporte == 'e1') {
-      esporteVar = 1
-      if(intensidade == 'i1') {
-        intensidadeVar = 1;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 2;
-      } else if(intensidade == 'i3') {
-        intensidadeVar = 3;
-      }
-    } else if(esporte == 'e2') {
-      esporteVar = 2
-      if(intensidade == 'i1') {
-        intensidadeVar = 4;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 5;
-      } else if(intensidade == 'i3') {
-        intensidadeVar = 6;
-      }
+if(esporte == 'e1') {
+  esporteVar = 1
+  if(intensidade == 'i1') {
+    intensidadeVar = 1;
+  } else if(intensidade == 'i2') {
+    intensidadeVar = 2;
+  } else if(intensidade == 'i3') {
+    intensidadeVar = 3;
+  }
+  } else if(esporte == 'e2') {
+    esporteVar = 2
+    if(intensidade == 'i1') {
+      intensidadeVar = 4;
+    } else if(intensidade == 'i2') {
+      intensidadeVar = 5;
+    } else if(intensidade == 'i3') {
+      intensidadeVar = 6;
+    }
     } else if(esporte == 'e3') {
-      esporteVar = 3;
-      if(intensidade == 'i1') {
-        intensidadeVar = 7;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 8;
-      } else if(intensidade == 'i3') {
-        intensidadeVar = 9;
-      }
-    } else if(esporte == 'e4') {
-      esporteVar = 4;
-      if(intensidade == 'i1') {
-        intensidadeVar = 10;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 11;
-      } else if(intensidade == 'i3') {
+    esporteVar = 3;
+    if(intensidade == 'i1') {
+      intensidadeVar = 7;
+    } else if(intensidade == 'i2') {
+      intensidadeVar = 8;
+    } else if(intensidade == 'i3') {
+      intensidadeVar = 9;
+    }
+  } else if(esporte == 'e4') {
+    esporteVar = 4;
+    if(intensidade == 'i1') {
+      intensidadeVar = 10;
+    } else if(intensidade == 'i2') {
+      intensidadeVar = 11;
+    } else if(intensidade == 'i3') {
         intensidadeVar = 12;
-      }
-    } else if(esporte == 'e5') {
-      esporteVar = 5;
-      if(intensidade == 'i1') {
-        intensidadeVar = 13;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 14;
-      } else if(intensidade == 'i3') {
-        intensidadeVar = 15;
-      }
-    } else if(esporte == 'e6') {
-      esporteVar = 6;
-      if(intensidade == 'i1') {
-        intensidadeVar = 16;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 17;
-      } else if(intensidade == 'i3') {
-        intensidadeVar = 18;
-      }
-    } else if(esporte == 'e7') {
-      esporteVar = 7;
-      if(intensidade == 'i1') {
-        intensidadeVar = 19;
-      } else if(intensidade == 'i2') {
-        intensidadeVar = 20;
-      } else if(intensidade == 'i3') {
-        intensidadeVar = 21;
-      }
     }
-
-        fetch("/cliente/edtEsporte", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
-              diaDescServer: diaDescVar,
-              diaExecServer: diaExecVar,
-              minutosServer: minutosVar,
-              intensidadeServer: intensidadeVar,
-              idServer: idVar
-            }),
-          }).then(function (resposta) {
-            resposta.json().then(json => {
-                pratica.innerHTML = json.nome;
-                qtdCalTotal.innerHTML = `${(json.gasto) * (json.minuto)} kcal`;
-                diaExe.innerHTML = json.execucao;
-                diaDes.innerHTML = json.descanso;
-            })})
+  } else if(esporte == 'e5') {
+    esporteVar = 5;
+    if(intensidade == 'i1') {
+      intensidadeVar = 13;
+    } else if(intensidade == 'i2') {
+      intensidadeVar = 14;
+    } else if(intensidade == 'i3') {
+      intensidadeVar = 15;
     }
+  } else if(esporte == 'e6') {
+    esporteVar = 6;
+    if(intensidade == 'i1') {
+      intensidadeVar = 16;
+    } else if(intensidade == 'i2') {
+      intensidadeVar = 17;
+    } else if(intensidade == 'i3') {
+      intensidadeVar = 18;
+    }
+  } else if(esporte == 'e7') {
+    esporteVar = 7;
+    if(intensidade == 'i1') {
+      intensidadeVar = 19;
+    } else if(intensidade == 'i2') {
+      intensidadeVar = 20;
+    } else if(intensidade == 'i3') {
+      intensidadeVar = 21;
+      }
+  }
 
-
-function edtPessoal() {
-    modal.close();
-    modal.style.display = 'none'
-
-    var telefoneVar = ipt_telefone.value;
-    var emailVar = ipt_email.value;
-    var pesoVar = ipt_peso.value;
-    var alturaVar = (ipt_altura.value / 100);
-    var idVar = id;
-
-        fetch("/cliente/edtPessoal", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
-              telefoneServer: telefoneVar,
-              emailServer: emailVar,
-              pesoServer: pesoVar,
-              alturaServer: alturaVar,
-              idServer: idVar
-            }),
-          }).then(function (resposta) {
-            resposta.json().then(json => {
-                telefone.innerHTML = `${json.telefone}`;
-                email.innerHTML = `${json.email}`;
-                peso.innerHTML = `${json.peso} kg`;
-                altura.innerHTML = `${json.altura} m`;
-            })})
+fetch("/cliente/edtEsporte", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      diaDescServer: diaDescVar,
+      diaExecServer: diaExecVar,
+      minutosServer: minutosVar,
+      intensidadeServer: intensidadeVar,
+      idServer: idVar
+    }),
+  }).then(function (resposta) {
+    resposta.json().then(json => {
+        pratica.innerHTML = json.nome;
+        qtdCalTotal.innerHTML = `${(json.gasto) * (json.minuto)} kcal`;
+        diaExe.innerHTML = json.execucao;
+        diaDes.innerHTML = json.descanso;
+        atualizarPagina();
+    })
+  })
 }
 
-    var IDVar = id;
-    var peso = 0;
-    var altura = 0;
-    var calorias = 0;
-    var genero = '';
-    var minutos = 0;
-    var gastoCal
-    var idadeUsu
-    var vetor = [];
-    var notaVar;
+function edtPessoal() {
+  modal.close();
+  modal.style.display = 'none'
 
-    function plotDados() {
-      var consumido = 0;
-      fetch("/kpis/coleta-kpis", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
+  var telefoneVar = ipt_telefone.value;
+  var emailVar = ipt_email.value;
+  var pesoVar = ipt_peso.value;
+  var alturaVar = (ipt_altura.value / 100);
+  var idVar = id;
+
+  fetch("/cliente/edtPessoal", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
       },
-        body: JSON.stringify({
-          idServer: IDVar
-          })
-          }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO plotdados()!")
-            
-            if (resposta.ok) {
-              resposta.json().then(json => {
-                nome.innerHTML = `${json.nome}`;
-                email.innerHTML = `${json.email}`;
-                div_cpf.innerHTML = `${json.cpf}`;
-                telefone.innerHTML = `${json.telefone}`;
-                div_peso.innerHTML = `${Number(json.peso)} kg`;
-                div_altura.innerHTML = `${Number(json.altura)} m`;
-                pratica.innerHTML = `${json.esporte}`;
-                diaExe.innerHTML = `${json.diaExe}`;
-                diaDes.innerHTML = `${json.diaDes}`;
-                altura = json.altura;
-                calorias = `${json.gasto}`;
-                minutos = json.minutos;
-                qtdCalTotal.innerHTML = `${minutos * calorias} kcal`;
-                peso = json.peso;
-                genero = `${json.genero}`;
+      body: JSON.stringify({
+        telefoneServer: telefoneVar,
+        emailServer: emailVar,
+        pesoServer: pesoVar,
+        alturaServer: alturaVar,
+        idServer: idVar
+      }),
+    }).then(function (resposta) {
+      resposta.json().then(json => {
+          telefone.innerHTML = `${json.telefone}`;
+          email.innerHTML = `${json.email}`;
+          peso.innerHTML = `${json.peso} kg`;
+          altura.innerHTML = `${json.altura} m`;
+          atualizarPagina();
+      })
+    })
+}
 
-                var data = json.data;
-                var mensagem1 = '';
-                var mensagem2 = '';
-                var mensagem3 = '';
-                var mensagemFinal = '';
-                var caracterAtual = '';
-                for(var cont = 0; cont <= 9; cont++) {
-                  caracterAtual += data[cont];
-                    if(cont <= 3) {
-                      mensagem1 += data[cont];
-                    } else if(cont == 4) {
-                      mensagemF1 = `/${mensagem1}`;
-                      caracterAtual = '';
-                    } else if(cont <= 6) {
-                      mensagem2 += data[cont];
-                    } else if(cont == 7) {
-                      mensagemF2 = `/${mensagem2}`;
-                    } else if(cont <= 9){
-                      mensagem3 += data[cont];
-                    }
-                  }
-                  mensagemFinal += `${mensagem3}${mensagemF2}${mensagemF1}`
-                  dataNasc.innerHTML = mensagemFinal;
-                });
+function plotDados() {
+  var consumido = 0;
+
+  if(sessionStorage.NIVEL == 1) {
+    div_avaliar.innerHTML = `<button class="botao-avaliar" onclick="avaliarModal()">Avaliar</button>
+    <button class="botao-trocar" onclick="mudarDev()">Dashboard Dev</button>`
+  }
+      
+  fetch("/kpis/coleta-kpis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+  },
+    body: JSON.stringify({
+      idServer: IDVar
+      })
+      }).then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(json => {
+            nome.innerHTML = `${json.nome}`;
+            email.innerHTML = `${json.email}`;
+            div_cpf.innerHTML = `${json.cpf}`;
+            telefone.innerHTML = `${json.telefone}`;
+            div_peso.innerHTML = `${Number(json.peso)} kg`;
+            div_altura.innerHTML = `${Number(json.altura)} m`;
+            pratica.innerHTML = `${json.esporte}`;
+            diaExe.innerHTML = `${json.diaExe}`;
+            diaDes.innerHTML = `${json.diaDes}`;
+            altura = json.altura;
+            calorias = `${json.gasto}`;
+            minutos = json.minutos;
+            qtdCalTotal.innerHTML = `${minutos * calorias} kcal`;
+            peso = json.peso;
+            genero = `${json.genero}`;
+            data = json.data;
+            mensagem1 = '';
+            mensagem2 = '';
+            mensagem3 = '';
+            mensagemFinal = '';
+            caracterAtual = '';
+            for(var cont = 0; cont <= 9; cont++) {
+              caracterAtual += data[cont];
+                if(cont <= 3) {
+                  mensagem1 += data[cont];
+                } else if(cont == 4) {
+                  mensagemF1 = `/${mensagem1}`;
+                  caracterAtual = '';
+                } else if(cont <= 6) {
+                  mensagem2 += data[cont];
+                } else if(cont == 7) {
+                  mensagemF2 = `/${mensagem2}`;
+                } else if(cont <= 9){
+                  mensagem3 += data[cont];
+                }
               }
-                }).catch(function (erro) {
-                    console.log(erro);
-                }).then(
-                  plotarRef()
-                ).then(
-                  plotGrafico1()
-                ).then(
-                  pesquisarAva()
-                ).catch(function (erro) {
-                  console.log(erro);
-                })
-                  return false;
-                  }
-function plotGrafico1() {
-                    var IDVar = id;
-
-                    fetch("/grafico/coleta-grafico", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json"
-                      },
-                        body: JSON.stringify({
-                          idServer: IDVar
-                          })
-                          }).then(function (resposta) {
-                            console.log("ESTOU NO THEN DO plotGraficos()!")
-                              
-                            if (resposta.ok) {
-                              resposta.json().then(json => {
-                                consumidasCal = json.consumidas;
-                                plotGrafico2(consumidasCal);
-                              })}});
-                  function plotGrafico2(a) {
-                    var IDVar = id;
-                    var consumidas = a;
-
-                    fetch("/grafico/coleta-grafico-gasto", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json"
-                      },
-                        body: JSON.stringify({
-                          idServer: IDVar
-                          })
-                          }).then(function (resposta) {
-                            console.log("ESTOU NO THEN DO plotGraficos()!")
-                              
-                            if (resposta.ok) {
-                              resposta.json().then(json => {
-                                gastoCal = json.gastoA;
-                                idadeUsu = json.idadeA;
-                                calculoGrafico(gastoCal, idadeUsu, consumidas);
-                              });
-                              
-                            }})}}
-
-                          function calculoGrafico(a, b, c) {
-                            var basal = 0;
-                            var gasto = a * minutos;
-                            var idade = b;
-                            var consumidas = c;
-                            if(genero == 'masculino') {
-                              basal = Number(88.362 + (13.397 * peso) + (4.799 * (altura * 100)) - (5.677 * b));
-                            } else {
-                              basal = Number(447.593 + (9.247 * peso) + (3.098 * (altura * 100)) - (4.330 * b));
-                            }
-                            var gastoT = gasto + basal;
-                            const graficoSetor = document.getElementById('grafico')
-
-                            new Chart(graficoSetor, {
-                                type: 'pie', // tipo do gráfico 
-                                data: { // data = todos os valores que serão colocados
-                                    labels: ['Consumidas', 'Gastas'], // array = vetores que serão utilizados na label
-                                    datasets: [{ // métricas do gráfico = linha
-                                        label: 'Consumidas', // nome da linha
-                                        backgroundColor: ['#79BAEC', '#FF0000'],
-                                        borderColor: ['#79BAEC', '#FF0000'],
-                                        data: [consumidas, gastoT], // valores do gráfico
-                                        borderWidth: 1 // largura da borda do gráfico
-                                    }]
-                                },
-                                options: { // opções do formato do gráfico
-                                    plugins:{
-                                        title:{
-                                            text: 'Gasto e consumo de calorias diário',
-                                            color: '#000000',
-                                            display:true
-                                        },
-                                        legend:{
-                                            position:'top',
-                                            labels:{
-                                                boxHeight:3
-                                            }
-                                        }
-                                    }
-                                }
-                          })
-                          }
-
-        function plotarRef() {
-          var idVar = id;
-          fetch("/cliente/buscarRef", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              idServer: idVar
-            }),
-          }).then(function (resposta) {
-            resposta.json().then(json => {
-                refeicao1 = json.refeicao1;
-                refeicao2 = json.refeicao2;
-                refeicao3 = json.refeicao3;
-                refeicao4 = json.refeicao4;
-                refeicao5 = json.refeicao5;
-                refeicao6 = json.refeicao6;
-                refeicao7 = json.refeicao7;
-                refeicao8 = json.refeicao8;
-                refeicao9 = json.refeicao9;
-                refeicao10 = json.refeicao10;
-                refeicao11 = json.refeicao11;
-                refeicao12 = json.refeicao12;
-                var vetor = [];
-                mostrarRefeicao();
-                console.log('Ta entrando no plotaref')
-              })
-            })
+              mensagemFinal += `${mensagem3}${mensagemF2}${mensagemF1}`
+              dataNasc.innerHTML = mensagemFinal;
+            });
         }
+      }).catch(function (erro) {
+          console.log(erro);
+      }).then(
+        plotarRef()
+      ).then(
+        plotGrafico1()
+      ).then(
+        pesquisarAva()
+      ).catch(function (erro) {
+        console.log(erro);
+      })
+        return false;
+      }
+
+function plotGrafico1() {
+  var IDVar = id;
+
+  fetch("/grafico/coleta-grafico", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      idServer: IDVar
+    })
+    }).then(function (resposta) {
+                            
+      if (resposta.ok) {
+        resposta.json().then(json => {
+          consumidasCal = json.consumidas;
+          plotGrafico2(consumidasCal);
+        })
+      }
+    })
+}
+
+function plotGrafico2(a) {
+  var IDVar = id;
+  var consumidas = a;
+  fetch("/grafico/coleta-grafico-gasto", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+      body: JSON.stringify({
+        idServer: IDVar
+        })
+        }).then(function (resposta) {
+          if (resposta.ok) {
+            resposta.json().then(json => {
+              gastoCal = json.gastoA;
+              idadeUsu = json.idadeA;
+              calculoGrafico(gastoCal, idadeUsu, consumidas);
+            });       
+          }
+        })
+}
+
+function calculoGrafico(a, b, c) {
+  var basal = 0;
+  var gasto = a * minutos;
+  var idade = b;
+  var consumidas = c;
+  if(genero == 'masculino') {
+    basal = Number(88.362 + (13.397 * peso) + (4.799 * (altura * 100)) - (5.677 * b));
+  } else {
+    basal = Number(447.593 + (9.247 * peso) + (3.098 * (altura * 100)) - (4.330 * b));
+  }
+  var gastoT = gasto + basal;
+
+  const graficoSetor = document.getElementById('grafico')
+
+  var grafico_setor = new Chart(graficoSetor, {
+    type: 'pie', // tipo do gráfico 
+    data: { // data = todos os valores que serão colocados
+        labels: ['Consumidas', 'Gastas'], // array = vetores que serão utilizados na label
+        datasets: [{ // métricas do gráfico = linha
+            label: 'Consumidas', // nome da linha
+            backgroundColor: ['#79BAEC', '#FF0000'],
+            borderColor: ['#000000', '#000000'],
+            data: [consumidas, gastoT], // valores do gráfico
+            borderWidth: 1 // largura da borda do gráfico
+        }]
+    },
+    options: { // opções do formato do gráfico
+      plugins:{
+        title:{
+          text: 'Gasto e consumo de calorias diário',
+            color: '#000000',
+            display:true
+        },
+        legend:{
+          position:'top',
+            labels:{
+              boxHeight:3
+            }
+        }
+      }
+    }
+  })
+}
+
+function plotarRef() {
+  var idVar = id;
+  fetch("/cliente/buscarRef", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idServer: idVar
+    }),
+  }).then(function (resposta) {
+    resposta.json().then(json => {
+        var vetor = json.refeicao;
+        mostrarRefeicao(vetor);
+        console.log('Ta entrando no plotaref');
+      })
+    })
+}
 
 function pesquisarAva() {
   var idVar = id;
@@ -556,7 +511,6 @@ function pesquisarAva() {
       }),
       }).then(function (resposta) {
         resposta.json().then(json => {
-            console.log('pesquisou TRANQUILAMENTE');
             notaPesquisada = json.nota;
         })
       })
@@ -571,21 +525,6 @@ function enviarAva() {
 
   if(nota == notaPesquisada) {
     console.log('Mesma nota');
-  } else if(notaPesquisada != 0 && notaPesquisada != 1 && notaPesquisada != 2 && notaPesquisada != 3 && notaPesquisada != 4 && notaPesquisada != 5){
-    fetch("/cliente/inserirAva", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        idServer: idVar
-      }),
-    }).then(function (resposta) {
-      resposta.json().then(json => {
-      console.log('INSERIU TRANQUILAMENTE');
-      pesquisarAva();
-      })
-    })
   } else {
     fetch("/cliente/atualizarAva", {
     method: "PUT",
@@ -598,10 +537,14 @@ function enviarAva() {
       }),
       }).then(function (resposta) {
         resposta.json().then(json => {
-          console.log('ATUALIZOU AVA SUAVE');
         })
       })
     }
+    atualizarPagina();
+}
+
+function atualizarPagina() {
+  window.location = "./cliente.html";
 }
 </script>
 

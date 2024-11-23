@@ -9,7 +9,6 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha não pode ser utilizada!");
     } else {
-
         usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
@@ -54,11 +53,11 @@ function cadastrarUm(req, res) {
     var genero = req.body.generoServer;
     var peso = req.body.pesoServer;
     var altura = req.body.alturaServer;
+
     var diaExe = req.body.diaExeServer;
     var diaDes = req.body.diaDesServer;
     var minutos = req.body.minutosServer;
     var intensidade = req.body.intensidadeServer;
-    var id = '';
 
     // Faça as validações dos valores
     if (nome == undefined && nome.length <= 1) {
@@ -75,16 +74,7 @@ function cadastrarUm(req, res) {
             .then(
                 function (resultado) {
                     console.log(resultado)
-                    usuarioModel.selecionarID(cpf)
-                    .then(function (lista) {
-                        res.json({id: lista[0].idUsuario});
-                        usuarioModel.cadastrarDois(diaExe, diaDes, minutos, intensidade, id)
-                        .then(function (resultado) {
-                            console.log(resultado)
-                            res.json(resultado);
-                        }
-                    )
-                    })
+                    selecionarID(cpf, diaExe, diaDes, minutos, intensidade);
                 }
             ).catch(
                 function (erro) {
@@ -99,7 +89,90 @@ function cadastrarUm(req, res) {
     }
 }
 
+function selecionarID(a, b, c, d, e) {
+    var cpfPesquisado = a;
+    var diaExe = b;
+    var diaDes = c;
+    var minutos = d;
+    var intensidade = e;
+
+    usuarioModel.selecionarID(cpfPesquisado)
+            .then(function (lista) {
+                var id = lista[0].id;
+                cadastrarDois(id, diaExe, diaDes, minutos, intensidade)
+            }).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                });
+}
+
+function cadastrarDois(a, b, c, d, e) {
+    var id = a;
+    var diaExe = b;
+    var diaDes = c;
+    var minutos = d;
+    var intensidade = e;
+
+    usuarioModel.cadastrarDois(diaExe, diaDes, minutos, intensidade, id)
+        .then(function (resultado) {
+            console.log(resultado);
+            cadastrarRefCadastro(id);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                     erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
+}
+
+function cadastrarRefCadastro(a) {
+    var id = a;
+
+    usuarioModel.cadastrarRefCadastro(id)
+        .then(function (resultado) {
+            console.log(resultado)
+            cadastrarNotaCadastro(id);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
+}
+
+function cadastrarNotaCadastro(a) {
+    var id = a;
+
+    usuarioModel.cadastrarNotaCadastro(id)
+        .then(function (resultado) {
+            console.log(resultado)
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+            }
+        );
+}
+
 module.exports = {
     autenticar,
-    cadastrarUm
+    cadastrarUm,
+    selecionarID,
+    cadastrarDois,
+    cadastrarRefCadastro,
+    cadastrarNotaCadastro
 }

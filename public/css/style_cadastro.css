@@ -158,6 +158,8 @@
 
 .botao-cadastro:hover {
     cursor: pointer;
+    background-color: #C8C8C8;
+    color: #FFF;
 }
 
 .div_confirmacao {

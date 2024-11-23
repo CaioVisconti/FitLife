@@ -14,18 +14,7 @@ function cadastrarRef(req, res) {
                 clienteModel.buscarRef(id)
                 .then(function (lista) {
                     res.json({
-                        refeicao1: lista[0],
-                        refeicao2: lista[1],
-                        refeicao3: lista[2],
-                        refeicao4: lista[3],
-                        refeicao5: lista[4],
-                        refeicao6: lista[5],
-                        refeicao7: lista[6],
-                        refeicao8: lista[7],
-                        refeicao9: lista[8],
-                        refeicao10: lista[9],
-                        refeicao11: lista[10],
-                        refeicao12: lista[11],
+                        refeicao: lista,
                     })
                 }
 
@@ -48,17 +37,7 @@ function cadastrarRef(req, res) {
         clienteModel.buscarRef(id)
         .then(function (lista) {
             res.json({
-                refeicao1: lista[0],
-                refeicao2: lista[1],
-                refeicao3: lista[2],
-                refeicao4: lista[3],
-                refeicao5: lista[4],
-                refeicao6: lista[5],
-                refeicao7: lista[6],
-                refeicao8: lista[7],
-                refeicao9: lista[8],
-                refeicao10: lista[9],
-                refeicao11: lista[10]
+                refeicao: lista,
             })
         })
     }
@@ -73,18 +52,7 @@ function cadastrarRef(req, res) {
                     clienteModel.buscarRef(id)
                     .then({function (lista) {
                         res.json({
-                            refeicao1: lista[0],
-                            refeicao2: lista[1],
-                            refeicao3: lista[2],
-                            refeicao4: lista[3],
-                            refeicao5: lista[4],
-                            refeicao6: lista[5],
-                            refeicao7: lista[6],
-                            refeicao8: lista[7],
-                            refeicao9: lista[8],
-                            refeicao10: lista[9],
-                            refeicao11: lista[10],
-                            refeicao12: lista[11],
+                            refeicao: lista,
                         })
                     }
                     })
@@ -135,7 +103,7 @@ function cadastrarRef(req, res) {
                     res.status(500).json(erro.sqlMessage);
                 }
             );
-        }
+    }
 
     function editarPessoal(req, res) {
         // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -201,7 +169,7 @@ function cadastrarRef(req, res) {
             console.log(erro);
             console.log(
                 "\nHouve um erro ao realizar o cadastro! Erro: ",
-                erro.sqlMessage
+                erro.sqlMessagel
             );
             res.status(500).json(erro.sqlMessage);
         })

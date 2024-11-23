@@ -16,7 +16,7 @@ CREATE TABLE usuario (
     cpf CHAR(11) NOT NULL UNIQUE,
     telefone CHAR(11) NOT NULL,
     generoBiologico VARCHAR(45),
-    email VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL UNIQUE,
     senha VARCHAR(45) NOT NULL,
     peso FLOAT,
     altura DECIMAL(3,2),
@@ -172,7 +172,7 @@ SELECT e.nome AS 'Prática', COUNT(u.idUsuario) AS 'Quantidade de praticantes'
 SELECT COUNT(av.idAvaliacao) AS 'Quantidade de avaliações'
     FROM avaliacao AS av;
 
--- Select mostrando a quantidade de usuários em cada avaliação do serviço ##
+-- Select mostrando a quantidade de usuários em cada avaliação do serviço ##s
 SELECT av.nota AS 'Nota', COUNT(u.idUsuario) AS 'Quantidade de usuários'
     FROM usuario AS u JOIN avaliacao AS av ON u.idUsuario = av.fkUsuario
     GROUP BY av.nota;
@@ -198,8 +198,8 @@ SELECT nome AS Nome, cpf AS CPF, dtNasc AS 'Data de Nascimento', telefone AS 'Te
 SELECT SUM(r.qtdCal) AS CalConsumidas, g.gasto AS gasto
     FROM usuario AS u
     JOIN refeicao AS r ON r.fkUsuario = u.idUsuario
-    JOIN 
     WHERE fkUsuario = 1;
+
 
 -- Adicionar refeicao: ##
 -- INSERT INTO refeicao (descricao, qtdCal, horario, fkUsuario) VALUES ();
@@ -247,62 +247,23 @@ SELECT g.gasto AS Gasto, TIMESTAMPDIFF(YEAR, u.dtNasc, now()) AS idade
     JOIN gasto AS g ON p.fkGasto = g.idGasto
     WHERE u.idUsuario = 1;
 
+INSERT INTO avaliacao (nota, fkUsuario) VALUES
+(${nota}, ${fkUsuario});
 
 
-/*
-CREATE DATABASE aquatech;
+SELECT e.nome AS Pratica, COUNT(u.idUsuario) AS QtdTotal
+    FROM usuario AS u 
+    JOIN pratica AS p ON u.idUsuario = p.fkUsuario
+    JOIN gasto AS g ON g.idGasto = p.fkGasto
+    JOIN esporte AS e ON e.idEsporte = g.fkEsporte
+    GROUP BY e.nome ORDER BY QtdTotal DESC;
 
-USE aquatech;
 
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
-);
+SELECT e.nome AS Pratica, COUNT(u.idUsuario) AS QtdTotal
+        FROM usuario AS u      
+        JOIN pratica AS p ON u.idUsuario = p.fkUsuario
+        JOIN gasto AS g ON g.idGasto = p.fkGasto
+        JOIN esporte AS e ON e.idEsporte = g.fkEsporte
+        GROUP BY e.nome;
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
-);
-
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);
-
-create table aquario (
--- em nossa regra de negócio, um aquario tem apenas um sensor 
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
-);
-
--- esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino 
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
-
-*/
+SELECT idAvaliacao FROM avaliacao WHERE fkUsuario = 23;

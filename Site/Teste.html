@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <title>Document</title>
+    <style>
+        
+.botaoOnde {
+  padding-top: 30px;
+}
+
+.carrosselEquipamento{
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: row;
+}
+
+.modelagens {
+  height: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  
+}
+
+.modelagemsemaforo {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.modelagemposte {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.modelagemcone {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.ondeFundo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.parteEsquerdaOnde {
+  justify-content: flex-start;
+  width: 669px;
+  
+}
+.sobreONegocio {
+  margin-top: 5%;
+}
+
+.parteDireitaOnde {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.imagemCheck {
+  width: 50px;
+  justify-content: space-evenly;
+}
+
+.bullets_grupo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bullets1 {
+  color: white;
+  font-size: 35px;
+  font-weight: 300;
+}
+
+.bullets2 {
+  color: white;
+  font-size: 35px;
+  font-weight: 300;
+
+}
+
+.bullets3 {
+  color: white;
+  font-size: 35px;
+  font-weight: 300;
+
+}
+
+.conferes {
+  display: flex;
+  flex-direction: column;
+}
+
+.botaoSimular {
+  width: 250px;
+  height: 80px;
+  margin-bottom: 10%;
+  font-size: 30px;
+  border: none;
+  border-radius: 12px;
+}
+
+.textoOnde {
+  display: flex;
+  flex-direction: row;
+}
+
+.corFundoEquipamento {
+  background-color: var(--primary-color);
+  width: 100%;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginacao-sep-equipamento .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid;
+  border-color: var(--white-color);
+}
+
+.paginacao-sep-equipamento .swiper-pagination{
+  bottom: 10% !important;
+  left: 50%;
+}
+
+.paginacao-sep-equipamento .swiper-pagination-bullet-active{
+  background-color: var(--white-color);
+}
+
+.sep-nxtPrev-equipamento .swiper-button-next:after{
+  color: var(--white-color);
+
+}
+
+.sep-nxtPrev-equipamento .swiper-button-prev:after{
+  color: var(--white-color);
+}
+    </style>
+</head>
+<body>
+    <div class="swiper parteDireitaOnde">
+                <div class="carrosselEquipamento">
+                    <div class="swiper-wrapper" >
+                        <div id="poste"  class="swiper-slide modelagens">
+                            <div class="equipamento-foto">
+                                <div class="imagem-3d semaforo"></div>
+                            </div>
+                        </div>
+                        <div id="cone" class="swiper-slide modelagens">
+                            <div class="equipamento-foto">
+                                <div class="imagem-3d cone"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide modelagens">
+                            <div class="equipamento-foto">
+                                <div class="imagem-3d poste"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sep-nxtPrev-equipamento">
+                    <div onclick="tirarMarca()" class="swiper-button-next next next-equipamento"></div>
+                    <div onclick="tirarMarca()" class="swiper-button-prev back prev-equipamento"></div>
+                </div>
+                <div class="paginacao-sep-equipamento">
+                    <div class="swiper-pagination paginacao-equipamento"></div>
+                </div>
+            </div>
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    var swiperEquipamento = new Swiper(".carrosselEquipamento", {
+      slidesPerView: 1,
+      spaceBetween: 70,
+      pagination: {
+        el: ".paginacao-equipamento",
+        clickable: true,
+      },
+      
+      navigation: {
+        nextEl: ".next-equipamento",
+        prevEl: ".prev-equipamento",
+      },
+    });
+
+    //função para tirar a marca da agua do spline
+   </script>

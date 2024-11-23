@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./main.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -22,16 +23,16 @@
             <div class="nav-div">
                 <ul class="nav-list">
                     <li id="nav-home">
-                        <a href="#">Home</a>
+                        <a href="./index.html" id="nav-home">Home</a>
                     </li>
-                    <li id="nav-login">
-                        <a href="../public/login.html">Login</a>
+                    <li id="nav-login" >
+                        <a href="../public/login.html" id="nav-login">Login</a>
                     </li>
                     <li id="nav-cadastro">
-                        <a href="../public/cadastro.html">Cadastro</a>
+                        <a href="../public/cadastro.html" id="nav-cadastro">Cadastro</a>
                     </li>
                     <li id="nav-contato">
-                        <a href="../public/contato.html">Contato</a>
+                        <a href="../public/contato.html" id="nav-contato">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +48,7 @@
                     </h1>
                     <span class="texto-container">Importância da atividade física no cotidiano
                         e seus benefícios!</span>
-                    <a href="../App/html/login.html" class="button-container">Junte-se a nós!</a>
+                    <a href="../public/cadastro.html" class="button-container" style="text-decoration: none;">Junte-se a nós!</a>
                 </div>
                 <div id="direita-home-container">
                     <div class="teste"></div>
@@ -84,40 +85,42 @@
                             <div class="texto-branco-carrossel">Com a prática de exercícios físicos é nítida a melhora de diversos campos da vida do indivíduo. Tanto na área de abrangendo a saúde do corpo e mental do praticante como em suas relações na sociedade!</div>
                         </div>
                     </div>
-                    <div class="swiper ladoDireito">
-                        <div class="carrossel-info">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide modelagens">
-                                    <div class="info1_1">
-                                        <div class="imagem-info-1">
-                                            teste1
+                    <div class="ladoDireito">
+                        <div class="swiper">
+                            <div class="carrossel-info">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide modelagens">
+                                        <div class="info1_1">
+                                            <div class="imagem-info-1">
+                                                teste1
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="info1_2">
+                                            <div class="imagem-info-2">teste2</div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="info1_3">
+                                            <div class="imagem-info-3">teste3</div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="info1_4">
+                                            <div class="imagem-info-4">teste4</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="info1_2">
-                                        <div class="imagem-info-2">teste2</div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="info1_3">
-                                        <div class="imagem-info-3">teste3</div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="info1_4">
-                                        <div class="imagem-info-4">teste4</div>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="sep-nxtPrev">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                            <div class="paginacao-sep">
+                                <div class="swiper-pagination"></div>
                             </div>
                         </div>
-                        <div class="sep-nxtPrev">
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                        </div>
-                        <div class="paginacao-sep">
-                            <div class="swiper-pagination"></div>
-                            </div>
                     </div>
             </section>
             <section id="section-branco">
@@ -148,8 +151,9 @@
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                 </select>
-
-                                <button onclick="calcular()">Calcular</button>
+                                <div style="height: 70px; display: flex; align-items: center; justify-content: center;">
+                                    <button onclick="calcular()" class="botao-simulador">Calcular</button>
+                                </div>
                             </div>
                         </div>
                         <div style="display: none" class="direita-simulador" id="div_direita_simulador">
@@ -190,19 +194,19 @@
                             <ul class="rod-list">
                                 <li id="rod-home">
                                     <div class="quadrado"></div>
-                                    <a href="#" class="option">Home</a>
+                                    <a href="#" class="option" style="text-decoration: none;">Home</a>
                                 </li>
                                 <li id="rod-login">
                                     <div class="quadrado"></div>
-                                    <a href="../App/html/login.html" class="option">Login</a>
+                                    <a href="../public/login.html" class="option" style="text-decoration: none;">Login</a>
                                 </li>
                                 <li id="rod-cadastro">
                                     <div class="quadrado"></div>
-                                    <a href="../App/html/cadastro.html" class="option">Cadastro</a>
+                                    <a href="../public/cadastro.html" class="option" style="text-decoration: none;">Cadastro</a>
                                 </li>
                                 <li id="rod-contato">
                                     <div class="quadrado"></div>
-                                    <a href="../App/html/contato.html" class="option">Contato</a>
+                                    <a href="../public/contato.html" class="option" style="text-decoration: none;">Contato</a>
                                 </li>
                             </ul>
                         </div>

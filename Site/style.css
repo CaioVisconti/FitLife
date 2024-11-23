@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 :root {
   /* CORES*/
@@ -39,13 +40,12 @@ justify-content: center;
 align-items: center;
 }
 
-
 /* HOME */
 .header{
 z-index: 4;
 height: 80px;
 width: 100%;
-background-color: var(--white-color);
+background-color: #CFCFCF;
 display: flex;
 justify-content: center;
 align-items: center;    
@@ -57,16 +57,7 @@ top: 0;
     margin-top: 15px;
     margin-right: 15px;
 }
-/*
-button {
-font-style: italic;
-font-size: var(--font-size-button) !important;
-font-weight: 600 !important;
-cursor: pointer !important;
-height: var(--altura-button) !important;
-width: var(--width-button) !important;
-}
-*/
+
 .nav-div{
 height: 100%;
 display: flex;
@@ -89,8 +80,52 @@ position: relative;
 .nav-list .nav-item a{
 text-decoration: none;
 color: var(--white-color);
+font-weight: 800;
+font-size: 24px;
+}
+
+#nav-home {
+text-decoration: none;
+font-size: 20px;
 font-weight: 600;
-font-size: 18px;
+color: black;
+}
+
+#nav-home:hover {
+color: #04364A;
+}
+
+#nav-login {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+#nav-login:hover {
+color: #04364A;
+}
+
+#nav-cadastro {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+#nav-cadastro:hover {
+color: #04364A;
+}
+
+#nav-contato {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+    
+#nav-contato:hover {
+color: #04364A;
 }
 
 .div-logo{
@@ -108,19 +143,15 @@ flex-direction: row;
 justify-content: space-between;
 }
     
-.home{
+.home {
 margin-top: 80px;
 width: 100%;
 height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: rgba(0, 0, 0, 0.5);
+background-image: url(./img/banner.jpg);
 background-size: cover;
-}
-
-.banner{
-    background-image: url(./img/banner.webp);
 }
 
 .home-container {
@@ -159,6 +190,23 @@ display: flex;
 flex-direction: column;
 color: var(--white-color);
 text-align: left;
+}
+
+.button-container {
+    width: 120px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #FFF;
+    text-decoration: none;
+    color: black;
+}
+
+.button-container:hover {
+    background-color: #04364A;
+    color: white;
 }
 
 .teste {
@@ -282,21 +330,6 @@ text-align: left;
     margin-top: 5%;
 }
 
-.button-container {
-    width: 120px;
-    padding: 10px;
-    display: flex;
-    align-items: flex-start;
-    border-radius: 10px;
-    font-size: 20px;
-    background-color: #FFF;
-}
-
-.button-container:hover {
-    background-color: #04364A;
-    color: white;
-}
-
 .button {
     width: 40px;
     height: 50px;
@@ -310,10 +343,10 @@ text-align: left;
 }
 
 #carrossel-info {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: var(--white-color);
-    justify-content: center;
     align-items: center;
 }
 
@@ -367,11 +400,6 @@ text-align: left;
     justify-content: center;
 }
 
-.direita-card {
-    width: 45%;
-    margin-left: 100px;
-}
-
 #info1_2 {
     display: flex;
     flex-direction: row;
@@ -395,7 +423,7 @@ text-align: left;
 
 #section-branco {
     width: 100vw;
-    height: 80vh;
+    height: 90vh;
     background-color: var(--white-color);
     background-size: cover;
 }
@@ -453,6 +481,25 @@ text-align: left;
     height: 40px;
     border: 2px solid var(--black-color);
     border-radius: 20px;
+}
+
+.botao-simulador {
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+.botao-simulador:hover {
+    background-color: #04364A;
+    color: white;
+    cursor: pointer;
 }
 
 .direita-simulador {
@@ -574,6 +621,7 @@ text-align: left;
 
 .titulo-rodape:hover {
     color:#04364A;
+    cursor: pointer;
 }
 
 .rod-list {
