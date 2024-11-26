@@ -2,55 +2,36 @@
 
 
 :root {
-  /* CORES*/
---primary-color:#003519;
---complementar-color: #34751D;
---secondary-color: #1D6975;
---danger-color: #C53015;
 --white-color: #FFF;
 --lightgrey-color:#CFCFCF;
---label-color:#656363;
 --black-color: #000000;
 --grey-color: #545454;
-      
-/* TAMANHO FONTES */
---tamanho-font-input:1.2em;
-
---weight-title: 400;
---font-size-title: 6em;
---font-size-subtitle:1.8rem;
-
---font-size-button: 1.8em;
-
-/* OUTRAS */
---altura-input: 60px;
---padding-input: 0px 10px;
---padding-input-mensagem: 5px 10px;
---radius-input:7px;
-
---altura-button: 50px;
---width-button: 150px;
 }
 
 body{
-display: flex;
-flex-direction: column;
-width: 100%;
-justify-content: center;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
 /* HOME */
 .header{
-z-index: 4;
-height: 80px;
-width: 100%;
-background-color: #CFCFCF;
-display: flex;
-justify-content: center;
-align-items: center;    
-position: fixed;
-top: 0;
+    z-index: 10;
+    height: 100px;
+    width: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    position: fixed;
+    top: 0;
+    border-bottom: #000000;
 }
 
 .logo {
@@ -59,40 +40,40 @@ top: 0;
 }
 
 .nav-div{
-height: 100%;
-display: flex;
-justify-content: center;
-width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 45%;
 }
     
 .nav-list{
-list-style: none;
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
     
 .nav-list .nav-item {
-position: relative;
+    position: relative;
 }
     
 .nav-list .nav-item a{
-text-decoration: none;
-color: var(--white-color);
-font-weight: 800;
-font-size: 24px;
+    text-decoration: none;
+    color: var(--white-color);
+    font-weight: 800;
+    font-size: 24px;
 }
 
 #nav-home {
-text-decoration: none;
-font-size: 20px;
-font-weight: 600;
-color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
 }
 
 #nav-home:hover {
-color: #04364A;
+    color: #04364A;
 }
 
 #nav-login {
@@ -103,7 +84,7 @@ color: #04364A;
 }
 
 #nav-login:hover {
-color: #04364A;
+    color: #04364A;
 }
 
 #nav-cadastro {
@@ -114,7 +95,7 @@ color: #04364A;
 }
 
 #nav-cadastro:hover {
-color: #04364A;
+    color: #04364A;
 }
 
 #nav-contato {
@@ -125,33 +106,39 @@ color: #04364A;
 }
     
 #nav-contato:hover {
-color: #04364A;
+    color: #04364A;
 }
 
 .div-logo{
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar{
-width: 90%;
-height: 100%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
     
 .home {
-margin-top: 80px;
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-background-image: url(../assets/img/banner.jpg);
-background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/img/corrida.jpg);
+    background-size: cover;
+}
+
+.home::before {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade para controlar a escuridão */
+    z-index: 1;
 }
 
 .home-container {
@@ -175,32 +162,33 @@ background-size: cover;
 }
 
 .titulo-container {
-width: 100%;
-text-align: left;
-color: var(--white-color);
-font-size: 70px;
-font-weight: 800;
+    width: 100%;
+    text-align: left;
+    color: var(--black-color);
+    font-size: 70px;
+    font-weight: 800;
 }
 
 .texto-container {
-width: 80%;
-font-size: 30px;
-font-weight: 400;
-display: flex;
-flex-direction: column;
-color: var(--white-color);
-text-align: left;
+    width: 80%;
+    font-size: 30px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    color: var(--black-color);
+    text-align: left;
 }
 
 .button-container {
-    width: 120px;
+    width: 150px;
     padding: 10px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 400;
     background-color: #FFF;
-    text-decoration: none;
     color: black;
 }
 
@@ -215,6 +203,7 @@ text-align: left;
 
 .section-preta {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -234,12 +223,14 @@ text-align: left;
     width: 45%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .textoExp-qs {
     width: 45%;
     display: flex;
     flex-direction: column;
+    text-align: center;
     margin-left: 10%;
 }
 
@@ -253,7 +244,7 @@ text-align: left;
 .texto-branco {
     color: black;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 400;
     text-align: left;
     width: 100%
 }
@@ -261,7 +252,7 @@ text-align: left;
 .texto-branco-qs {
     color: black;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 400;
     text-align: left;
     width: 86%;
 }
@@ -290,14 +281,14 @@ text-align: left;
 .imagemDash {
     width: 250px;
     height: 240px;
-    background-image: url(file:///C:/Users/caiov/Downloads/bxs-dashboard.svg);
+    background-image: url(../assets/icon/bxs-dashboard.svg);
     background-size: cover;
 }
 
 .imagemUser {
     width: 250px;
     height: 250px;
-    background-image: url(file:///C:/Users/caiov/Downloads/bxs-user-pin.svg);
+    background-image: url(../assets/icon/bxs-user-pin.svg);
     background-size: cover;
 }
 
@@ -312,7 +303,7 @@ text-align: left;
 .texto-branco-carrossel {
     color: white;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 400;
     text-align: left;
     width: 60%
 }
@@ -336,7 +327,7 @@ text-align: left;
     background-color: var(--white-color);
 }
 
-.carrosselInfo {
+#carrosselInfo {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -344,6 +335,7 @@ text-align: left;
 
 #carrossel-info {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     background-color: var(--white-color);
@@ -359,80 +351,29 @@ text-align: left;
 }
 
 .ladoDireito {
-    width: 45%;
-    height: 100%;
-}
-
-.info1 {
-    background-color: var(--white-color);
-    border: 5px solid var(--black-color);
-}
-
-.carrosselInfo1 {
-    width: 80%;
-    height: 100%;
-}
-
-.sep-nxtPrev-info1 .swiper-button-next{
-    position: absolute;
-    top:50%;
-    margin-bottom: 44px;
-    right: 20% !important;
-    margin-left: 22.61px !important;
-    color: var(--secondary-color) !important;
-    z-index: 2 !important;
-}
-
-.sep-nxtPrev-info1 .swiper-button-prev{
-    position: absolute;
-    top:50%;
-    margin-bottom: 44px;
-    left: 20% !important;
-    margin-right: 22.61px !important;
-    color: var(--secondary-color) !important;
-    z-index: 2 !important; 
-}
-
-#info1_1 {
+    width: 800px;
+    height: 524px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
-}
-
-#info1_2 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#info1_3 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#info1_4 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    background-image: url(../assets/img/imagem-ladoDireito.png);
+    background-size: cover;
 }
 
 #section-branco {
     width: 100vw;
-    height: 90vh;
+    height: 100%;
     background-color: var(--white-color);
     background-size: cover;
 }
 
 .simulador {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 5%;
+    top: -10%;
 }
 
 .titulo-simulador {
@@ -538,7 +479,7 @@ text-align: left;
     display: flex;
     flex-direction: row;
     gap: 8%;
-    margin-top: 20vh;
+    margin-top: 30vh;
     padding-bottom: 10vh;
 }
 
@@ -556,6 +497,8 @@ text-align: left;
     background-color: var(--white-color);
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .titulo-desenvolvedor {
@@ -568,13 +511,13 @@ text-align: left;
 .texto-desenvolvedor {
     color: var(--black-color);
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 400;
     text-align: left;
 }
 
 #rodape {
     width: 100%;
-    height: 40vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 5%;
@@ -600,7 +543,7 @@ text-align: left;
 .logo-projeto-rodape {
     width: 600px;
     height: 250px;
-    background-image: url(../assets/icon/logo_cinza.png);
+    background-image: url(../assets/icon/image-removebg-preview.png);
     background-size: cover;
     margin-left: 1%;
 }
@@ -707,4 +650,94 @@ text-align: left;
 #rod-contato {
     display: flex;
     flex-direction: row;
+}
+
+.x {
+    width: 50px;
+    height: 50px;
+    background-image: url(https://atribunarj.com.br/uploads/FILES/destacadas/07-04-2024-1000026680.png);
+    background-size: cover;
+}
+
+.imagem-info {
+    background-image: url(../assets/icon/logo_azul.png);
+}
+
+.carrosselEquipamento{
+    width: 70%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -20%;
+}
+
+.swiper-slide {
+  width: 60%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.swiper-slide:hover {
+  cursor: pointer;
+}
+
+.swiper-slide p {
+  width: 60%;
+}
+
+.div_controladora {
+  position: absolute;
+  width: 100%;
+  bottom: -20%;
+}
+  
+.div_controladora .swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+}
+
+.div_controladora .swiper-pagination-bullet-active {
+  background-color: chartreuse;
+}
+
+.div_btns {
+  position: absolute;
+  width: 100%;
+  top: 30%;
+}
+
+.div_btns .swiper-button-next {
+  position: absolute;
+  right: 10%;
+}
+
+.div_btns .swiper-button-prev {
+  position: absolute;
+  left: 10%;
+}
+
+.texto-carrosselInfo {
+  width: 100%;
+  min-height: 300px;
+  font-size: 40px;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  font-weight: 500;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 10px 10px 0px 10px;
+}
+
+.noticias {
+  width: 100%;
+  height: 524px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }

@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitLife</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./js/main.js">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="./js/main.js"></script>
+    <link rel="icon" href="./assets/icon/logo_azul - Copia.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;1,14..32,300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="#">
+                <a href="./index.html">
                     <img src="./assets/icon/logo_azul.png" height="60px" id="logo" alt="">
                 </a>
             </div>
@@ -85,54 +86,51 @@
                             <div class="texto-branco-carrossel">Com a prática de exercícios físicos é nítida a melhora de diversos campos da vida do indivíduo. Tanto na área de abrangendo a saúde do corpo e mental do praticante como em suas relações na sociedade!</div>
                         </div>
                     </div>
-                    <div class="ladoDireito">
-                        <div class="swiper">
-                            <div class="carrossel-info">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide modelagens">
-                                        <div class="info1_1">
-                                            <div class="imagem-info-1">
-                                                teste1
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="info1_2">
-                                            <div class="imagem-info-2">teste2</div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="info1_3">
-                                            <div class="imagem-info-3">teste3</div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="info1_4">
-                                            <div class="imagem-info-4">teste4</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sep-nxtPrev">
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                            </div>
-                            <div class="paginacao-sep">
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="ladoDireito"></div>
             </section>
             <section id="section-branco">
-                <div class="swiper parteSuperior">
-                    <div class="carrossel-noticias">
+                <h1 style="text-align: center; font-size: 40px;">
+                    Notícias sobre atividade física
+                </h1>
+                <div class="noticias">
+                    <div class="swiper carrosselEquipamento">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            <div class="swiper-slide" onclick="noticia1()">
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <span class="texto-carrosselInfo">
+                                    Exercício duas vezes por semana ajuda <span style="color:red">a evitar 264 doenças</span>, aponta estudo
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" onclick="noticia2()">
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <span class="texto-carrosselInfo">
+                                    Atividade física pode <span style="color:red">mitigar as consequências negativas de estar sozinho</span>, revela estudo
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" onclick="noticia3()">
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <span class="texto-carrosselInfo">
+                                    Mais do que endorfina: como a atividade física pode <span style="color:red">alavancar sua carreira</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" onclick="noticia4()">
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <span class="texto-carrosselInfo">
+                                    Atividades físicas proporcionam <span style="color:red">mais e melhores dias dos avós</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="div_btns">
+                        <div class="swiper-button-next next-teste"></div>
+                        <div class="swiper-button-prev prev-teste"></div>
+                    </div>
                 </div>
-                <div style="padding-top: 10vh;" class="simulador">
+                <div class="simulador">
                     <div class="titulo-simulador">
                         Simulador Calórico
                     </div>
@@ -174,13 +172,13 @@
                                 Desenvolvedor do projeto:
                             </span>
                             <span class="texto-desenvolvedor">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non labore, in porro quod laboriosam quaerat ipsa necessitatibus suscipit laborum aut illum, iusto tempore. Hic expedita ducimus consequuntur corrupti, inventore similique!
-                            </span>
+                                Olá, meu nome é Caio Visconti, sou estudante da SPTECH e tenho 19 anos de idade, sempre procuro exercer atividades e desafios que acabem por aumentar ainda mais minhas habilidades, assim como ocorreu nesse projeto!
+                            </span> <br>
                             <span class="titulo-desenvolvedor">
                                 Minha relação com a atividade física:
                             </span>
                             <span class="texto-desenvolvedor">
-
+                                Sou praticante de atividade física desde criança e compreendo a importância e relavância que a prática de algum exercício físico possui no desenvolvimentos das habilidades inatas ou não das pessoas. Pratiquei esportes em grupo por 12 anos da minha vida e atualmente sou praticante de musculação e apenas entusiasta de esportes no geral.
                             </span>
                         </div>
                     </div>
@@ -218,7 +216,7 @@
                             <div style="display: flex; flex-direction: row; gap: 10%">
                                 <a href="https://www.instagram.com/fitlife.ofc/" class="instagram"></a>
                                 <a href="https://www.facebook.com/fitlife.ofc.2024" class="facebook"></a>
-                                <a href="">c</a>
+                                <a href="https://x.com/ContatoFitLife" class="x"></a>
                             </div>
                         </div>
                     </div>
@@ -227,9 +225,35 @@
             </section>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-</script>
+    function noticia1() {
+        window.location = "https://gauchazh.clicrbs.com.br/saude/noticia/2024/10/exercicio-duas-vezes-por-semana-ajuda-a-evitar-264-doencas-aponta-estudo-cm1z9pz0o0041013z2i05j5ol.html";
+    }
 
-<script src="./main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    function noticia2(){
+        window.location = "https://www.ecycle.com.br/atividade-fisica-pode-mitigar-as-consequencias-negativas-de-estar-sozinho-revela-estudo/";
+    }
+
+    function noticia3() {
+        window.location = "https://forbes.com.br/carreira/2023/10/felicidade-produtividade-e-bem-estar-o-poder-da-atividade-fisica-na-carreira/";
+    }
+
+    function noticia4() {
+        window.location = "https://agenciabrasil.ebc.com.br/geral/noticia/2024-07/atividades-fisicas-proporcionam-mais-e-melhores-dias-dos-avos";
+    }
+
+    var swiperEquipamento = new Swiper(".carrosselEquipamento", {
+      slidesPerView: 3,
+      spaceBetween: 10,
+      loop: true,
+      allowTouchMove: false,
+      navigation: {
+        nextEl: ".next-teste",
+        prevEl: ".prev-teste"
+      }
+    });
+   </script>
+
+<script src="./js/main.js"></script>

@@ -74,13 +74,6 @@ function enviar() {
     }
 }
 
-var altura = 0;
-var peso = 0;
-var idade = 0;
-var generoB = '';
-var gasto = 0;
-var alturaR = 0;
-
 function calcular() {
   // Trocar o display do resultado
   var resultado = document.getElementById('div_direita_simulador');

@@ -92,6 +92,7 @@
 
 .botao-enviar:hover {
     background-color: #C8C8C8;
+    cursor: pointer;
 }
 
 textarea {
